@@ -1,67 +1,63 @@
 ---
 import HeaderLink from '@/components/HeaderLink'
-import TwitterIcon from '@/components/icons/TwitterIcon'
-import GithubIcon from '@/components/icons/GithubIcon'
+import InstagramIcon from '@/components/icons/InstagramIcon'
+import LinktreeIcon from '@/components/icons/LinktreeIcon'
 import MenuIcon from './icons/MenuIcon.astro'
 import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
 
-// ADD YOUR SOCIAL NETWORKS HERE
 const SOCIALNETWORKS = [
 	{
-		name: 'Github',
+		name: 'Instagram',
 		url: 'https://github.com/danielcgilibert/blog-template',
-		icon: GithubIcon
+		icon: InstagramIcon
 	},
 
 	{
-		name: 'Twitter',
+		name: 'Linktree',
 		url: 'https://github.com/danielcgilibert/blog-template',
-		icon: TwitterIcon
+		icon: LinktreeIcon
 	}
 ]
 ---
 
 <header class='relative flex items-center h-12 font-semibold'>
-	<a class='text-lg mr-auto' href='/'>Home</a>
+	<a class='text-3xl mr-auto' href='/'>Panther Press</a>
 
 	<div
 		id='astro-header-drawer'
-		class='shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 pl-4 pt-6 pb-4 md:p-0 h-[200px] w-[200px] z-50'
+		class='shadow rounded-l-lg md:bg-transparent dark:border dark:border-white dark:md:bg-transparent bg-white dark:bg-[#0a0910] md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 pl-4 pt-6 pb-4 md:p-0 h-[200px] w-[200px] z-50'
 	>
 		<nav
-			class='flex h-full flex-col justify-between gap-12 text-left md:flex-row md:w-full md:gap-5'
+			class='flex h-full flex-col justify-between gap-4 text-left md:flex-row md:w-full md:gap-5'
 		>
 			<div
-				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
+				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white 1 text-2xl md:text-lg'
 			>
-				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl md:text-base'>
-					<TagIcon /> Tags
-				</HeaderLink>
+				<HeaderLink href='/tags'>Life</HeaderLink>
+				<HeaderLink href='/tags'>News</HeaderLink>
+				<HeaderLink href='/tags'>Editorial</HeaderLink>
 			</div>
 
-			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
+			<div class='flex justify-center items-center md:justify-end gap-2 md:p-0'>
 				{
 					SOCIALNETWORKS.map((network) => (
 						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
-							<span>{<network.icon />} </span>
+							<span class=''>{<network.icon />} </span>
 						</HeaderLink>
 					))
 				}
+				<div>
+					<Search />
+				</div>
+				<ToggleTheme />
+				<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
+					<MenuIcon />
+					<span class='sr-only'>Show Menu</span>
+				</button>
 			</div>
 		</nav>
-	</div>
-
-	<div class='flex items-center gap-3 md:pl-3'>
-		<div>
-			<Search />
-		</div>
-		<ToggleTheme />
-		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
-			<MenuIcon />
-			<span class='sr-only'>Show Menu</span>
-		</button>
 	</div>
 </header>
 <script>
