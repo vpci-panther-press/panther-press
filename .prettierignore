@@ -2,5 +2,7 @@ test/fixtures/**/*.md
 test/fixtures/**/*.astro
 **/dist
 pnpm-lock.yaml
+node_modules
+public/admin
 .github
 .changeset
