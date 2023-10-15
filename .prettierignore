@@ -4,5 +4,9 @@ test/fixtures/**/*.astro
 pnpm-lock.yaml
 node_modules
 public/admin
+tina/__generated__
+tina/tina-lock.json
+src/pages/issue
+src/pages/category
 .github
 .changeset

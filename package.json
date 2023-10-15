@@ -27,7 +27,7 @@
 		"preview": "astro preview",
 		"postbuild": "pagefind --site dist",
 		"format:check": "prettier --plugin-search-dir=. --check .",
-		"format": "prettier --plugin-search-dir=. --write .",
+		"format": "prettier --ignore-unknown --plugin-search-dir=. --write .",
 		"lint": "eslint .",
 		"pre-commit": "lint-staged",
 		"prepare": "husky install"
@@ -71,7 +71,7 @@
 	},
 	"lint-staged": {
 		"*.{astro,js,jsx,ts,tsx,md,mdx,json}": [
-			"prettier --write --plugin-search-dir=."
+			"prettier --write --plugin-search-dir=. --ignore-path=.gitignore --no-error-on-unmatched-pattern"
 		]
 	}
 }
