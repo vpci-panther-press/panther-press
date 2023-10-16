@@ -6,6 +6,7 @@ import ProviderTheme from '@/components/ProviderTheme'
 import ProviderAnimations from '@/components/ProviderAnimations'
 import TwSizeIndicator from '@/components/TwSizeIndicator'
 import EditBlog from '@/components/editBlog'
+import { ViewTransitions } from 'astro:transitions'
 const { title, description, image, articleDate } = Astro.props
 ---
 
@@ -14,6 +15,7 @@ const { title, description, image, articleDate } = Astro.props
 		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
 		<ProviderTheme />
 		<ProviderAnimations />
+		<ViewTransitions fallback='none' />
 	</head>
 
 	<body class='bg-white text-stone-950 dark:bg-[#0a0910] dark:text-white w-full h-full'>
