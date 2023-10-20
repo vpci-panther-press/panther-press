@@ -9,7 +9,7 @@ interface SiteConfig {
 export const siteConfig: SiteConfig = {
 	author: 'Surya T',
 	title: 'VPCI Panther Press',
-	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+	description: 'The official student newspaper of VPCI.',
 	lang: 'en-CA',
 	ogLocale: 'en_CA'
 }
