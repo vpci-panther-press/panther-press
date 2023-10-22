@@ -23,7 +23,6 @@ The documentation for Tina CMS can be found [here](https://tina.io/docs/)
   <a>
 </p>
 
-
 ## ⚙️ Stack
 
 - [**ASTRO** + **Typescript**](https://astro.build/) - Astro is the all-in-one web framework designed for speed.
@@ -45,7 +44,7 @@ The documentation for Tina CMS can be found [here](https://tina.io/docs/)
 1. Clone the repository:
 
 ```bash
-git@github.com:danielcgilibert/blog-template.git
+git clone https://github.com/picafe/panther-press.git
 ```
 
 2. Install dependencies:
