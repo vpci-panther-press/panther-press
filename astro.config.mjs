@@ -8,7 +8,7 @@ import react from '@astrojs/react'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://blog-template-gray.vercel.app/',
+	site: 'https://panther-press.pages.dev',
 	// Write here your website url
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
