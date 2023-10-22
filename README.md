@@ -1,49 +1,19 @@
-<div align="center">
-
-<img src="public/project.png" alt="Screenshot" />
-
-<hr/>
-
-</div>
-
 ## 📌 Table Of Contents
 
-1. [Demo](#-Demo)
-2. [CMS](#-Tina-CMS)
-3. [Features](#-Features)
-4. [Roadmap](#-Roadmap)
-5. [Stack](#-Stack)
-6. [Running locally](#-Running-Locally)
-7. [Configure](#-Configure)
-8. [Categories](#-Adding-a-category)
-9. [Posts](#-Adding-a-post)
-10. [Draft](#-Activating-draft-mode)
-11. [FrontMatter](#-Frontmatter)
-12. [CLI](#-Commands)
-13. [Contributors](#-Contributors)
-
-## 💻 Demo
-
-Check out the [Demo](https://blog-template-gray.vercel.app/), hosted on Vercel
-<br/>
-
-https://github.com/danielcgilibert/blog-template/assets/44746462/56b8399e-cc5b-45a8-b9d2-d69833ecadb1
+1. [CMS](#-Tina-CMS)
+2. [Features](#-Features)
+3. [Stack](#-Stack)
+4. [Running locally](#-Running-Locally)
+5. [Categories](#-Adding-a-category)
+6. [Posts](#-Adding-a-post)
+7. [Draft](#-Activating-draft-mode)
+8. [FrontMatter](#-Frontmatter)
+9. [CLI](#-Commands)
+10. [Credits](#-Credits)
 
 ## 🦙 Tina CMS
 
-By default, this template comes pre-configured with Tina CMS.
-
-Now you can create your posts directly from the CMS without the need to do it manually.
-
-If you decide to use Tina, it's not necessary to add any properties to the Markdown files, Tina does it automatically.
-
-Example:
-
-https://github.com/danielcgilibert/blog-template/assets/44746462/51ae324c-d383-40be-9b16-db159d1af15d
-
 The documentation for Tina CMS can be found [here](https://tina.io/docs/)
-
-> Tina is completely optional, and you can remove it, and it will still function in the same way.
 
 ## 💪 Features:
 
@@ -52,25 +22,7 @@ The documentation for Tina CMS can be found [here](https://tina.io/docs/)
     <img width="510" alt="openblog Lighthouse Score" src="public/openblog-lighthouse-score.svg">
   <a>
 </p>
-    
-- ✅ Minimal styling
-- ✅ Mobile responsive
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-- ✅ Syntax highlighting
-- ✅ Image optimization
-- ✅ Table of contents
-- ✅ Dark mode
-- ✅ Reading Time
-- ✅ [Pagefind](https://pagefind.app/) static search library integration
-- ✅ Related posts
-- ✅ Share posts (Linkedin, twitter)
-- ✅ Draft mode
-- ✅ Copy code block
-- ✅ CMS in the repository (Tina CMS)
+
 
 ## ⚙️ Stack
 
@@ -90,7 +42,7 @@ The documentation for Tina CMS can be found [here](https://tina.io/docs/)
 - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).
 - [Astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode).
 
-1. Clone or [fork](https://github.com/danielcgilibert/blog-template/fork) the repository:
+1. Clone the repository:
 
 ```bash
 git@github.com:danielcgilibert/blog-template.git
@@ -99,7 +51,7 @@ git@github.com:danielcgilibert/blog-template.git
 2. Install dependencies:
 
 ```bash
-pnpm install
+pnpm i
 ```
 
 3. Run the development server:
@@ -107,16 +59,6 @@ pnpm install
 ```bash
 pnpm dev
 ```
-
-## 📐 Configure
-
-- Edit the configuration file **src/data/site.config.ts** for the basic blog metadata.
-- Update the **astro.config.mjs** file at the root of the project with your own domain.
-- Modify the files in the **/public** folder:
-  - favicon
-  - robots.txt -> update the Sitemap url to your own domain
-  - open-graph -> the open-graph is the image that will be displayed when sharing the blog link. For posts, the preview image is the post cover.
-- Edit the social networks in the Header component - **src/components/Header.astro**, change the URL to your social network.
 
 ## 🗂️ Adding a category
 
@@ -189,7 +131,7 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm run sync`         | Generates TypeScript types for all Astro modules. [Learn more](https://docs.astro.build/en/reference/cli-reference/#astro-sync). |
 | `pnpm run lint`         | Lint with ESLint                                                                                                                 |
 
-## 👋 Contributors
+## 👋 Credits
 
 <a href="https://github.com/danielcgilibert/blog-template/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=danielcgilibert/blog-template" />
