@@ -22,26 +22,26 @@ const SOCIALNETWORKS = [
 ---
 
 <header class='relative flex justify-between items-center h-12 font-semibold'>
-	<a class='text-3xl font-semibold mr-auto' href='/'>Panther Press</a>
+	<a class='text-3xl font-semibold' href='/'>Panther Press</a>
 
 	<div
 		id='astro-header-drawer'
-		class='shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 px-4 py-6 md:p-0 h-fit w-[200px] z-50'
+		class='ml-auto shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 px-4 py-6 md:p-0 h-fit w-[200px] z-50'
 	>
 		<nav
-			class='flex h-full flex-col justify-between gap-12 md:text-left text-center md:flex-row md:w-full md:gap-5'
+			class='mr-4 flex h-fit w-fit justify-between gap-12 md:text-left text-center md:flex-row md:gap-5'
 		>
 			<div
 				class='flex flex-col gap-4 sm:flex-row md:border-r-2 border-black md:pr-4 dark:border-white text-2xl md:text-lg'
 			>
-				<HeaderLink href='/category/life'>Life</HeaderLink>
-				<HeaderLink href='/category/news'>News</HeaderLink>
-				<HeaderLink href='/category/editorial'>Editorial</HeaderLink>
+				<HeaderLink href='/articles/category/life'>Articles</HeaderLink>
+				<HeaderLink href='/articles/category/news'>Issue</HeaderLink>
+				<HeaderLink href='/articles/category/editorial'>Photography</HeaderLink>
 			</div>
 		</nav>
 	</div>
 
-	<div transition:persist class='pl-8 flex items-center gap-3 md:pl-3'>
+	<div transition:persist class='ml-4 pl-8 flex items-center gap-3 md:pl-3'>
 		{
 			SOCIALNETWORKS.map((network) => (
 				<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
