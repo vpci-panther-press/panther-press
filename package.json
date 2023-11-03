@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "tinacms dev -c \"astro dev\"",
+		"dhost": "tinacms dev -c \"astro dev --host\"",
 		"start": "astro dev",
 		"build": "tinacms build && astro build",
 		"sync": "astro sync",
