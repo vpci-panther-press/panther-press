@@ -7,7 +7,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				white: '#f8f9fa'
+				white: '#f8f9fa',
+				primary: '#d62828',
+				secondary: '#fcbf49',
+				tertiary: '#f77f00'
 			},
 			fontFamily: {
 				body: ['Manrope', ...defaultTheme.fontFamily.sans]
@@ -18,5 +21,4 @@ module.exports = {
 		}
 	},
 	plugins: [require('@tailwindcss/typography')],
-	darkMode: 'class'
 }

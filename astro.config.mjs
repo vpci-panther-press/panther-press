@@ -4,12 +4,9 @@ import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/readTime.ts'
 
-import react from '@astrojs/react'
-
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://panther-press.pages.dev',
-	// Write here your website url
+	site: 'https://pantherpress.ca',
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		drafts: true,
@@ -28,7 +25,6 @@ export default defineConfig({
 			drafts: true
 		}),
 		sitemap(),
-		tailwind(),
-		react()
+		tailwind()
 	]
 })
