@@ -1,0 +1,83 @@
+---
+import HeaderLink from './HeaderLink.astro'
+import Search from './Search.astro'
+import ToggleTheme from './ToggleTheme.astro'
+import InstagramIcon from './icons/InstagramIcon.astro'
+import LinktreeIcon from './icons/LinktreeIcon.astro'
+import MenuIcon from './icons/MenuIcon.astro'
+import Logo from './icons/Logo.astro'
+
+const SOCIALNETWORKS = [
+	{
+		name: 'Instagram',
+		url: 'https://instagram.com/vp.pantherpress',
+		icon: InstagramIcon
+	},
+
+	{
+		name: 'Linktree',
+		url: 'https://linktr.ee/pantherpress',
+		icon: LinktreeIcon
+	}
+]
+---
+
+<script>
+	import './Navbar.module'
+</script>
+<header
+	class='flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-fulltext-sm py-4 md:bg-transparent dark:md:bg-transparent bg-white rounded-lg bg-opacity-40 dark:bg-[#0a0910]'
+>
+	<nav
+		class='max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between'
+		aria-label='Global'
+	>
+		<div class='flex items-center justify-between'>
+			<a
+				class='flex-none text-2xl font-semibold hover:trans-text text-slate-900 dark:text-white'
+				href='/'
+			>
+				<div class='flex flex-row gap-x-2 items-center'>
+					<Logo width={24} height={24} /> Panther Press
+				</div></a
+			>
+			<div class='sm:hidden flex flex-row items-center gap-2'>
+				<Search />
+				<button
+					type='button'
+					class='hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800'
+					data-hs-collapse='#navbar-collapse-with-animation'
+					aria-controls='navbar-collapse-with-animation'
+					aria-label='Toggle navigation'
+				>
+					<MenuIcon />
+				</button>
+			</div>
+		</div>
+		<div
+			id='navbar-collapse-with-animation'
+			class='hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:flex flex-row ml-auto'
+		>
+			<div
+				class='flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 ml-auto text-lg font-semibold'
+			>
+				<HeaderLink href='/articles'>Articles</HeaderLink>
+				<HeaderLink href='/articles/category/news'>Issue</HeaderLink>
+				<HeaderLink href='/articles/category/editorial'>Photography</HeaderLink>
+				<div transition:persist class='flex flex-row gap-2'>
+					{
+						SOCIALNETWORKS.map((network) => (
+							<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
+								<span>{<network.icon />} </span>
+							</HeaderLink>
+						))
+					}
+					<div class='hidden sm:inline-block'>
+						<Search />
+					</div>
+					<ToggleTheme />
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>

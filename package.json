@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "tinacms dev -c \"astro dev\"",
+		"dhost": "tinacms dev -c \"astro dev --host\"",
 		"start": "astro dev",
 		"build": "tinacms build && astro build",
 		"sync": "astro sync",
@@ -16,15 +17,8 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
-		"@astrojs/react": "^3.0.3",
 		"@astrojs/rss": "3.0.0",
-		"@radix-ui/react-navigation-menu": "^1.1.4",
-		"@tinacms/cli": "^1.5.31",
-		"@types/react": "^18.2.30",
-		"@types/react-dom": "^18.2.14",
 		"astro": "3.3.2",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
 		"tinacms": "^1.5.22"
 	},
 	"devDependencies": {
@@ -33,6 +27,7 @@
 		"@astrojs/tailwind": "5.0.2",
 		"@pagefind/default-ui": "^1.0.3",
 		"@tailwindcss/typography": "0.5.10",
+		"@tinacms/cli": "^1.5.31",
 		"@typescript-eslint/parser": "^6.8.0",
 		"clsx": "2.0.0",
 		"eslint": "^8.51.0",
