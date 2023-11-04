@@ -52,3 +52,9 @@
 .shadow {
 	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
 }
+
+.trans-text:hover {
+	background-image: linear-gradient(135deg,#00d2ff 20%, #ffa6b9 0 40%, white 0 60%, #ffa6b9 0 80%, #00d2ff 0);
+	background-clip: text;
+	color: transparent;
+}
