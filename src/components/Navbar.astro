@@ -5,6 +5,7 @@ import ToggleTheme from './ToggleTheme.astro'
 import InstagramIcon from './icons/InstagramIcon.astro'
 import LinktreeIcon from './icons/LinktreeIcon.astro'
 import MenuIcon from './icons/MenuIcon.astro'
+import Logo from './icons/Logo.astro'
 
 const SOCIALNETWORKS = [
 	{
@@ -32,8 +33,13 @@ const SOCIALNETWORKS = [
 		aria-label='Global'
 	>
 		<div class='flex items-center justify-between'>
-			<a class='flex-none text-xl font-semibold text-primary dark:text-white' href='#'
-				>Panther Press</a
+			<a
+				class='flex-none text-2xl font-semibold hover:trans-text text-slate-900 dark:text-white'
+				href='/'
+			>
+				<div class='flex flex-row gap-x-2 items-center'>
+					<Logo width={24} height={24} /> Panther Press
+				</div></a
 			>
 			<div class='sm:hidden flex flex-row items-center gap-2'>
 				<Search />
@@ -53,9 +59,9 @@ const SOCIALNETWORKS = [
 			class='hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:flex flex-row ml-auto'
 		>
 			<div
-				class='flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 ml-auto font-semibold'
+				class='flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 ml-auto text-lg font-semibold'
 			>
-				<HeaderLink href='/articles/category/life'>Articles</HeaderLink>
+				<HeaderLink href='/articles'>Articles</HeaderLink>
 				<HeaderLink href='/articles/category/news'>Issue</HeaderLink>
 				<HeaderLink href='/articles/category/editorial'>Photography</HeaderLink>
 				<div transition:persist class='flex flex-row gap-2'>
