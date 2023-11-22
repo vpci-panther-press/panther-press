@@ -14,9 +14,6 @@ dependencies:
   '@preline/overlay':
     specifier: ^2.0.0
     version: 2.0.0
-  '@radix-ui/colors':
-    specifier: ^3.0.0
-    version: 3.0.0
   astro:
     specifier: 3.5.2
     version: 3.5.2(typescript@5.2.2)
@@ -2062,10 +2059,6 @@ packages:
 
   /@preline/overlay@2.0.0:
     resolution: {integrity: sha512-YLm8Hhez4i6E4/upYZYyqp0uUcJVOKsoSz/pITh2s8/uLDGK4hjNWoAoWgzrSHD9W+0uqybU20/OEzOv/DBwVw==}
-    dev: false
-
-  /@radix-ui/colors@3.0.0:
-    resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
     dev: false
 
   /@radix-ui/primitive@1.0.1:
