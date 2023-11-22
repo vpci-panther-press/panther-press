@@ -1,56 +1,97 @@
+---
+import { Image } from 'astro:assets'
+import ArrowRight from './icons/ArrowRightS.astro'
+---
+
 <!-- Hero -->
-<div
-	class='relative overflow-hidden before:absolute before:top-0 before:left-1/2 before:bg-no-repeat before:bg-top before:bg-cover before:w-full before:h-full before:-z-[1] before:transform before:-translate-x-1/2'
->
-	<div class='max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10'>
-		<!-- Title -->
-		<div class='mt-5 max-w-2xl text-center mx-auto'>
-			<h1 class='block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-gray-200'>
+<div class='max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8'>
+	<!-- Grid -->
+	<div class='grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center'>
+		<div class=''>
+			<h1
+				class='mt-4 block font-bold text-gray-800 text-4xl md:text-5xl lg:text-6xl dark:text-gray-200'
+			>
 				Victoria Park <br />
-				<span class='bg-clip-text bg-gradient-to-tl from-blue-600 to-violet-600 text-transparent'
+				<span class='bg-clip-text bg-gradient-to-tl from-primary to-secondary text-transparent'
 					>Panther Press</span
 				>
 			</h1>
-		</div>
-		<!-- End Title -->
-
-		<div class='mt-5 max-w-3xl text-center mx-auto'>
-			<p class='text-lg text-gray-600 dark:text-gray-400'>
-				Preline UI is an open-source set of prebuilt UI components, ready-to-use examples and Figma
-				design system based on the utility-first Tailwind CSS framework.
+			<p class='mt-7 text-lg text-gray-800 dark:text-gray-400'>
+				Welcome to the Panther Press, Victoria Park's student-run newspaper. We are a group of
+				students who are passionate about writing and journalism.
 			</p>
-		</div>
 
-		<!-- Buttons -->
-		<div class='mt-8 grid gap-3 w-full sm:inline-flex sm:justify-center'>
-			<a
-				class='inline-flex justify-center items-center gap-x-3 text-center bg-gradient-to-tl from-blue-600 to-violet-600 hover:from-violet-600 hover:to-blue-600 border border-transparent text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-4 dark:focus:ring-offset-gray-800'
-				href='#'
-			>
-				Read Articles
-				<svg class='w-3 h-3' width='16' height='16' viewBox='0 0 16 16' fill='none'>
-					<path
-						d='M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14'
-						stroke='currentColor'
-						stroke-width='2'
-						stroke-linecap='round'></path>
-				</svg>
-			</a>
-			<a
-				class='relative group inline-flex justify-center items-center gap-x-3.5 text-center bg-white border hover:border-gray-300 shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition p-2 pl-4 dark:bg-slate-900 dark:border-gray-800 dark:hover:border-gray-600 dark:shadow-slate-700/[.7] dark:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800'
-				href='#'
-			>
-				Download Issue
-				<svg class='w-3 h-3' width='16' height='16' viewBox='0 0 16 16' fill='none'>
-					<path
-						d='M5.27921 2L10.9257 7.64645C11.1209 7.84171 11.1209 8.15829 10.9257 8.35355L5.27921 14'
-						stroke='currentColor'
-						stroke-width='2'
-						stroke-linecap='round'></path>
-				</svg>
-			</a>
+			<!-- Buttons -->
+			<div class='mt-7 grid gap-3 w-full sm:inline-flex'>
+				<button>
+					<a
+						class='inline-flex justify-center items-center gap-x-3 text-center transition-all duration-500 bg-size-200 bg-pos-0 hover:bg-pos-100 bg-gradient-to-tl from-primary to-secondary hover:from-tertiary hover:to-primary border border-transparent text-black text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white py-3 px-4 dark:focus:ring-offset-gray-800'
+						href='/articles'
+					>
+						Read Articles
+						<ArrowRight />
+					</a>
+				</button>
+				<button>
+					<a
+						class='relative group inline-flex justify-center items-center gap-x-3.5 text-center bg-zinc-200 border hover:border-gray-300 shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition p-2 pl-4 dark:bg-slate-900 dark:border-gray-800 dark:hover:border-gray-600 dark:shadow-slate-700/[.7] dark:text-white dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800'
+						href='#'
+					>
+						Download Issue
+						<ArrowRight />
+					</a>
+				</button>
+			</div>
+			<!-- End Buttons -->
 		</div>
-		<!-- End Buttons -->
-		<!-- End Hero -->
+		<!-- End Col -->
+
+		<div class='sm:inline-block hidden relative ms-4'>
+			<Image
+				src='/oct2023/PXL_20221103_213715354.jpg'
+				alt='Image Description'
+				width='512'
+				height='300'
+			/>
+			<div
+				class='absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0'
+			>
+			</div>
+
+			<!-- SVG-->
+			<div class='absolute bottom-0 start-0'>
+				<!-- svg for the image pixel overlay -->
+				<svg
+					class='w-2/3 ms-auto h-auto text-white dark:text-slate-900'
+					width='630'
+					height='451'
+					viewBox='0 0 630 451'
+					fill='none'
+					xmlns='http://www.w3.org/2000/svg'
+				>
+					<rect x='531' y='352' width='99' height='99' fill='currentColor'></rect>
+					<rect x='140' y='352' width='106' height='99' fill='currentColor'></rect>
+					<rect x='482' y='402' width='64' height='49' fill='currentColor'></rect>
+					<rect x='433' y='402' width='63' height='49' fill='currentColor'></rect>
+					<rect x='384' y='352' width='49' height='50' fill='currentColor'></rect>
+					<rect x='531' y='328' width='50' height='50' fill='currentColor'></rect>
+					<rect x='99' y='303' width='49' height='58' fill='currentColor'></rect>
+					<rect x='99' y='352' width='49' height='50' fill='currentColor'></rect>
+					<rect x='99' y='392' width='49' height='59' fill='currentColor'></rect>
+					<rect x='44' y='402' width='66' height='49' fill='currentColor'></rect>
+					<rect x='234' y='402' width='62' height='49' fill='currentColor'></rect>
+					<rect x='334' y='303' width='50' height='49' fill='currentColor'></rect>
+					<rect x='581' width='49' height='49' fill='currentColor'></rect>
+					<rect x='581' width='49' height='64' fill='currentColor'></rect>
+					<rect x='482' y='123' width='49' height='49' fill='currentColor'></rect>
+					<rect x='507' y='124' width='49' height='24' fill='currentColor'></rect>
+					<rect x='531' y='49' width='99' height='99' fill='currentColor'></rect>
+				</svg>
+			</div>
+			<!-- End SVG-->
+		</div>
+		<!-- End Col -->
 	</div>
+	<!-- End Grid -->
 </div>
+<!-- End Hero -->

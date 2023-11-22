@@ -23,10 +23,10 @@ const SOCIALNETWORKS = [
 ---
 
 <script>
-	import './Navbar.module'
+	import '@preline/collapse'
 </script>
 <header
-	class='flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-fulltext-sm py-4 md:bg-transparent dark:md:bg-transparent bg-white rounded-lg bg-opacity-40 dark:bg-[#0a0910]'
+	class='flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-fulltext-sm py-4 md:bg-transparent bg-zinc-200 md:dark:bg-zinc-900 dark:bg-zinc-800 rounded-lg'
 >
 	<nav
 		class='max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between'
@@ -34,7 +34,7 @@ const SOCIALNETWORKS = [
 	>
 		<div class='flex items-center justify-between'>
 			<a
-				class='flex-none text-2xl font-semibold hover:trans-text text-slate-900 dark:text-white'
+				class='flex-none text-2xl font-semibold hover:trans-text text-zinc-900 dark:text-white'
 				href='/'
 			>
 				<div class='flex flex-row gap-x-2 items-center'>
@@ -45,7 +45,7 @@ const SOCIALNETWORKS = [
 				<Search />
 				<button
 					type='button'
-					class='hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800'
+					class='hs-collapse-toggle p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800'
 					data-hs-collapse='#navbar-collapse-with-animation'
 					aria-controls='navbar-collapse-with-animation'
 					aria-label='Toggle navigation'
@@ -62,8 +62,8 @@ const SOCIALNETWORKS = [
 				class='flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 ml-auto text-lg font-semibold'
 			>
 				<HeaderLink href='/articles'>Articles</HeaderLink>
-				<HeaderLink href='/articles/category/news'>Issue</HeaderLink>
-				<HeaderLink href='/articles/category/editorial'>Photography</HeaderLink>
+				<HeaderLink href='/issues'>Issue</HeaderLink>
+				<HeaderLink href='/photography'>Photography</HeaderLink>
 				<div transition:persist class='flex flex-row gap-2'>
 					{
 						SOCIALNETWORKS.map((network) => (
