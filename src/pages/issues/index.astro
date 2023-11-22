@@ -1,0 +1,14 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import TitlePage from '@/components/TitlePage'
+import IssuesCard from 'src/components/IssuesCard.astro'
+import { getTags } from '@/utils'
+const tags = await getTags()
+---
+
+<BaseLayout title='Issues'>
+	<TitlePage title='Issues' />
+	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+		{tags.map((tag) => <IssuesCard title={tag} img='/oct2023/cover.jpg' url={`/issues/${tag}`} />)}
+	</div>
+</BaseLayout>
