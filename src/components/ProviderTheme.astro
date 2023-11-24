@@ -3,7 +3,7 @@
 		const storedTheme = typeof localStorage !== 'undefined' && localStorage.getItem('theme')
 
 		return (
-			storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+			storedTheme || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'dark' : 'light')
 		)
 	}
 
@@ -17,19 +17,11 @@
 		localStorage.setItem('theme', newTheme)
 	}
 
+	// set initial theme
 	setTheme(getTheme())
+	document.addEventListener('astro:after-swap', () => setTheme(getTheme()))
 
 	document.addEventListener('theme-change', (e) => {
 		setTheme(e.detail.theme)
-	})
-
-	document.addEventListener('astro:after-swap', () => {
-		if (localStorage.theme === 'light' || !('theme' in localStorage)) {
-			document.documentElement.classList.remove('dark')
-			localStorage.setItem('theme', 'light')
-		} else {
-			document.documentElement.classList.add('dark')
-			localStorage.setItem('theme', 'dark')
-		}
 	})
 </script>
