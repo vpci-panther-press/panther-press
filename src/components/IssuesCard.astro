@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets'
+import ExternalLink from './icons/ExternalLink.astro'
+import ArrowRightS from './icons/ArrowRightS.astro'
+type Props = {
+	title: string
+	img: string
+	url: string
+	issuuLink: string
+}
+
+const { title, img, url, issuuLink } = Astro.props
+---
+
+<div
+	class='bg-zinc-200 border rounded-xl shadow-sm sm:flex dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden'
+>
+	<div
+		class='flex-shrink-0 relative w-full rounded-t-xl sm:rounded-s-xl sm:max-w-[15rem] md:rounded-se-none md:max-w-xs'
+	>
+		<Image src={img} alt=`Cover Image of the ${title} Issue` width='1200' height='900' />
+	</div>
+	<div class='flex flex-col w-full'>
+		<div class='p-4 flex flex-col h-full sm:p-7'>
+			<h1 class='text-2xl font-bold text-gray-800 dark:text-white'>
+				{title}
+			</h1>
+		</div>
+		<div class='flex flex-col m-4 gap-2'>
+			<button
+				onclick=`window.location.href='${url}';`
+				type='button'
+				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary dark:bg-secondary text-white dark:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+			>
+				<p class='mr-auto'>Read Articles</p>
+				<ArrowRightS />
+			</button>
+			<button
+				onclick=`window.location.href='${issuuLink}';`
+				type='button'
+				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-secondary dark:bg-primary text-black dark:text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+			>
+				<p class='mr-auto'>Read Issue</p>
+				<ExternalLink />
+			</button>
+		</div>
+	</div>
+</div>
