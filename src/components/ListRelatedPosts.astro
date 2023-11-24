@@ -1,7 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-
-import { cn } from '@/utils'
+import { cn, filterPostsByCategory } from '@/utils'
 import { Image } from 'astro:assets'
 
 type Props = {
@@ -11,28 +10,45 @@ type Props = {
 const { posts } = Astro.props
 ---
 
-<section class={cn(`flex flex-col md:flex-row sm:justify-between gap-8`)}>
+<section class={cn(`grid lg:grid-cols-3 lg:grid-rows-1 grid-cols-1 grid-rows-3 gap-8`)}>
 	{
 		posts.length > 0 ? (
-			posts.map((post) => {
+			posts.map(async (post) => {
+				const { remarkPluginFrontmatter } = await post.render()
 				return (
-					<div class='flex flex-wrap gap-2'>
-						<div class='min-h-full'>
+					<a
+						class='group flex flex-col h-full border border-gray-200 hover:border-transparent hover:shadow-lg transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+						href={`/articles/${post.slug}/`}
+					>
+						<div class='aspect-w-16 aspect-h-11'>
 							<Image
 								src={post.data.heroImage}
-								width={200}
+								width={600}
 								height={200}
 								format='webp'
-								class='w-16 h-16 object-cover rounded-full  '
-								alt={`img of ${post.data.title}`}
+								class='w-full h-40 object-cover rounded-xl'
+								alt={`cover image for article: ${post.data.title}`}
 							/>
 						</div>
-						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/articles/${post.slug}/`}>
+						<div class='my-6'>
+							<div class='mb-3'>
+								<p class='inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'>
+									{post.data.category}
+								</p>
+							</div>
+							<h1 class='text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white'>
 								{post.data.title}
-							</a>
-						</header>
-					</div>
+							</h1>
+							<p class='mt-5 text-gray-600 dark:text-gray-400'>{post.data.description}</p>
+						</div>
+						<div class='mt-auto flex items-center gap-x-3'>
+							<div>
+								<p class='text-sm text-gray-800 dark:text-gray-200'>
+									{remarkPluginFrontmatter.minutesRead}
+								</p>
+							</div>
+						</div>
+					</a>
 				)
 			})
 		) : (
