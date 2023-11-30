@@ -2,14 +2,16 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
 import IssuesCard from 'src/components/IssuesCard.astro'
-import { getTags } from '@/utils'
-const tags = await getTags()
-const Issues = tags.map((tag, index) => {
+import { getIssues, getTags, filterPostsByIssue, sluglify } from '@/utils'
+const issues = await getIssues()
+const images = ['/oct2023/cover.jpg', '/oct2023/cover.jpg']
+
+const Issues = issues.map((tag, index) => {
 	return {
 		title: tag,
 		description: `Issue ${tag}`,
-		img: `/oct2023/cover.jpg`,
-		url: `/issues/${tag}`,
+		img: images[index],
+		url: `/issues/${sluglify(tag).toLowerCase()}`,
 		issuuLink: `https://issuu.com/vp.antherpress/docs/q54gt79wurf`
 	}
 })
