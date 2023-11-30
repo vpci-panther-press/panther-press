@@ -1,4 +1,5 @@
 import { CATEGORIES } from '../src/data/categories.ts'
+import { ISSUES } from '../src/data/issues.ts'
 import { defineConfig } from 'tinacms'
 
 // Your hosting provider likely exposes this as an environment variable
@@ -42,6 +43,14 @@ export default defineConfig({
 						label: 'Category',
 						description: 'Select an category for this post',
 						options: [...CATEGORIES]
+					},
+					{
+						type: 'string',
+						required: true,
+						name: 'issue',
+						label: 'Issue',
+						description: 'Select an issue date for this post',
+						options: [...ISSUES]
 					},
 					{
 						type: 'string',

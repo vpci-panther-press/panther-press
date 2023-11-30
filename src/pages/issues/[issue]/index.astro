@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import TitlePage from '@/components/TitlePage'
+import { getIssues, filterPostsByIssue, sluglify } from '@/utils'
+
+export async function getStaticPaths() {
+	const issues = await getIssues()
+
+	return issues.map((issue) => ({
+		params: { issue: sluglify(issue).toLowerCase() },
+		props: { issue }
+	}))
+}
+
+const { issue } = Astro.props
+
+const posts = await filterPostsByIssue(issue)
+---
+
+<BaseLayout title={issue}>
+	<TitlePage title={issue} />
+	<ListPosts posts={posts} />
+</BaseLayout>

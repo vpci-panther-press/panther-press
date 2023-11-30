@@ -5,58 +5,32 @@ import BaseLayout from '@/layouts/BaseLayout'
 ---
 
 <BaseLayout title='Photography'>
-	<TitlePage title='Photography' />
-	<div class='grid grid-cols-2 sm:grid-cols-3 gap-2'>
-		<div class='space-y-2'>
-			<img
-				class='w-full h-auto object-cover'
-				src='/oct2023/PXL_20221103_213715354.jpg'
-				alt='Image Description'
-			/>
-			<img
-				class='w-full h-auto object-cover'
-				src='/oct2023/PXL_20230904_114345810.jpg'
-				alt='Image Description'
-			/>
-			<img
-				class='w-full h-auto object-cover'
-				src='/oct2023/PXL_20231021_163458922~2.jpg'
-				alt='Image Description'
-			/>
-			<img
-				class='w-full h-auto object-cover'
-				src='/oct2023/BlackWhite1.jpg'
-				alt='Image Description'
-			/>
+	<main id='content' role='main'>
+		<div class='h-screen text-center py-10 px-4 sm:px-6 lg:px-8'>
+			<h1 class='block text-2xl font-bold text-white sm:text-4xl'>Coming Soon</h1>
+			<p class='mt-3 text-lg text-gray-300'>
+				This page is still under development, please check back later!
+			</p>
+			<div class='mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3'>
+				<a
+					class='w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+					href='/'
+				>
+					<svg
+						class='flex-shrink-0 w-4 h-4'
+						xmlns='http://www.w3.org/2000/svg'
+						width='24'
+						height='24'
+						viewBox='0 0 24 24'
+						fill='none'
+						stroke='currentColor'
+						stroke-width='2'
+						stroke-linecap='round'
+						stroke-linejoin='round'><path d='m15 18-6-6 6-6'></path></svg
+					>
+					 Back to Home
+				</a>
+			</div>
 		</div>
-		<div class='space-y-2'>
-			<img
-				class='w-full h-auto object-cover'
-				src='/oct2023/PXL_20231021_165359074~2.jpg'
-				alt='Image Description'
-			/>
-			<img
-				class='w-full h-auto object-cover'
-				src='/oct2023/Standalone1.png'
-				alt='Image Description'
-			/>
-		</div>
-		<div class='space-y-2'>
-			<img
-				class='w-full h-auto object-cover'
-				src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-				alt='Image Description'
-			/>
-			<img
-				class='w-full h-auto object-cover'
-				src='https://images.unsplash.com/photo-1586232702178-f044c5f4d4b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80'
-				alt='Image Description'
-			/>
-			<img
-				class='w-full h-auto object-cover'
-				src='https://images.unsplash.com/photo-1542125387-c71274d94f0a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80'
-				alt='Image Description'
-			/>
-		</div>
-	</div>
+	</main>
 </BaseLayout>
