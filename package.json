@@ -20,7 +20,7 @@
 		"@astrojs/rss": "3.0.0",
 		"@preline/collapse": "^2.0.1",
 		"@preline/overlay": "^2.0.1",
-		"astro": "3.6.0",
+		"astro": "3.6.4",
 		"tinacms": "^1.5.26"
 	},
 	"devDependencies": {
