@@ -21,7 +21,7 @@
 		"@preline/collapse": "^2.0.1",
 		"@preline/overlay": "^2.0.1",
 		"astro": "3.6.0",
-		"tinacms": "^1.5.26"
+		"tinacms": "^1.5.28"
 	},
 	"devDependencies": {
 		"@astrojs/mdx": "1.1.5",
