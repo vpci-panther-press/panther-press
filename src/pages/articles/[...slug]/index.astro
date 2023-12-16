@@ -6,6 +6,8 @@ import ListRelatedPosts from '@/components/ListRelatedPosts'
 import TableOfContents from '@/components/TableOfContents'
 import { getPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
+import { AUTHORS } from '@/data/authors'
+import AuthorProfile from '@/components/AuthorProfile'
 
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
@@ -30,6 +32,8 @@ const getRelatedPosts = (post: Props) => {
 const relatedPosts = getRelatedPosts(post)
 
 const { Content, headings, remarkPluginFrontmatter } = await post.render()
+
+const author = AUTHORS.find((author) => author.name === post.data.author)
 ---
 
 <BlogPost
@@ -41,6 +45,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 	<div class='grid grid-cols-1 md:grid-cols-[20%_auto] gap-10 mt-8'>
 		<!-- aside  -->
 		<aside class='md:flex flex-col gap-8 hidden'>
+			<AuthorProfile author={author} imageCredit={post.data.photoCredits} />
 			<div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
 				{headings && headings.length > 0 && <TableOfContents {headings} />}
 			</div>
@@ -48,7 +53,10 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 
 		<!-- post -->
 		<article class='md:max-w-prose lg:max-w-full'>
-			<div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
+			<div class='md:hidden flex w-full justify-center'>
+				<AuthorProfile author={author} />
+			</div>
+			<div class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
 				<Content components={{ pre: Code, SButton }} />
 			</div>
 

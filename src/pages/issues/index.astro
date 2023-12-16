@@ -2,30 +2,20 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
 import IssuesCard from 'src/components/IssuesCard.astro'
-import { getIssues, getTags, filterPostsByIssue, sluglify } from '@/utils'
-const issues = await getIssues()
-const images = ['/oct2023/cover.jpg', '/oct2023/cover.jpg']
-
-const Issues = issues.map((tag, index) => {
-	return {
-		title: tag,
-		description: `Issue ${tag}`,
-		img: images[index],
-		url: `/issues/${sluglify(tag).toLowerCase()}`,
-		issuuLink: `https://issuu.com/vp.antherpress/docs/q54gt79wurf`
-	}
-})
+import { ISSUES } from '@/data/issues.ts'
+import { sluglify } from '@/utils'
 ---
 
 <BaseLayout title='Issues'>
 	<TitlePage title='Issues' />
 	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 		{
-			Issues.map((issue) => (
+			ISSUES.map((issue) => (
 				<IssuesCard
-					title={issue.title}
-					img={issue.img}
-					url={issue.url}
+					title={issue.name}
+					description={issue.description}
+					img={issue.coverImage}
+					url={`/issues/${sluglify(issue.name).toLowerCase()}`}
 					issuuLink={issue.issuuLink}
 				/>
 			))
