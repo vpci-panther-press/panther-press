@@ -1,6 +1,10 @@
+import { AUTHORS } from '../src/data/authors.ts'
 import { CATEGORIES } from '../src/data/categories.ts'
 import { ISSUES } from '../src/data/issues.ts'
 import { defineConfig } from 'tinacms'
+
+const issueNames = ISSUES.map((issue) => issue.name)
+const authorNames = AUTHORS.map((author) => author.name)
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
@@ -35,7 +39,29 @@ export default defineConfig({
 						name: 'heroImage',
 						description: 'The image used for the cover of the post'
 					},
-
+					{
+						type: 'string',
+						label: 'Alt Description',
+						required: true,
+						name: 'alt',
+						description: 'A short description of cover image of the post for accessibility purposes'
+					},
+					{
+						type: 'string',
+						label: 'Photo Credis',
+						required: true,
+						name: 'photoCredits',
+						description:
+							'The name of the photographer or image credits for the cover image of the post'
+					},
+					{
+						type: 'string',
+						required: true,
+						name: 'author',
+						label: 'Author',
+						description: 'Select the author for this post',
+						options: [...authorNames]
+					},
 					{
 						type: 'string',
 						required: true,
@@ -50,7 +76,7 @@ export default defineConfig({
 						name: 'issue',
 						label: 'Issue',
 						description: 'Select an issue date for this post',
-						options: [...ISSUES]
+						options: [...issueNames]
 					},
 					{
 						type: 'string',
@@ -58,12 +84,6 @@ export default defineConfig({
 						required: true,
 						name: 'description',
 						description: 'A short description of the post'
-					},
-					{
-						type: 'datetime',
-						name: 'pubDate',
-						label: 'Publication Date',
-						required: true
 					},
 					{
 						name: 'draft',

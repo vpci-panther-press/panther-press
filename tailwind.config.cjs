@@ -20,7 +20,9 @@ module.exports = {
 				tertiary: '#f77f00'
 			},
 			fontFamily: {
-				body: ['Manrope', ...defaultTheme.fontFamily.sans]
+				sans: ['Inter', ...defaultTheme.fontFamily.sans],
+				atkinson: ['Atkinson Hyperlegible', ...defaultTheme.fontFamily.sans],
+				manrope: ['Manrope', ...defaultTheme.fontFamily.sans]
 			},
 			gridTemplateColumns: {
 				list: 'repeat(auto-fill, minmax(400px, max-content))'

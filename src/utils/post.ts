@@ -12,11 +12,26 @@ export const getIssues = async () => {
 	return Array.from(issues)
 }
 
+export const getAuthors = async () => {
+	const posts = await getCollection('blog')
+	const authors = new Set(posts.map((post) => post.data.author))
+	return Array.from(authors)
+}
+
 export const getPosts = async (max?: number) => {
-	return (await getCollection('blog'))
+	const posts = await getCollection('blog')
+
+	const sortedPosts = posts
 		.filter((post) => !post.data.draft)
-		.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+		.sort((a, b) => {
+			const issueDateA = new Date(`1 ${a.data.issue}`)
+			const issueDateB = new Date(`1 ${b.data.issue}`)
+
+			return issueDateB.getTime() - issueDateA.getTime()
+		})
 		.slice(0, max)
+
+	return sortedPosts
 }
 
 export const getTags = async () => {
@@ -33,6 +48,11 @@ export const getPostByTag = async (tag: string) => {
 export const filterPostsByIssue = async (issue: string) => {
 	const posts = await getPosts()
 	return posts.filter((post) => post.data.issue === issue)
+}
+
+export const filterPostsByAuthor = async (author: string) => {
+	const posts = await getPosts()
+	return posts.filter((post) => post.data.author === author)
 }
 
 export const filterPostsByCategory = async (category: string) => {
