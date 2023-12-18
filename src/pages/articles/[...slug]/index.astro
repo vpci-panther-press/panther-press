@@ -53,8 +53,8 @@ const author = AUTHORS.find((author) => author.name === post.data.author)
 
 		<!-- post -->
 		<article class='md:max-w-prose lg:max-w-full'>
-			<div class='md:hidden flex w-full justify-center'>
-				<AuthorProfile author={author} />
+			<div class='md:hidden flex w-full justify-center items-center'>
+				<AuthorProfile author={author} imageCredit={post.data.photoCredits} />
 			</div>
 			<div class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
 				<Content components={{ pre: Code, SButton }} />
