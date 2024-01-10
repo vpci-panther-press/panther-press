@@ -24,7 +24,7 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
 				{category && <Tag tag={category} category={true} />}
-				{tags.map((tag) => <Tag tag={tag} category={false} />)}
+				{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
 			</div>
 			<div class='w-full flex flex-col gap-2 text-center font-semibold'>
 				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-[650]'>
