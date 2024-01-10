@@ -6,19 +6,59 @@ export const AUTHORS: Readonly<
 	}[]
 > = [
 	{
-		name: 'Author 1',
-		bio: 'This is the bio for Author 1',
-		pfp: '/author/default.jpg'
-	},
-	{
-		name: 'Author 2',
+		name: 'Zaina Khan',
 		bio: '',
-		pfp: '/author/default.jpg'
+		pfp: ''
 	},
 	{
-		name: 'Author 3',
-		bio: 'This is the bio for Author 3',
-		pfp: '/author/default.jpg'
+		name: 'Ellen Zhang',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Subu Bhattarai',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Ayaa Al-Sultany',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Thomas Li',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Lucy Chen',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Jeffrey Zhao',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Gloria Chen',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Jasmine Chen',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Science Club',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'Shreyaa Subaeasan',
+		bio: '',
+		pfp: ''
 	}
 ] as const
 
