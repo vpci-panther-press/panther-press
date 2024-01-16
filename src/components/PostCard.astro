@@ -1,9 +1,8 @@
 ---
 import { Image } from 'astro:assets'
-import FormattedDate from '@/components/FormattedDate'
 
 const {
-	data: { title, description, pubDate, heroImage, category },
+	data: { title, description, issue, heroImage, category, alt },
 	readTime,
 	slug,
 	cover
@@ -20,7 +19,7 @@ const {
 			height={200}
 			format='webp'
 			class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
-			alt={`cover image for article: ${title}`}
+			alt={alt}
 		/>
 	</div>
 
@@ -43,8 +42,8 @@ const {
 			<div class='mt-5 sm:mt-auto'>
 				<div class='flex items-center'>
 					<div>
-						<h2 class='font-semibold text-gray-800 dark:text-gray-200'>
-							<FormattedDate date={pubDate} />
+						<h2 class='text-sm font-semibold text-gray-800 dark:text-gray-200'>
+							{issue}
 						</h2>
 						<p class='text-xs text-gray-700 dark:text-gray-300'>
 							{readTime}

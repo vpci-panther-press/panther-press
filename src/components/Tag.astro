@@ -1,14 +1,23 @@
 ---
 export interface Props {
 	tag: string
+	category: boolean
 }
-const { tag } = Astro.props
+const { tag, category } = Astro.props
 ---
 
-<a href={`/issue/${tag}`} aria-label={tag}>
-	<span
-		class='bg-indigo-600 font-semibold text-white dark:bg-indigo-900 dark:text-white shadow text-sm w-fit px-2 py-1 md:px-5 md:py-2 rounded-full'
-	>
-		{tag ?? 'Blog Tag'}
-	</span>
-</a>
+{
+	category ? (
+		<a href={`/category/${tag}`} aria-label={tag}>
+			<span class='bg-transparent font-semibold border border-black dark:border-white text-sm w-fit px-2 py-1 md:px-3 md:py-1.5 rounded-md'>
+				{`${tag}` ?? 'Category'}
+			</span>
+		</a>
+	) : (
+		<a href={`/tags/${tag}`} aria-label={tag}>
+			<span class='bg-transparent font-semibold border border-black dark:border-white text-sm w-fit px-2 py-1 md:px-3 md:py-1.5 rounded-md'>
+				{`#${tag}` ?? 'Blog Tag'}
+			</span>
+		</a>
+	)
+}

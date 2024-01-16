@@ -4,12 +4,13 @@ import ExternalLink from './icons/ExternalLink.astro'
 import ArrowRightS from './icons/ArrowRightS.astro'
 type Props = {
 	title: string
+	description: string
 	img: string
 	url: string
 	issuuLink: string
 }
 
-const { title, img, url, issuuLink } = Astro.props
+const { title, description, img, url, issuuLink } = Astro.props
 ---
 
 <div
@@ -18,13 +19,22 @@ const { title, img, url, issuuLink } = Astro.props
 	<div
 		class='flex-shrink-0 relative w-full rounded-t-xl sm:rounded-s-xl sm:max-w-[15rem] md:rounded-se-none md:max-w-xs'
 	>
-		<Image src={img} alt=`Cover Image of the ${title} Issue` width='1200' height='900' />
+		<Image
+			src={img}
+			alt=`Cover Image of the ${title} Issue`
+			width='1200'
+			height='900'
+			class='h-full min-w-full object-cover'
+		/>
 	</div>
 	<div class='flex flex-col w-full'>
 		<div class='p-4 flex flex-col h-full sm:p-7'>
 			<h1 class='text-2xl font-bold text-gray-800 dark:text-white'>
 				{title}
 			</h1>
+			<p class='mt-2 text-gray-600 dark:text-gray-400'>
+				{description}
+			</p>
 		</div>
 		<div class='flex flex-col m-4 gap-2'>
 			<button
@@ -40,7 +50,7 @@ const { title, img, url, issuuLink } = Astro.props
 				type='button'
 				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-secondary dark:bg-primary text-black dark:text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
 			>
-				<p class='mr-auto'>Read Issue</p>
+				<p class='mr-auto'>Read on Issuu</p>
 				<ExternalLink />
 			</button>
 		</div>
