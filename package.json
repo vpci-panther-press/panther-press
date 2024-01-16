@@ -33,7 +33,7 @@
 		"@pagefind/default-ui": "^1.0.4",
 		"@tailwindcss/typography": "0.5.10",
 		"@tinacms/cli": "^1.5.39",
-		"@typescript-eslint/parser": "^6.13.2",
+		"@typescript-eslint/parser": "^6.19.0",
 		"clsx": "2.0.0",
 		"eslint": "^8.55.0",
 		"eslint-plugin-astro": "^0.30.0",
