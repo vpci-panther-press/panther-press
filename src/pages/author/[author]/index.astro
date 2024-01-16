@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import { getAuthors, filterPostsByAuthor, sluglify } from '@/utils'
+import { getAuthor } from '@/data/authors'
+import { Image } from 'astro:assets'
+
+export async function getStaticPaths() {
+	const authors = await getAuthors()
+
+	return authors.map((author) => ({
+		params: { author: sluglify(author).toLowerCase() },
+		props: { author }
+	}))
+}
+
+const { author } = Astro.props
+
+const posts = await filterPostsByAuthor(author)
+const { bio, pfp } = getAuthor(author) || {}
+---
+
+<BaseLayout title={author}>
+	<div class='flex flex-col md:flex-row mb-8 items-center'>
+		{
+			pfp && (
+				<Image
+					src={pfp || '/author/default.jpg'}
+					alt={`Headshot of ${author}`}
+					class='w-48 h-48 rounded-full md:w-32 md:h-32 md:mr-4 mb-4 md:mb-0'
+					height='192'
+					width='192'
+					format='webp'
+				/>
+			)
+		}
+		<div class='flex flex-col justify-center items-center md:items-start'>
+			<h1 class='text-4xl font-bold mb-4'>{author}</h1>
+			<p class={`text-lg md:text-xl ${!bio && 'opacity-50'}`}>{bio || 'No biography found'}</p>
+		</div>
+	</div>
+	<ListPosts posts={posts} />
+</BaseLayout>

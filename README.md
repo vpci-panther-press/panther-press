@@ -1,3 +1,5 @@
+# VPCI Panther Press Website
+
 ## 📌 Table Of Contents
 
 1. [CMS](#-Tina-CMS)
@@ -81,6 +83,8 @@ Adding a post is as simple as adding a .md or .mdx file to the blog folder at th
 
 For example, if you have a file named **jsx-and-react.md**, it will be transformed into: **http://yourdomain.com/post/jsx-and-react/**
 
+Please create the article using Tina CMS, either through local mode or through Tina CMS Cloud (https://<url>.ca/admin).
+
 ## 📝 Activating draft mode
 
 To activate draft mode, add the property **draft: true** to the file, and it will no longer be displayed on the blog.
@@ -106,11 +110,12 @@ draft: true <---
 - pubDate
 - heroImage (post cover)
 - category (Choose a category from src/data/categories.ts)
+- tags
+- author
 
 ## Optional properties:
 
 - draft (no need to include it, by default it's false)
-- tags
 
 > The schema for posts is located at src/content/config.ts. You can modify any parameter, for example, by adding a maximum of 80 characters for titles: title: z.string().max(80).
 > For more information, refer to the zod documentation.
@@ -135,3 +140,4 @@ All commands are run from the root of the project, from a terminal:
 <a href="https://github.com/danielcgilibert/blog-template/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=danielcgilibert/blog-template" />
 </a>
++ me!
