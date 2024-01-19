@@ -6,6 +6,7 @@ import ListRelatedPosts from '@/components/ListRelatedPosts'
 import TableOfContents from '@/components/TableOfContents'
 import { getPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
+import Centered from '@/components/mdx/Centered'
 import { AUTHORS } from '@/data/authors'
 import AuthorProfile from '@/components/AuthorProfile'
 
@@ -63,7 +64,7 @@ const author = AUTHORS.find((author) => author.name === post.data.author)
 				<AuthorProfile author={author} imageCredit={post.data.photoCredits} />
 			</div>
 			<div class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
-				<Content components={{ pre: Code, SButton }} />
+				<Content components={{ pre: Code, SButton, Centered }} />
 			</div>
 
 			<!-- related posts -->
