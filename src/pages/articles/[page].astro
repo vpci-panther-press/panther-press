@@ -1,14 +1,24 @@
 ---
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
+import Pagination from '@/components/Pagination'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
-import { getPosts } from '@/utils'
+import { getIssues, getPosts } from '@/utils'
 
-const posts = await getPosts()
+export async function getStaticPaths({ paginate }: any) {
+	const allPosts = await getPosts()
+
+	return paginate(allPosts, {
+		pageSize: 5
+	})
+}
+
+const { page } = Astro.props
+const posts = (page as { data: any }).data
 ---
 
-<BaseLayout title='Home'>
+<BaseLayout title='All Articles'>
 	<TitlePage title='All Articles' />
 	<ListCategories />
 
@@ -16,6 +26,7 @@ const posts = await getPosts()
 		<h1 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h1>
 		<ListPosts FirstBig={true} posts={posts} />
 	</div>
+	<Pagination page={page} />
 </BaseLayout>
 
 <script>
