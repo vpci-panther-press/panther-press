@@ -4,12 +4,6 @@ const { page } = Astro.props
 const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 1)
 ---
 
-<script define:vars={{ page, pageNumbers }}>
-	console.log(page)
-	console.log(pageNumbers)
-</script>
-
-<!-- Pagination -->
 <nav class='flex justify-center gap-x-1'>
 	<a href={page.url.prev}>
 		<button
@@ -70,4 +64,3 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 		</button>
 	</a>
 </nav>
-<!-- End Pagination -->
