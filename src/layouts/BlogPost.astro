@@ -17,8 +17,6 @@ const { data, readTime, headings, id } = Astro.props
 const { title, description, heroImage, tags, category, issue, alt } = data
 ---
 
-<style></style>
-
 <BaseLayout title={title} description={description} image={heroImage?.src} issue={issue}>
 	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
 		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
