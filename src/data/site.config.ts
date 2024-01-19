@@ -13,5 +13,5 @@ export const siteConfig: SiteConfig = {
 	description: 'The official student newspaper of VPCI.',
 	lang: 'en-CA',
 	ogLocale: 'en_CA',
-	paginationSize: 2 // Number of posts to show per page
+	paginationSize: 4
 }
