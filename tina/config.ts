@@ -127,6 +127,18 @@ export default defineConfig({
 										isBody: true
 									}
 								]
+							},
+							{
+								label: 'Centered',
+								name: 'Centered',
+								fields: [
+									{
+										type: 'rich-text',
+										label: 'Centered',
+										name: 'children',
+										isBody: true
+									}
+								]
 							}
 						]
 					}
