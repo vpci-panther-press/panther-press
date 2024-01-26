@@ -7,8 +7,8 @@ const unsluglifyNameCategory = sluglify(name.toLowerCase())
 
 const isActive =
 	activeCategory?.toLocaleLowerCase() === unsluglifyNameCategory ||
-	(currentPath.match(/^\/articles\/\d+$/) && name === 'View All')
-// Matches /articles/<number>
+	(currentPath.match(/^\/articles\/(?!category\/)\w+$/) && name === 'View All')
+// Matches /articles/* but not /articles/category/*
 ---
 
 <a
