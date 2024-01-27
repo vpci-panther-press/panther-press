@@ -2,7 +2,7 @@
 import ListCategories from '@/components/ListCategories'
 import ListPosts from '@/components/ListPosts'
 import Pagination from '@/components/Pagination'
-import TitlePage from '@/components/TitlePage'
+import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getIssues, getPosts } from '@/utils'
 
@@ -19,7 +19,7 @@ const posts = (page as { data: any }).data
 ---
 
 <BaseLayout title='All Articles'>
-	<TitlePage title='All Articles' />
+	<PageTitle title='All Articles' />
 	<ListCategories />
 
 	<div>

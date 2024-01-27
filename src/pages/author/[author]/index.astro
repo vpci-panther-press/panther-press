@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
-import { getAuthors, filterPostsByAuthor, sluglify } from '@/utils'
-import { getAuthor } from '@/data/authors'
+import { filterPostsByAuthor, sluglify } from '@/utils'
+
+import { getAuthor, getAuthors } from '@/data/authors'
 import { Image } from 'astro:assets'
 
 export async function getStaticPaths() {

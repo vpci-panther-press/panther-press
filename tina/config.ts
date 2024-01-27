@@ -48,7 +48,7 @@ export default defineConfig({
 					},
 					{
 						type: 'string',
-						label: 'Photo Credis',
+						label: 'Photo Credits',
 						required: true,
 						name: 'photoCredits',
 						description:
@@ -59,7 +59,8 @@ export default defineConfig({
 						required: true,
 						name: 'author',
 						label: 'Author',
-						description: 'Select the author for this post',
+						list: true,
+						description: 'Select the author(s) for this post',
 						options: [...authorNames]
 					},
 					{

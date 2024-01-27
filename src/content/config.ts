@@ -27,7 +27,7 @@ const blog = defineCollection({
 			photoCredits: z.string(),
 			category: z.enum(CATEGORIES),
 			issue: z.enum(issueNames as [string, ...string[]]),
-			author: z.enum(authorNames as [string, ...string[]]),
+			author: z.array(z.enum(authorNames as [string, ...string[]])),
 			tags: z.array(z.string()),
 			draft: z.boolean().default(false)
 		})

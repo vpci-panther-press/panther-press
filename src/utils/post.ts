@@ -12,12 +12,6 @@ export const getIssues = async () => {
 	return Array.from(issues)
 }
 
-export const getAuthors = async () => {
-	const posts = await getCollection('blog')
-	const authors = new Set(posts.map((post) => post.data.author))
-	return Array.from(authors)
-}
-
 export const getPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
 
@@ -52,7 +46,7 @@ export const filterPostsByIssue = async (issue: string) => {
 
 export const filterPostsByAuthor = async (author: string) => {
 	const posts = await getPosts()
-	return posts.filter((post) => post.data.author === author)
+	return posts.filter((post) => post.data.author.includes(author))
 }
 
 export const filterPostsByCategory = async (category: string) => {
