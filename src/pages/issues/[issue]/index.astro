@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
+import PageTitle from '@/components/PageTitle'
 import { getIssues, filterPostsByIssue, sluglify } from '@/utils'
 
 export async function getStaticPaths() {
@@ -19,6 +19,6 @@ const posts = await filterPostsByIssue(issue)
 ---
 
 <BaseLayout title={issue}>
-	<TitlePage title={issue} />
+	<PageTitle title={issue} />
 	<ListPosts posts={posts} />
 </BaseLayout>
