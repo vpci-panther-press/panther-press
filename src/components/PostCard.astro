@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets'
 
 const {
-	data: { title, description, issue, heroImage, category, alt },
+	data: { title, description, issue, heroImage, category, alt, author, tags },
 	readTime,
 	slug,
 	cover
@@ -11,38 +11,45 @@ const {
 
 <a class='group sm:flex' href={`/articles/${slug}/`}>
 	<div
-		class='lg:first:w-1/2 flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[200px] sm:w-[250px] sm:h-[350px]'
+		class='lg:first:w-1/2 flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[200px] sm:w-[250px] sm:h-[425px]'
 	>
 		<Image
 			src={heroImage}
 			width={600}
 			height={200}
 			format='webp'
-			class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
+			class='h-full min-w-full object-cover hover:scale-[101.5%] transition-all duration-200 rounded-[2px]'
 			alt={alt}
 		/>
 	</div>
 
 	<div class='grow'>
-		<div class='p-4 flex flex-col h-full sm:p-6'>
-			<div class='mb-3'>
+		<div class='p-4 flex flex-col h-full'>
+			<div>
 				<p
-					class='inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
+					class='mr-1 mb-1 inline-flex items-center py-1.5 px-3 rounded-md text-xs font-medium bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-50'
 				>
 					{category}
 				</p>
 			</div>
-			<h1 class='text-lg sm:text-2xl font-semibold text-gray-800 dark:text-gray-300'>
+			<h1 class='mt-1 text-lg sm:text-2xl font-semibold text-gray-800 dark:text-gray-300'>
 				{title}
 			</h1>
-			<p class='mt-2 text-gray-600 dark:text-gray-400'>
+			<p class='my-2 text-gray-600 dark:text-gray-400'>
 				{description}
 			</p>
 
-			<div class='mt-5 sm:mt-auto'>
+			<div class='mt-auto'>
 				<div class='flex items-center'>
 					<div>
-						<h2 class='text-sm font-semibold text-gray-800 dark:text-gray-200'>
+						{
+							tags.map((tag: string) => (
+								<p class='mr-1.5 mb-1 inline-flex items-center py-1.5 px-3 rounded-md text-xs font-medium border dark:border-zinc-700'>
+									{'#' + tag}
+								</p>
+							))
+						}
+						<h2 class='mt-1 text-sm font-semibold text-gray-800 dark:text-gray-200'>
 							{issue}
 						</h2>
 						<p class='text-xs text-gray-700 dark:text-gray-300'>

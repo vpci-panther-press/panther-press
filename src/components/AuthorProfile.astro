@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { getAuthorsData } from '@/data/authors'
 import { sluglify } from '@/utils'
 type Author = {
 	name: string
@@ -7,39 +7,38 @@ type Author = {
 	pfp: string
 }
 type Props = {
-	author?: Author
+	authors: string[]
 	imageCredit: string
 }
-const { author, imageCredit } = Astro.props
+const { authors, imageCredit } = Astro.props
+
+const data = getAuthorsData(authors)
 ---
 
-<div class='flex flex-row md:flex-col'>
-	<a href={`/author/${sluglify(author!.name).toLowerCase()}`}>
-		<div class='group flex items-center gap-x-3 border-b border-gray-200 pb-8 dark:border-gray-700'>
-			<div class='block flex-shrink-0'>
-				<Image
-					height={20}
-					width={20}
-					format='webp'
-					class='h-10 w-10 rounded-full'
-					src={author?.pfp || '/author/default.jpg'}
-					alt={'Headshot of ' + author?.name || 'No author found'}
-				/>
-			</div>
-			<div class='group grow block'>
-				<h5
-					class='group-hover:text-gray-600 text-sm font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200'
-				>
-					{author!.name}
-				</h5>
-				<p class='text-sm text-gray-500'>
-					{author?.bio}
-				</p>
-			</div>
-		</div>
-	</a>
-	<div class='mx-6 md:hideen inline-block border-x'></div>
-	<div class='text-center pt-3 md:ml-0 border-b border-gray-200 pb-8 dark:border-gray-700'>
+<div class='grid md:grid-cols-1 md:grid-rows-1 grid-cols-2 border-y border-gray-200 mb-8 py-4'>
+	{
+		data.map((author) => (
+			<a href={`/author/${sluglify(author!.name).toLowerCase()}`}>
+				<div class='group flex flex-col items-center my-auto'>
+					<div
+						style={`background-image: url('${author!.pfp || '/author/default.jpg'}');`}
+						class='size-16 block flex-shrink-0 my-2 bg-cover rounded-full bg-center'
+					/>
+					<div class='group block text-center'>
+						<h5 class='group-hover:text-gray-600 text-sm font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200'>
+							{author!.name}
+						</h5>
+						<div class='mt-1'>
+							<p class='text-sm text-gray-500'>
+								{author?.bio && author?.bio.split(' ').slice(0, 10).join(' ') + '...'}
+							</p>
+						</div>
+					</div>
+				</div>
+			</a>
+		))
+	}
+	<div class='text-center md:my-3 my-auto'>
 		<p class='text-sm text-gray-500 dark:text-gray-400'>
 			Photo by <span class='text-gray-600 dark:text-gray-300'>{imageCredit}</span>
 		</p>

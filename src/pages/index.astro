@@ -2,7 +2,7 @@
 import AboutUsFeatures from '@/components/AboutUsFeatures'
 import Hero from '@/components/Hero'
 import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
+import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 
@@ -15,7 +15,7 @@ const posts = await getPosts(MAX_POSTS)
 	<AboutUsFeatures />
 	<div class='px-4 lg:px-8'>
 		<div class='mb-6'>
-			<TitlePage title='Recent Articles' />
+			<PageTitle title='Recent Articles' />
 		</div>
 		<ListPosts FirstBig={false} posts={posts} />
 	</div>

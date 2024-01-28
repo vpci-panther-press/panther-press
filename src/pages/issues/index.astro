@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
-import TitlePage from '@/components/TitlePage'
+import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
 import { ISSUES } from '@/data/issues.ts'
 import { sluglify } from '@/utils'
 ---
 
 <BaseLayout title='Issues'>
-	<TitlePage title='Issues' />
+	<PageTitle title='Issues' />
 	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 		{
 			ISSUES.map((issue) => (
