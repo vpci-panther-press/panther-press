@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
-import { getAuthors, filterPostsByAuthor, sluglify } from '@/utils'
-import { getAuthor } from '@/data/authors'
+import { filterPostsByAuthor, sluglify } from '@/utils'
+
+import { getAuthor, getAuthors } from '@/data/authors'
 import { Image } from 'astro:assets'
 
 export async function getStaticPaths() {
@@ -27,7 +28,7 @@ const { bio, pfp } = getAuthor(author) || {}
 				<Image
 					src={pfp || '/author/default.jpg'}
 					alt={`Headshot of ${author}`}
-					class='w-48 h-48 rounded-full md:w-32 md:h-32 md:mr-4 mb-4 md:mb-0'
+					class='size-48 rounded-full md:w-32 md:h-32 md:mr-4 mb-4 md:mb-0'
 					height='192'
 					width='192'
 					format='webp'

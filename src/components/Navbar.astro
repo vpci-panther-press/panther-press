@@ -25,6 +25,13 @@ const SOCIALNETWORKS = [
 <script>
 	import '@preline/collapse'
 </script>
+
+<script is:inline>
+	document.addEventListener('astro:after-swap', () => {
+		HSCollapse.autoInit()
+	})
+</script>
+
 <header
 	class='font-manrope flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-fulltext-sm py-4 md:bg-transparent bg-zinc-200 md:dark:bg-transparent dark:bg-zinc-900 rounded-lg'
 >
