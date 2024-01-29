@@ -4,11 +4,13 @@ const categories = await getCategories()
 
 const { activeCategory } = Astro.props
 const currentPath = Astro.url.pathname
+const regex = /^\/articles\/\d+$/
 ---
 
 <script define:vars={{ currentPath }}>
+	let regex = /^\/articles\/\d+$/
 	console.log(currentPath)
-	console.log(currentPath.match(/^\/articles\/\d+$/))
+	console.log(regex.test(currentPath))
 </script>
 
 <!-- The regex matches /articles/* but not /articles/category/* -->
@@ -17,7 +19,7 @@ const currentPath = Astro.url.pathname
 		href='/articles/1'
 		class={cn(
 			`text-gray-600 dark:text-gray-300  pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-white dark:hover:border-white hover:border-opacity-100 transition-colors duration-150 ease-linear  `,
-			currentPath.match(/^\/articles\/\d+$/) &&
+			regex.test(currentPath) &&
 				`border-black border-b-2 text-black z-10  dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100`
 		)}
 	>
