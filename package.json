@@ -23,7 +23,7 @@
 		"@fontsource/atkinson-hyperlegible": "^5.0.18",
 		"@preline/collapse": "^2.0.2",
 		"@preline/overlay": "^2.0.2",
-		"astro": "4.2.4",
+		"astro": "4.2.6",
 		"tinacms": "^1.5.28"
 	},
 	"devDependencies": {
