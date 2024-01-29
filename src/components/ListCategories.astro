@@ -8,6 +8,7 @@ const currentPath = Astro.url.pathname
 
 <script define:vars={{ currentPath }}>
 	console.log(currentPath)
+	console.log(currentPath.match(/^\/articles\/\d+$/))
 </script>
 
 <!-- The regex matches /articles/* but not /articles/category/* -->
