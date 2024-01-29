@@ -6,6 +6,10 @@ const { activeCategory } = Astro.props
 const currentPath = Astro.url.pathname
 ---
 
+<script define:vars={{ currentPath }}>
+	console.log(currentPath)
+</script>
+
 <!-- The regex matches /articles/* but not /articles/category/* -->
 <div class='relative flex flex-wrap min-w-full gap-5'>
 	<a
