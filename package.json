@@ -17,13 +17,13 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
-		"@astrojs/rss": "4.0.3",
+		"@astrojs/rss": "4.0.4",
 		"@fontsource-variable/inter": "^5.0.16",
 		"@fontsource-variable/manrope": "^5.0.18",
 		"@fontsource/atkinson-hyperlegible": "^5.0.18",
 		"@preline/collapse": "^2.0.2",
 		"@preline/overlay": "^2.0.2",
-		"astro": "4.2.4",
+		"astro": "4.2.6",
 		"tinacms": "^1.5.28"
 	},
 	"devDependencies": {
@@ -33,12 +33,12 @@
 		"@pagefind/default-ui": "^1.0.4",
 		"@tailwindcss/typography": "0.5.10",
 		"@tinacms/cli": "^1.5.39",
-		"@typescript-eslint/parser": "^6.19.1",
+		"@typescript-eslint/parser": "^6.20.0",
 		"clsx": "2.1.0",
 		"eslint": "^8.56.0",
 		"eslint-plugin-astro": "^0.31.3",
 		"eslint-plugin-jsx-a11y": "^6.8.0",
-		"husky": "^9.0.6",
+		"husky": "^9.0.7",
 		"lint-staged": "^15.2.0",
 		"mdast-util-to-string": "^4.0.0",
 		"motion": "^10.17.0",
