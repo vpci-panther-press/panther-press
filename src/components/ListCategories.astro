@@ -4,14 +4,8 @@ const categories = await getCategories()
 
 const { activeCategory } = Astro.props
 const currentPath = Astro.url.pathname
-const regex = /^\/articles\/\d+$/
+const regex = /^\/articles\/\d+\/?$/
 ---
-
-<script define:vars={{ currentPath }}>
-	let regex = /^\/articles\/\d+$/
-	console.log(currentPath)
-	console.log(regex.test(currentPath))
-</script>
 
 <!-- The regex matches /articles/* but not /articles/category/* -->
 <div class='relative flex flex-wrap min-w-full gap-5'>
