@@ -80,6 +80,16 @@ export const AUTHORS: Author = [
 		name: 'Eshan Kiritharan',
 		bio: '',
 		pfp: ''
+	},
+	{
+		name: 'Cora Tian',
+		bio: '',
+		pfp: ''
+	},
+	{
+		name: 'VP Lit',
+		bio: "Victoria Park's Literature Club",
+		pfp: ''
 	}
 ] as const
 
