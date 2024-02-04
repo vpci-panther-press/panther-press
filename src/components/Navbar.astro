@@ -71,10 +71,15 @@ const SOCIALNETWORKS = [
 				<HeaderLink href='/articles/1'>Articles</HeaderLink>
 				<HeaderLink href='/issues'>Issues</HeaderLink>
 				<HeaderLink href='/about-us'>About Us</HeaderLink>
-				<div transition:persist class='flex flex-row gap-2'>
+				<div transition:persist class='flex flex-row gap-2 align-middle'>
 					{
 						SOCIALNETWORKS.map((network) => (
-							<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
+							<HeaderLink
+								class='my-auto'
+								href={network.url}
+								target='_blank'
+								aria-label={network.name}
+							>
 								<span>{<network.icon />} </span>
 							</HeaderLink>
 						))
