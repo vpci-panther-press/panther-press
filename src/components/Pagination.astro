@@ -4,7 +4,29 @@ const { page } = Astro.props
 const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 1)
 ---
 
-<nav class='flex justify-center gap-x-1'>
+<script>
+	function removeItems() {
+		const pgcont = document.querySelector('#pg')
+		// console.log(pgcont, pgcont!.childElementCount)
+		const pgitems = pgcont!.children
+		if (window.innerWidth < 640 && pgcont!.childElementCount > 5) {
+			for (let i = 0; i < pgitems.length; i++) {
+				if (i < 1 || i === pgitems.length + 1) {
+				} else {
+					pgcont?.removeChild(pgitems[2])
+				}
+				if (i === 2) {
+					const textNode = document.createTextNode('...')
+					pgcont!.insertBefore(textNode, pgcont!.childNodes[3])
+				}
+			}
+		}
+	}
+	document.addEventListener('astro:after-swap', removeItems)
+	removeItems()
+</script>
+
+<nav class='flex justify-center items-center gap-x-1'>
 	<a href={page.url.prev}>
 		<button
 			type='button'
@@ -26,7 +48,7 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 			<span>Previous</span>
 		</button>
 	</a>
-	<div class='flex items-center gap-x-1'>
+	<div id='pg' class='flex items-center gap-x-1'>
 		{
 			pageNumbers.map((pageNumber) => (
 				<a
