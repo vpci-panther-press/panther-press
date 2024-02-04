@@ -4,7 +4,30 @@ const { page } = Astro.props
 const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 1)
 ---
 
-<nav class='flex justify-center gap-x-1'>
+<script>
+	function removeItems() {
+		const pgcont = document.querySelector('#pg')
+		const pgitems = pgcont!.children
+		// this is a hack to fix the issue of the 2nd last page number not being removed, idk why it works, but it does
+		let num = pgcont!.childElementCount > 5 ? 0 : 1
+		// console.log(pgcont, pgitems, pgcont?.childElementCount, pgcont?.children.length)
+		if (window.innerWidth < 640 && pgcont!.childElementCount > 3) {
+			for (let i = 1; i < pgitems.length - num; i++) {
+				if (i > 1 || i != pgitems.length - 1) {
+					pgcont?.removeChild(pgitems[2])
+				}
+				if (i === pgitems.length - 2) {
+					const textNode = document.createTextNode('...')
+					pgcont!.insertBefore(textNode, pgcont!.childNodes[3])
+				}
+			}
+		}
+	}
+	document.addEventListener('astro:after-swap', removeItems)
+	removeItems()
+</script>
+
+<nav class='flex justify-center items-center gap-x-1'>
 	<a href={page.url.prev}>
 		<button
 			type='button'
@@ -26,7 +49,7 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 			<span>Previous</span>
 		</button>
 	</a>
-	<div class='flex items-center gap-x-1'>
+	<div id='pg' class='flex items-center gap-x-1'>
 		{
 			pageNumbers.map((pageNumber) => (
 				<a
