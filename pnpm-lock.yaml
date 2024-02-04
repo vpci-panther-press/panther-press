@@ -41,7 +41,7 @@ devDependencies:
     specifier: 5.1.0
     version: 5.1.0(astro@4.2.6)(tailwindcss@3.4.1)
   '@pagefind/default-ui':
-    specifier: ^1.0.4
+    specifier: ^1.0.3
     version: 1.0.4
   '@tailwindcss/typography':
     specifier: 0.5.10
@@ -77,7 +77,7 @@ devDependencies:
     specifier: ^10.17.0
     version: 10.17.0
   pagefind:
-    specifier: ^1.0.4
+    specifier: ^1.0.3
     version: 1.0.4
   prettier:
     specifier: ^3.2.4
