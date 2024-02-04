@@ -23,7 +23,12 @@ const posts = (page as { data: any }).data
 	<ListCategories />
 
 	<div>
-		<h1 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h1>
+		<div class='flex flex-row justify-between'>
+			<h1 class='text-lg font-medium text-start'>
+				Page {(page as { currentPage: number }).currentPage}
+			</h1>
+			<h1 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h1>
+		</div>
 		<ListPosts FirstBig={true} posts={posts} />
 	</div>
 	<Pagination page={page} />

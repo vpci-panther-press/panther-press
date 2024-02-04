@@ -35,6 +35,16 @@ const posts = page.data
 <BaseLayout title={params.category}>
 	<PageTitle title={unsluglifyNameCategory} />
 	<ListCategories activeCategory={params.category} />
-	<ListPosts posts={posts} />
+	<div>
+		<div class='flex flex-row justify-between'>
+			<h1 class='text-lg font-medium text-start'>
+				Page {(page as { currentPage: number }).currentPage}
+			</h1>
+			<h1 class='text-lg font-medium tracking-wide text-end capitalize'>
+				{unsluglifyNameCategory}
+			</h1>
+		</div>
+		<ListPosts FirstBig={true} posts={posts} />
+	</div>
 	<Pagination page={page} />
 </BaseLayout>
