@@ -1,11 +1,12 @@
 ---
 import { Image } from 'astro:assets'
+import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
 ---
 
 <!-- Features -->
 <div class='max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto'>
 	<Image
-		src='/oct2023/PXL_20230904_114345810.jpg'
+		src={coverImg}
 		loading='eager'
 		class='w-full object-cover rounded-xl'
 		alt='Photograph of a walking path bridge going into a green forest'
