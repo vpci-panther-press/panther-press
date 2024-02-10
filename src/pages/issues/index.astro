@@ -4,13 +4,14 @@ import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
 import { ISSUES } from '@/data/issues.ts'
 import { sluglify } from '@/utils'
+const sortedIssues = ISSUES.toReversed()
 ---
 
 <BaseLayout title='Issues'>
 	<PageTitle title='Issues' />
 	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 		{
-			ISSUES.toReversed().map((issue) => (
+			sortedIssues.map((issue) => (
 				<IssuesCard
 					title={issue.name}
 					description={issue.description}
