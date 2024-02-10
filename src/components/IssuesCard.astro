@@ -38,22 +38,24 @@ const { title, description, img, url, issuuLink } = Astro.props
 			</p>
 		</div>
 		<div class='flex flex-col m-4 gap-2'>
-			<button
-				onclick=`window.location.href='${url}';`
-				type='button'
+			<a
+				data-umami-event='Viewed Articles Link'
+				href={url}
 				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary dark:bg-secondary text-white dark:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
 			>
 				<p class='mr-auto'>Read Articles</p>
 				<ArrowRightS />
-			</button>
-			<button
-				onclick=`window.location.href='${issuuLink}';`
-				type='button'
+			</a>
+
+			<a
+				data-umami-event='Viewed Issuu Link'
+				href={issuuLink}
+				target='_blank'
 				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-secondary dark:bg-primary text-black dark:text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
 			>
 				<p class='mr-auto'>Read on Issuu</p>
 				<ExternalLink />
-			</button>
+			</a>
 		</div>
 	</div>
 </div>
