@@ -10,7 +10,7 @@ import { sluglify } from '@/utils'
 	<PageTitle title='Issues' />
 	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 		{
-			ISSUES.map((issue) => (
+			ISSUES.toReversed().map((issue) => (
 				<IssuesCard
 					title={issue.name}
 					description={issue.description}
