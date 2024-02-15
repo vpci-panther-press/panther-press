@@ -19,7 +19,7 @@ export const ISSUES = [
 	},
 
 	{
-		name: 'Winter 2023/2024',
+		name: 'Winter 2023-2024',
 		description:
 			'A recap of the Winter 2023/2024 at Victoria Park CI, with articles featuring the winter concert, exams, and more!',
 		coverImage: win2023CoverImage,
