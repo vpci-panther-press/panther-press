@@ -3,12 +3,12 @@ export { cn } from './cn'
 export {
 	getCategories,
 	getIssues,
-	getAuthors,
 	getPosts,
 	getTags,
 	getPostByTag,
 	filterPostsByIssue,
 	filterPostsByAuthor,
-	filterPostsByCategory
+	filterPostsByCategory,
+	sortPostsByDate
 } from './post'
 export { remarkReadingTime } from './readTime'
