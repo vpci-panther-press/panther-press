@@ -4,19 +4,22 @@ const { page } = Astro.props
 const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 1)
 ---
 
+<script define:vars={{ page }}>
+	console.log(page)
+</script>
+
 <script>
 	function removeItems() {
 		const pgcont = document.querySelector('#pg')
 		const pgitems = pgcont!.children
-		// this is a hack to fix the issue of the 2nd last page number not being removed, idk why it works, but it does
-		let num = pgcont!.childElementCount > 5 ? 0 : 1
+		const pgnum = parseInt(pgcont!.getAttribute('data-total-items') ?? '0')
 		// console.log(pgcont, pgitems, pgcont?.childElementCount, pgcont?.children.length)
-		if (window.innerWidth < 640 && pgcont!.childElementCount > 3) {
-			for (let i = 1; i < pgitems.length - num; i++) {
-				if (i > 1 || i != pgitems.length - 1) {
+		if (window.innerWidth < 640 && pgnum > 3) {
+			for (let i = 0; i < pgnum - 1; i++) {
+				if (i > 1 && i != pgnum - 1) {
 					pgcont?.removeChild(pgitems[2])
 				}
-				if (i === pgitems.length - 2) {
+				if (i === pgnum - 2) {
 					const textNode = document.createTextNode('...')
 					pgcont!.insertBefore(textNode, pgcont!.childNodes[3])
 				}
@@ -49,7 +52,12 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 			<span>Previous</span>
 		</button>
 	</a>
-	<div id='pg' class='flex items-center gap-x-1'>
+	<div
+		id='pg'
+		class='flex items-center gap-x-1'
+		data-total-items={page.lastPage}
+		data-current-page={page.currentPage}
+	>
 		{
 			pageNumbers.map((pageNumber) => (
 				<a
