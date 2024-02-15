@@ -9,6 +9,7 @@ export {
 	filterPostsByIssue,
 	filterPostsByAuthor,
 	filterPostsByCategory,
-	sortPostsByDate
+	sortPostsByDate,
+	toDate
 } from './post'
 export { remarkReadingTime } from './readTime'

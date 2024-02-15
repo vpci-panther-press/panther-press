@@ -1,6 +1,7 @@
 import rss from '@astrojs/rss'
 import { getCollection } from 'astro:content'
 import { siteConfig } from '@/site-config'
+import { toDate } from '@/utils'
 
 export async function GET() {
 	const posts = await getCollection('blog')
@@ -11,7 +12,7 @@ export async function GET() {
 		items: posts.map((post) => ({
 			title: post.data.title,
 			description: post.data.description,
-			pubDate: post.data.issue,
+			pubDate: toDate(post.data.issue),
 			link: `articles/${post.slug}/`
 		}))
 	})

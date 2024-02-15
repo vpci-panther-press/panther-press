@@ -30,19 +30,20 @@ export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) 
 		.slice(0, max)
 }
 
-const toDate = (issue: string) => {
+export const toDate = (issue: string) => {
 	const seasonToMonth = {
-		spring: 4,
-		summer: 8,
-		autumn: 10,
-		fall: 10,
-		winter: 2
+		spring: 2,
+		summer: 5,
+		autumn: 8,
+		fall: 8,
+		winter: 11
 	}
 	const findSeason = /\b(spring|summer|autumn|fall|winter)\b/gi
-	const season = issue.split(' ')[0]
-	// @ts-expect-error
+	const season = issue.split(' ')[0].toLowerCase()
+
 	return findSeason.test(issue)
-		? new Date(parseInt(issue.slice(-4)), seasonToMonth[season], 1)
+		? //@ts-ignore
+			new Date(parseInt(issue.slice(-4)), seasonToMonth[season], 1)
 		: new Date(`1 ${issue}`)
 }
 
