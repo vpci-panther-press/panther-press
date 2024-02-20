@@ -23,15 +23,18 @@ type Props = CollectionEntry<'blog'>
 const post = Astro.props
 const MAX_POSTS = 3
 const getRelatedPosts = (post: Props) => {
-	const relatedPosts = posts.filter(
-		(p) =>
-			p.slug !== post.slug &&
-			p.data.tags.some(
-				(t) =>
-					post.data.tags.includes(t) ||
-					(post.data.issue === p.data.issue && post.data.category === p.data.category)
-			)
-	)
+	const relatedPosts = posts
+		.sort()
+		.filter(
+			(p) =>
+				p.slug !== post.slug &&
+				p.data.tags.some(
+					(t: string) =>
+						post.data.tags.includes(t) ||
+						(post.data.issue === p.data.issue && post.data.category === p.data.category) ||
+						post.data.author.some((a: string) => p.data.author.includes(a))
+				)
+		)
 	return relatedPosts.slice(0, MAX_POSTS)
 }
 

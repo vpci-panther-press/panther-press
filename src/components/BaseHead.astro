@@ -68,4 +68,15 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`
 
 	<!-- RSS auto-discovery -->
 	<link rel='alternate' type='application/rss+xml' title={siteConfig.title} href='/rss.xml' />
+
+	<!-- Analytics -->
+	{
+		process.env.NODE_ENV != 'development' && (
+			<script
+				async
+				src='https://analytics.picafe.me/script.js'
+				data-website-id='9d9342d0-61a7-410b-b2ef-ff8f98cccdd8'
+			/>
+		)
+	}
 </head>

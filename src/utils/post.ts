@@ -1,4 +1,5 @@
 import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
 
 export const getCategories = async () => {
 	const posts = await getCollection('blog')
@@ -15,17 +16,35 @@ export const getIssues = async () => {
 export const getPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
 
-	const sortedPosts = posts
+	return sortPostsByDate(posts, max)
+}
+
+export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) => {
+	return posts
 		.filter((post) => !post.data.draft)
 		.sort((a, b) => {
-			const issueDateA = new Date(`1 ${a.data.issue}`)
-			const issueDateB = new Date(`1 ${b.data.issue}`)
-
-			return issueDateB.getTime() - issueDateA.getTime()
+			const aDate = toDate(a.data.issue)
+			const bDate = toDate(b.data.issue)
+			return bDate.getTime() - aDate.getTime()
 		})
 		.slice(0, max)
+}
 
-	return sortedPosts
+export const toDate = (issue: string) => {
+	const seasonToMonth = {
+		spring: 2,
+		summer: 5,
+		autumn: 8,
+		fall: 8,
+		winter: 11
+	}
+	const findSeason = /\b(spring|summer|autumn|fall|winter)\b/gi
+	const season = issue.split(' ')[0].toLowerCase()
+
+	return findSeason.test(issue)
+		? //@ts-ignore
+			new Date(parseInt(issue.slice(-4)), seasonToMonth[season], 1)
+		: new Date(`1 ${issue}`)
 }
 
 export const getTags = async () => {
