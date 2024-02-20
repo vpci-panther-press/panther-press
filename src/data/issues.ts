@@ -23,7 +23,7 @@ export const ISSUES = [
 		description:
 			'A recap of the Winter 2023/2024 at Victoria Park CI, with articles featuring the winter concert, exams, and more!',
 		coverImage: win2023CoverImage,
-		issuuLink: ''
+		issuuLink: 'https://issuu.com/vp.antherpress/docs/panther_press_winter_recap_2024'
 	}
 ] as const
 
