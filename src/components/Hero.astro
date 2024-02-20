@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import ArrowRight from './icons/ArrowRightS.astro'
+import heroImg from 'src/assets/images/nov2023/coverempty.jpg'
 ---
 
 <!-- Hero -->
@@ -48,7 +49,7 @@ import ArrowRight from './icons/ArrowRightS.astro'
 
 		<div class='sm:inline-block hidden relative ms-4'>
 			<Image
-				src='/nov2023/coverempty.jpg'
+				src={heroImg}
 				alt='Illustration of a small bunch of red poppies on an orange background'
 				format='webp'
 				width='512'
