@@ -1,7 +1,6 @@
 export { sluglify, unsluglify } from './sluglify'
 export { cn } from './cn'
 export {
-	getCategories,
 	getIssues,
 	getPosts,
 	getTags,
