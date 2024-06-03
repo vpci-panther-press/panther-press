@@ -13,5 +13,5 @@ export const siteConfig: SiteConfig = {
 	description: 'The official student newspaper of Victoria Park Collegiate Institute.',
 	lang: 'en-CA',
 	ogLocale: 'en_CA',
-	paginationSize: 4
+	paginationSize: 9
 }

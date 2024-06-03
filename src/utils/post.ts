@@ -1,12 +1,6 @@
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
-export const getCategories = async () => {
-	const posts = await getCollection('blog')
-	const categories = new Set(posts.map((post) => post.data.category))
-	return Array.from(categories)
-}
-
 export const getIssues = async () => {
 	const posts = await getCollection('blog')
 	const issues = new Set(posts.map((post) => post.data.issue))
