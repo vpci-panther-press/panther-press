@@ -8,13 +8,13 @@ const regex = /^\/articles\/\d+\/?$/
 ---
 
 <!-- The regex matches /articles/* but not /articles/category/* -->
-<div class='relative flex flex-wrap min-w-full max-w-full gap-5' transition:name='catnav'>
+<div class='flex min-w-full max-w-full gap-5'>
 	<a
 		href='/articles/1'
 		class={cn(
 			`text-gray-600 dark:text-gray-300 pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-white dark:hover:border-white hover:border-opacity-100 transition-colors duration-150 ease-linear`,
 			regex.test(currentPath) &&
-				`border-black border-b-2 text-black z-10  dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100`
+				`border-black border-b-2 text-black dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100`
 		)}
 	>
 		View All
@@ -26,10 +26,10 @@ const regex = /^\/articles\/\d+\/?$/
 				class={cn(
 					`text-gray-600 dark:text-gray-300 pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-white dark:hover:border-white hover:border-opacity-100 transition-colors duration-150 ease-linear`,
 					activeCategory?.toLocaleLowerCase() === sluglify(category.toLowerCase()) &&
-						`border-black border-b-2 text-black z-10  dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100`
+						`border-black border-b-2 text-black dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100`
 				)}
 			>
-				{category}
+				{category.trim()}
 			</a>
 		))
 	}
