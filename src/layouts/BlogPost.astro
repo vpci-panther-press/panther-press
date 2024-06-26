@@ -8,7 +8,7 @@ import Tag from '@/components/Tag'
 import { sluglify } from '@/utils'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
-import { TracingBeam } from 'src/components/aceternity/beams'
+import { TracingBeam } from 'src/components/aceternity/SideBeams'
 
 import BaseHead from '@/components/BaseHead'
 import Footer from '@/components/Footer'
@@ -30,10 +30,12 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 
 <html lang='en' class='scroll-smooth'>
 	<BaseHead title={title} description={description} ogImage={heroImage?.src} issue={issue} />
-	<body class='w-full h-full bg-zinc-200 dark:bg-zinc-900 text-stone-950 dark:text-white'>
+	<body
+		class='w-full h-full bg-zinc-200 dark:bg-zinc-900 text-stone-950 dark:text-white bg-repeat mix-blend-multiply dark:bg-[url("/topography-dark.svg")] dark:mix-blend-normal bg-[url("/paper-light.jpg")]'
+	>
 		<TracingBeam client:only='react'>
 			<main
-				class='pl-7 pr-5 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-10 antialiased md:max-w-6xl grid gap-12 mt-4 mb-10 overflow-hidden md:overflow-visible'
+				class='mx-auto sm:max-w-2xl sm:px-8 lg:px-10 antialiased md:max-w-6xl grid gap-12 mt-4 mb-10 overflow-hidden md:overflow-visible'
 			>
 				<Navbar />
 
