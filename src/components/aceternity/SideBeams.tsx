@@ -1,6 +1,7 @@
+'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, useTransform, useScroll, useVelocity, useSpring } from 'framer-motion'
-import { cn } from '../../utils/cn'
+import { cn } from '@/utils'
 
 export const TracingBeam = ({
 	children,
@@ -25,17 +26,17 @@ export const TracingBeam = ({
 	}, [])
 
 	const y1 = useSpring(useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]), {
-		stiffness: 500,
+		stiffness: 250,
 		damping: 90
 	})
 	const y2 = useSpring(useTransform(scrollYProgress, [0, 1], [50, svgHeight - 200]), {
-		stiffness: 500,
+		stiffness: 250,
 		damping: 90
 	})
 
 	return (
-		<motion.div ref={ref} className={cn('relative w-full h-full', className)}>
-			<div className='absolute md:-left-20' style={{ zIndex: 999, left: -8, top: 26 }}>
+		<motion.div ref={ref} className={cn('relative ml-6', className)}>
+			<div className='absolute -left-4 md:-left-8 top-7'>
 				<motion.div
 					transition={{
 						duration: 0.2,
@@ -44,8 +45,7 @@ export const TracingBeam = ({
 					animate={{
 						boxShadow: scrollYProgress.get() > 0 ? 'none' : 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
 					}}
-					className='h-4 w-4 rounded-full border border-netural-200 shadow-sm flex items-center justify-center'
-					style={{ marginLeft: 10.9 }}
+					className='ml-[10.9px] h-4 w-4 rounded-full border border-netural-200 shadow-sm flex items-center justify-center'
 				>
 					<motion.div
 						transition={{
@@ -56,15 +56,14 @@ export const TracingBeam = ({
 							backgroundColor: scrollYProgress.get() > 0 ? 'white' : 'var(--emerald-500)',
 							borderColor: scrollYProgress.get() > 0 ? 'white' : 'var(--emerald-600)'
 						}}
-						className='pl-4 rounded-full border border-neutral-300 bg-white'
-						style={{ height: 8, width: 8 }}
+						className='h-2 w-2 rounded-full border border-neutral-300 bg-white'
 					/>
 				</motion.div>
 				<svg
 					viewBox={`0 0 20 ${svgHeight}`}
 					width='20'
 					height={svgHeight} // Set the SVG height
-					className='ml-4 block'
+					className=' block'
 					aria-hidden='true'
 				>
 					<motion.path

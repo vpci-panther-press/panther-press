@@ -1,58 +1,22 @@
 ---
-import { TracingBeam } from 'src/components/aceternity/beams'
-
-import { Image } from 'astro:assets'
-
-const dummyContent = [
-	{
-		title: 'Lorem Ipsum Dolor Sit Amet',
-		description: 'Aaaaa',
-		badge: 'React',
-		image:
-			'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-	},
-	{
-		title: 'Lorem Ipsum Dolor Sit Amet',
-		description: 'AAAAAAAAAAAaaa',
-		badge: 'Changelog',
-		image:
-			'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=3540&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-	},
-	{
-		title: 'Lorem Ipsum Dolor Sit Amet',
-		description: 'AAAA',
-		badge: 'Launch Week',
-		image:
-			'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=3506&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-	}
-]
+import Bento from '../components/BentoGridFeatures'
 ---
 
-<TracingBeam className='px-6' client:only='react'>
-	<div class='max-w-2xl mx-auto antialiased pt-4 relative'>
-		{
-			dummyContent.map((item) => (
-				<div class='mb-10'>
-					<h2 class='bg-black text-white rounded-full text-sm w-fit px-4 py-1 mb-4'>
-						{item.badge}
-					</h2>
+<button data-confetti-button>Celebrate!</button>
+<button data-confetti-button>Celebrate!</button>
+<button data-confetti-button>Celebrate!</button>
 
-					<p class='text-xl mb-4'>{item.title}</p>
+<script>
+	// Import npm modules.
 
-					<div class='text-sm  prose prose-sm dark:prose-invert'>
-						{item?.image && (
-							<Image
-								src={item.image}
-								alt='blog thumbnail'
-								height='1000'
-								width='1000'
-								class='rounded-lg mb-10 object-cover'
-							/>
-						)}
-						{item.description}
-					</div>
-				</div>
-			))
-		}
-	</div>
-</TracingBeam>
+	// Find our component DOM on the page.
+	const buttons = document.querySelectorAll('[data-confetti-button]')
+	console.log(buttons)
+
+	// Add event listeners to fire confetti when a button is clicked.
+	buttons.forEach((button) => {
+		button.addEventListener('click', () => alert('🎉🎉🎉'))
+	})
+</script>
+
+<div class='max-w-4xl w-full h-full max-h-screen'><Bento /></div>

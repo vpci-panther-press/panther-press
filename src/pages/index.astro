@@ -5,6 +5,7 @@ import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
+import Bento from 'src/components/BentoGridFeatures'
 
 const MAX_POSTS = 2 // max number of posts to show on the home page
 const posts = await getPosts(MAX_POSTS)
@@ -13,6 +14,7 @@ const posts = await getPosts(MAX_POSTS)
 <BaseLayout title="Victoria Park CI's Student Newspaper">
 	<Hero />
 	<AboutUsFeatures />
+	<Bento />
 	<div class='px-4 lg:px-8'>
 		<div class='mb-6'>
 			<PageTitle title='Recent Articles' />

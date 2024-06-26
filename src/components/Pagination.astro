@@ -4,10 +4,6 @@ const { page } = Astro.props
 const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 1)
 ---
 
-<script define:vars={{ page }}>
-	console.log(page)
-</script>
-
 <script>
 	function removeItems() {
 		const pgcont = document.querySelector('#pg')

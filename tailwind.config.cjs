@@ -8,7 +8,7 @@ const {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: 'class',
-	content: ['./src/**/*.{astro,html,js,md,mdx,ts}'],
+	content: ['./src/**/*.{astro,html,js,md,mdx,ts,tsx}', './src/**/**/*.{astro,html,js,md,mdx,ts,tsx}'],
 	theme: {
 		extend: {
 			backgroundSize: {
