@@ -3,58 +3,18 @@
 @tailwind utilities;
 
 @layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
 
 	.prose code {
 		@apply text-base;
 	}
 
-	/* @font-face {
-		font-family: Manrope;
-		src: url(../assets/fonts/Manrope-SemiBold.woff2) format('woff2');
-	}
-
-	@font-face {
-		font-family: Manrope;
-		src: url(../assets/fonts/Manrope-Medium.woff2) format('woff2');
-	}
-
-	@font-face {
-		font-family: Manrope;
-		src: url(../assets/fonts/Manrope-Light.woff2) format('woff2');
-	}
-
-	@font-face {
-		font-family: Manrope;
-		src: url(../assets/fonts/Manrope-Regular.woff2) format('woff2');
-	} */
-
-	/* prose styles here */
 	.prose h1,
 	h2,
 	h3,
 	h4,
 	h5,
 	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
+		@apply text-zinc-800 dark:text-zinc-100 !important;
 	}
 }
 
-.glass {
-	background: rgba(57, 56, 56, 0.52);
-	backdrop-filter: blur(13px) saturate(150%);
-	-webkit-backdrop-filter: blur(13px) saturate(150%);
-	z-index: -1;
-}
-
-.shadow {
-	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
-}
-
-.trans-text:hover {
-	background-image: linear-gradient(135deg,#00d2ff 20%, #ffa6b9 0 40%, white 0 60%, #ffa6b9 0 80%, #00d2ff 0);
-	background-clip: text;
-	color: transparent;
-}
