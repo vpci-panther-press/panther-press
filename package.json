@@ -17,7 +17,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
-		"@astrojs/cloudflare": "^11.0.1",
+		"@astrojs/cloudflare": "^10.4.2",
 		"@astrojs/markdoc": "^0.11.1",
 		"@astrojs/react": "^3.6.0",
 		"@astrojs/rss": "4.0.7",
