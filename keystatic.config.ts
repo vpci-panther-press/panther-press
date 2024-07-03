@@ -12,7 +12,8 @@ const currentIssueImageFolder = 'src/assets/images/' + ISSUES[ISSUES.length - 1]
 
 export default config({
 	storage: {
-		kind: 'local'
+		kind: 'github',
+		repo: 'picafe/panther-press'
 	},
 	collections: {
 		posts: collection({
