@@ -13,6 +13,11 @@ import cloudflare from "@astrojs/cloudflare";
 export default defineConfig({
   site: 'https://pantherpress.ca',
   base: '/',
+  vite: {
+    ssr: {
+      noExternal: ['reading-time']
+    }
+  },
   markdown: {
     remarkPlugins: [remarkReadingTime],
     drafts: true,
