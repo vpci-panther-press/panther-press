@@ -1,5 +1,4 @@
 ---
-import { cn } from '@/utils'
 const { heading } = Astro.props
 
 type Heading = {
@@ -17,13 +16,14 @@ export interface Props {
 <li class='flex flex-col'>
 	<a
 		href={'#' + heading.slug}
-		class={cn(
-			`bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 hover:bg-zinc-300 py-1 px-4 dark:text-white rounded-xl mb-2 first-letter:uppercase w-fit line-clamp-2 hover:line-clamp-none transition-all duration-500 ease-in-out`
-		)}
+		class='toc-heading bg-zinc-200 dark:bg-zinc-800 p-2 rounded-lg mb-2 w-full block overflow-hidden transition-all duration-300 ease-in-out'
 	>
-		{heading.text}
+		<span class='truncate-text first-letter:uppercase dark:text-zinc-200'>
+			{heading.text}
+		</span>
 	</a>
-	{
+
+	<!-- {
 		heading.subheadings.length > 0 && (
 			<ul class='ml-3'>
 				{heading.subheadings.map((subheading) => (
@@ -31,5 +31,62 @@ export interface Props {
 				))}
 			</ul>
 		)
-	}
+	} -->
 </li>
+
+<style>
+	.toc-heading {
+		--max-height: 3.75em;
+		max-height: var(--max-height);
+		position: relative;
+	}
+
+	.toc-heading:hover {
+		--max-height: 100vh;
+		background-color: theme('colors.zinc.300');
+	}
+
+	.truncate-text {
+		overflow: hidden;
+		max-height: 3em; /* Adjust based on your line height */
+		position: relative;
+		text-overflow: ellipsis;
+	}
+
+	.truncate-text::after {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		background: inherit;
+		padding-left: 0.25em;
+	}
+
+	.toc-heading:hover .truncate-text {
+		max-height: none;
+		overflow: visible;
+	}
+
+	:global(.dark) .toc-heading:hover {
+		background-color: theme('colors.zinc.700');
+	}
+
+	.toc-heading::after {
+		content: '';
+		display: block;
+		height: 1em;
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		transition: opacity 0.3s ease-in-out;
+	}
+
+	.toc-heading:hover::after {
+		opacity: 0;
+	}
+
+	:global(.dark) .toc-heading::after {
+		background: linear-gradient(to bottom, transparent, theme('colors.zinc.800'));
+	}
+</style>
