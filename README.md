@@ -1,40 +1,17 @@
 # VPCI Panther Press Website
 
-## 📌 Table Of Contents
-
-1. [CMS](#-Tina-CMS)
-2. [Features](#-Features)
-3. [Stack](#-Stack)
-4. [Running locally](#-Running-Locally)
-5. [Categories](#-Adding-a-category)
-6. [Posts](#-Adding-a-post)
-7. [Draft](#-Activating-draft-mode)
-8. [FrontMatter](#-Frontmatter)
-9. [CLI](#-Commands)
-10. [Credits](#-Credits)
-
-## 🦙 Tina CMS
-
-The documentation for Tina CMS can be found [here](https://tina.io/docs/)
-
-## 💪 Features:
-
-<p align="center">
-  <a href="https://pagespeed.web.dev/analysis/https-blog-template-gray-vercel-app/7ovjfewos9?form_factor=mobile">
-    <img width="510" alt="openblog Lighthouse Score" src="public/openblog-lighthouse-score.svg">
-  <a>
-</p>
-
 ## ⚙️ Stack
 
-- [**ASTRO** + **Typescript**](https://astro.build/) - Astro is the all-in-one web framework designed for speed.
-- [**Tailwind CSS** + **Tailwind-Merge** + **clsx**](https://tailwindcss.com/) - Tailwind CSS is a utility-first CSS framework.
-- [**Tabler Icons**](https://tabler-icons.io/i/) - A open source SVG icons.
-- [**Eslint**](https://eslint.org/) - ESLint is an open source project that helps you find and fix problems.
-- [**Prettier**](https://prettier.io/) - Code formatter.
-- [**Search Library**](https://pagefind.app/) - Static search library integration.
-- [**Motion**](https://motion.dev/) - Motion One is the smallest fully-featured animation library for the web.
-- [**Tina CMS**](https://tina.io/) - CMS.
+- [**ASTRO** + **Typescript**](https://astro.build/)
+- [**React**](https://react.dev?uwu=true)
+- [**Aceternity UI**](https://ui.aceternity.com/components/)
+- [**Tailwind CSS** + **Tailwind-Merge** + **clsx**](https://tailwindcss.com/)
+- [**Tabler Icons**](https://tabler-icons.io/i/)
+- [**Eslint**](https://eslint.org/)
+- [**Prettier**](https://prettier.io/)
+- [**Search Library**](https://pagefind.app/)
+- [**Motion**](https://motion.dev/)
+- [**Keystatic CMS**](https://keystatic.com/)
 
 ## 👨🏻‍💻 Running Locally
 
@@ -79,27 +56,11 @@ export  const  CATEGORIES  =  [
 
 ## 📄 Adding a post
 
-Adding a post is as simple as adding a .md or .mdx file to the blog folder at the path **src/content/blog**. The filename will be used to create the slug/URL of the page.
+Adding a post is as simple as adding a .mdx file to the blog folder at the path **src/content/blog**. The filename will be used to create the slug/URL of the page.
 
 For example, if you have a file named **jsx-and-react.md**, it will be transformed into: **http://yourdomain.com/post/jsx-and-react/**
 
-Please create the article using Tina CMS, either through local mode or through Tina CMS Cloud (https://<url>.ca/admin).
-
-## 📝 Activating draft mode
-
-To activate draft mode, add the property **draft: true** to the file, and it will no longer be displayed on the blog.
-
-Example :
-
-```ts
-title: MacBook Pro 2022
-description: 'The new MacBook Pro 2022 is here. With the Apple M2 chip, a new design, and more, the new MacBook Pro is the best laptop Apple has ever made.'
-pubDate: 'Jul 02 2022'
-heroImage: '../../assets/bg.jpg'
-category: 'Category 1'
-tags: ['JavaScript', 'css', 'HTML5', 'GitHub']
-draft: true <---
-```
+Please create the article using Keystatic CMS, either through local mode or through Keystatic CMS Github mode (https://<url>.ca/keystatic).
 
 ## ⚡️ Frontmatter
 
@@ -113,9 +74,16 @@ draft: true <---
 - tags
 - author
 
-## Optional properties:
+Example :
 
-- draft (no need to include it, by default it's false)
+```ts
+title: MacBook Pro 2022
+description: 'The new MacBook Pro 2022 is here. With the Apple M2 chip, a new design, and more, the new MacBook Pro is the best laptop Apple has ever made.'
+pubDate: 'Jul 02 2022'
+heroImage: '../../assets/bg.jpg'
+category: 'Category 1'
+tags: ['JavaScript', 'css', 'HTML5', 'GitHub']
+```
 
 > The schema for posts is located at src/content/config.ts. You can modify any parameter, for example, by adding a maximum of 80 characters for titles: title: z.string().max(80).
 > For more information, refer to the zod documentation.
@@ -134,10 +102,3 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm run format`       | Format codes with Prettier                                                                                                       |
 | `pnpm run sync`         | Generates TypeScript types for all Astro modules. [Learn more](https://docs.astro.build/en/reference/cli-reference/#astro-sync). |
 | `pnpm run lint`         | Lint with ESLint                                                                                                                 |
-
-## 👋 Credits
-
-<a href="https://github.com/danielcgilibert/blog-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=danielcgilibert/blog-template" />
-</a>
-+ me!
