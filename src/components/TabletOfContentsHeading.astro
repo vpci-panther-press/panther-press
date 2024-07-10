@@ -17,6 +17,7 @@ export interface Props {
 	<a
 		href={'#' + heading.slug}
 		class='toc-heading bg-zinc-200 dark:bg-zinc-800 p-2 rounded-lg mb-2 w-full block overflow-hidden transition-all duration-300 ease-in-out'
+		data-astro-history='replace'
 	>
 		<span class='truncate-text first-letter:uppercase dark:text-zinc-200'>
 			{heading.text}
