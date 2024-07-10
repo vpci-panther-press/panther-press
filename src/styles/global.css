@@ -18,3 +18,19 @@
 	}
 }
 
+.dark {
+	--pagefind-ui-primary: #eeeeee;
+	--pagefind-ui-text: #eeeeee;
+	--pagefind-ui-background: #152028;
+	--pagefind-ui-border: #152028;
+	--pagefind-ui-tag: #152028;
+}
+
+@font-face {
+	font-family: 'ArgentCF';
+	src: url('/ArgentPixelCF-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+

@@ -1,22 +1,33 @@
 ---
 import { Image } from 'astro:assets'
-import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
+import coverImg from '../assets/images/sum2024/PXL_20240703_012307448-EFFECTS.jpg'
+import ZoomCard from './aceternity/ZoomCard.tsx'
 ---
 
 <!-- Features -->
 <div class='max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto'>
-	<Image
-		src={coverImg}
-		loading='eager'
-		class='w-full object-cover rounded-xl'
-		alt='Photograph of a walking path bridge going into a green forest'
-		format='webp'
-		width='1200'
-		height='900'
-	/>
+	<ZoomCard client:only='react' className='sm:py-10 p-0' containerClassName='bg-transparent'>
+		<div>
+			<Image
+				src={coverImg}
+				loading='eager'
+				class='w-full object-cover rounded-xl'
+				alt='Photograph of a walking path bridge going into a green forest'
+				format='webp'
+				width='1200'
+				height='900'
+			/>
+
+			<h1
+				class='absolute argent hidden sm:inline-block top-20 left-20 text-3xl sm:text-4xl font-bold text-[#2C3E50] max-w-md'
+			>
+				The official student newspaper of Victoria Park Collegiate Institute.
+			</h1>
+		</div>
+	</ZoomCard>
 
 	<!-- Grid -->
-	<div class='mt-5 lg:mt-16 grid lg:grid-cols-3 gap-8 lg:gap-12'>
+	<div class='mt-5 grid lg:grid-cols-3 gap-8 lg:gap-12'>
 		<div class='lg:col-span-1'>
 			<h2 class='font-bold text-2xl md:text-3xl text-gray-800 dark:text-gray-200'>
 				The official student newspaper for Victoria Park CI
@@ -52,8 +63,7 @@ import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
 					<div class='grow'>
 						<h1 class='text-lg font-semibold text-gray-800 dark:text-white'>Life</h1>
 						<p class='mt-1 text-gray-600 dark:text-gray-400'>
-							Expresses personal perspectives creatively, shedding light on events and issues
-							locally and globally in a unique and imaginative manner.
+							Creative writing, poetry, and fictional short stories from our amazing writers.
 						</p>
 					</div>
 				</div>
@@ -80,8 +90,7 @@ import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
 					<div class='grow'>
 						<h1 class='text-lg font-semibold text-gray-800 dark:text-white'>News</h1>
 						<p class='mt-1 text-gray-600 dark:text-gray-400'>
-							Reports on school, community, and global events through interviews and research,
-							providing informative coverage.
+							Stay up-to-date with the latest news and events in our school community!
 						</p>
 					</div>
 				</div>
@@ -108,8 +117,7 @@ import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
 					<div class='grow'>
 						<h1 class='text-lg font-semibold text-gray-800 dark:text-white'>Editorial</h1>
 						<p class='mt-1 text-gray-600 dark:text-gray-400'>
-							Presents clear opinions and arguments on student and school-related events, fostering
-							debates and interviews supported by credible sources.
+							Opinion pieces on various topics, ranging from reviews to interviews.
 						</p>
 					</div>
 				</div>
@@ -136,8 +144,8 @@ import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
 					<div class='grow'>
 						<h1 class='text-lg font-semibold text-gray-800 dark:text-white'>Visual Arts</h1>
 						<p class='mt-1 text-gray-600 dark:text-gray-400'>
-							Creates emotionally evocative artwork and photography to accompany written content on
-							the News, Editorial, or Life Board, enhancing the overall storytelling experience.
+							Artwork, photography, and digital media from our talented student artists. To be
+							featured soon.
 						</p>
 					</div>
 				</div>
@@ -150,3 +158,9 @@ import coverImg from '../assets/images/oct2023/misc/PXL_20230904_114345810.jpg'
 <!-- End Grid -->
 
 <!-- End Features -->
+
+<style>
+	.argent {
+		font-family: 'ArgentCF', sans-serif;
+	}
+</style>
