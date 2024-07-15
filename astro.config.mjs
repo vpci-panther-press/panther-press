@@ -4,9 +4,10 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { remarkReadingTime } from './src/utils/readTime.ts';
 import react from "@astrojs/react";
-import keystatic from '@keystatic/astro'
-
+import keystatic from '@keystatic/astro';
 import cloudflare from "@astrojs/cloudflare";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,5 +35,5 @@ export default defineConfig({
     drafts: true
   }), sitemap(), tailwind(), react(), keystatic()],
   output: "hybrid",
-  adapter: cloudflare()
+  adapter: netlify()
 });
