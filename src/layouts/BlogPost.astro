@@ -1,10 +1,21 @@
 ---
+import '@fontsource/atkinson-hyperlegible'
+import '@fontsource-variable/inter'
+import '@fontsource-variable/manrope'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import { sluglify } from '@/utils'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
+import { TracingBeam } from 'src/components/aceternity/SideBeams'
+
+import BaseHead from '@/components/BaseHead'
+import Footer from '@/components/Footer'
+import TwSizeIndicator from '@/components/dev/TwSizeIndicator'
+import EditBlog from '@/components/dev/editBlog'
+import Navbar from '@/components/Navbar'
+import '../styles/global.css'
 
 type Props = {
 	id: CollectionEntry<'blog'>['id']
@@ -17,49 +28,63 @@ const { data, readTime, headings, id } = Astro.props
 const { title, description, heroImage, tags, category, issue, alt } = data
 ---
 
-<BaseLayout title={title} description={description} image={heroImage?.src} issue={issue}>
-	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
-		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
-			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
-				{category && <Tag tag={category} category={true} />}
-				{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
-			</div>
-			<div class='w-full flex flex-col gap-2 text-center font-semibold'>
-				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-[650] text-balance'>
-					{title}
-				</h1>
-				<a href={`/issues/${sluglify(issue).toLowerCase()}`}>
-					<p class='text-primary dark:text-secondary'>
-						{issue}
-					</p>
-				</a>
-				<p class='text-opacity-50'>
-					{readTime}
-				</p>
-			</div>
-		</header>
+<html lang='en' class='scroll-smooth'>
+	<BaseHead title={title} description={description} ogImage={heroImage?.src} issue={issue} />
+	<body
+		class='w-full h-full bg-zinc-200 dark:bg-zinc-900 text-stone-950 dark:text-white bg-repeat mix-blend-multiply dark:bg-[url("/topography-dark.svg")] dark:mix-blend-normal bg-[url("/paper-light.jpg")]'
+	>
+		<TracingBeam client:only='react'>
+			<main
+				class='mx-auto sm:max-w-2xl sm:px-8 lg:px-10 antialiased md:max-w-6xl grid gap-12 mt-4 mb-10 overflow-hidden md:overflow-visible'
+			>
+				<Navbar />
 
-		<>
-			{
-				heroImage && (
-					<Image
-						src={heroImage}
-						width={1000}
-						height={500}
-						quality={100}
-						format='jpg'
-						loading='eager'
-						class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
-						alt={alt}
-					/>
-				)
-			}
-		</>
+				<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
+					<header class='mb-3 flex flex-col justify-center items-center gap-6'>
+						<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
+							{category && <Tag tag={category} category={true} />}
+							{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
+						</div>
+						<div class='w-full flex flex-col gap-2 text-center font-semibold'>
+							<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-[650] text-balance'>
+								{title}
+							</h1>
+							<a href={`/issues/${sluglify(issue).toLowerCase()}`}>
+								<p class='text-primary dark:text-secondary'>
+									{issue}
+								</p>
+							</a>
+							<p class='text-opacity-50'>
+								{readTime}
+							</p>
+						</div>
+					</header>
+					<>
+						{
+							heroImage && (
+								<Image
+									src={heroImage}
+									width={1000}
+									height={500}
+									quality={100}
+									format='jpg'
+									loading='eager'
+									class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
+									alt={alt}
+								/>
+							)
+						}
+					</>
+					<hr />
 
-		<hr />
-
-		<div>
-			<slot />
-		</div>
-	</article>
-</BaseLayout>
+					<div>
+						<slot />
+					</div>
+				</article>
+			</main>
+		</TracingBeam>
+		<Footer />
+		<TwSizeIndicator />
+		<EditBlog />
+	</body>
+</html>

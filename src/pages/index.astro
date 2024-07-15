@@ -5,6 +5,7 @@ import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
+import Bento from 'src/components/BentoGridFeatures'
 
 const MAX_POSTS = 2 // max number of posts to show on the home page
 const posts = await getPosts(MAX_POSTS)
