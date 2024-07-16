@@ -29,7 +29,7 @@ export const ISSUES = [
 		coverImage: win2023CoverImage,
 		issuuLink: 'https://issuu.com/vpci.pantherpress/docs/panther_press_winter_recap_2024',
 		folder: 'win2023',
-		archived: true
+		archived: false
 	}
 ] as const
 
