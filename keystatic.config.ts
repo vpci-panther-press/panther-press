@@ -63,7 +63,7 @@ export default config({
 				}),
 				tags: fields.array(fields.text({ label: 'Tag' }), {
 					label: 'Tag',
-					description: 'Add tags to the post',
+					description: 'Add tags to the post (max 3)',
 					itemLabel: (props) => props.value
 				}),
 				content: fields.mdx({

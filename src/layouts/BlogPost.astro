@@ -41,22 +41,68 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 
 				<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
 					<header class='mb-3 flex flex-col justify-center items-center gap-6'>
-						<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
-							{category && <Tag tag={category} category={true} />}
-							{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
-						</div>
 						<div class='w-full flex flex-col gap-2 text-center font-semibold'>
-							<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-[650] text-balance'>
-								{title}
-							</h1>
 							<a href={`/issues/${sluglify(issue).toLowerCase()}`}>
-								<p class='text-primary dark:text-secondary'>
+								<p
+									class='text-primary dark:text-secondary underline sm:no-underline sm:hover:underline'
+								>
 									{issue}
 								</p>
 							</a>
-							<p class='text-opacity-50'>
-								{readTime}
-							</p>
+							<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
+								{title}
+							</h1>
+
+							<p>{description}</p>
+
+							<div
+								class='flex flex-col sm:flex-row flex-wrap justify-center items-center mt-4 text-base'
+							>
+								<div class='sm:pr-2 sm:border-r border-gray-300 dark:border-gray-700'>
+									{category && <Tag tag={category} category={true} />}
+								</div>
+								<div class='flex flex-row items-center'>
+									<svg
+										xmlns='http://www.w3.org/2000/svg'
+										class='opacity-80 ml-2 sm:ml-4 mr-1 size-7 icon icon-tabler icon-tabler-tags'
+										viewBox='0 0 24 24'
+										stroke-width='1.5'
+										stroke='currentColor'
+										fill='none'
+										stroke-linecap='round'
+										stroke-linejoin='round'
+									>
+										<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+										<path
+											d='M3 8v4.172a2 2 0 0 0 .586 1.414l5.71 5.71a2.41 2.41 0 0 0 3.408 0l3.592 -3.592a2.41 2.41 0 0 0 0 -3.408l-5.71 -5.71a2 2 0 0 0 -1.414 -.586h-4.172a2 2 0 0 0 -2 2z'
+										></path>
+										<path d='M18 19l1.592 -1.592a4.82 4.82 0 0 0 0 -6.816l-4.592 -4.592'></path>
+										<path d='M7 10h-.01'></path>
+									</svg>
+									<div class='flex mr-2'>
+										{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
+									</div>
+								</div>
+								<div class='flex flex-row'>
+									<div class='sm:pl-4 mr-2 sm:border-l border-gray-300 dark:border-gray-700'>
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											class='opacity-80 size-6 icon icon-tabler icon-tabler-clock'
+											viewBox='0 0 24 24'
+											stroke-width='1.5'
+											stroke='currentColor'
+											fill='none'
+											stroke-linecap='round'
+											stroke-linejoin='round'
+										>
+											<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+											<path d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0'></path>
+											<path d='M12 7v5l3 3'></path>
+										</svg>
+									</div>
+									{readTime}
+								</div>
+							</div>
 						</div>
 					</header>
 					<>

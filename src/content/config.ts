@@ -28,7 +28,7 @@ const blog = defineCollection({
 			category: z.enum(CATEGORIES),
 			issue: z.enum(issueNames as [string, ...string[]]),
 			author: z.array(z.enum(authorNames as [string, ...string[]])),
-			tags: z.array(z.string()),
+			tags: z.array(z.string()).max(3),
 			draft: z.boolean().default(false)
 		})
 })
