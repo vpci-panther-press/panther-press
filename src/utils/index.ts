@@ -3,6 +3,7 @@ export { cn } from './cn'
 export {
 	getIssues,
 	getPosts,
+	getNonArchivedPosts,
 	getTags,
 	getPostByTag,
 	filterPostsByIssue,

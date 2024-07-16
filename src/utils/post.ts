@@ -1,3 +1,4 @@
+import { getIssue } from '@/data/issues'
 import { getCollection } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
@@ -11,6 +12,17 @@ export const getPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
 
 	return sortPostsByDate(posts, max)
+}
+
+export const getNonArchivedPosts = async (max?: number) => {
+	const posts = await getCollection('blog')
+	let nonArchivedPosts = []
+	for (let post of posts) {
+		if (getIssue(post.data.issue)!.archived === false) {
+			nonArchivedPosts.push(post)
+		}
+	}
+	return sortPostsByDate(nonArchivedPosts, max)
 }
 
 export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) => {

@@ -18,6 +18,7 @@ const sortedIssues = ISSUES.toReversed()
 					img={issue.coverImage}
 					url={`/issues/${sluglify(issue.name).toLowerCase()}`}
 					issuuLink={issue.issuuLink}
+					archived={issue.archived}
 				/>
 			))
 		}

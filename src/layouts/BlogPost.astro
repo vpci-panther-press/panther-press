@@ -59,7 +59,7 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 								class='flex flex-col sm:flex-row flex-wrap justify-center items-center mt-4 text-base'
 							>
 								<div class='sm:pr-2 sm:border-r border-gray-300 dark:border-gray-700'>
-									{category && <Tag tag={category} category={true} />}
+									{category ? <Tag tag={category} category={true} /> : ''}
 								</div>
 								<div class='flex flex-row items-center'>
 									<svg

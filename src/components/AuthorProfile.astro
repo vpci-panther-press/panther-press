@@ -25,7 +25,7 @@ const data = getAuthorsData(authors)
 						</h5>
 						<div class='mt-1'>
 							<p class='text-sm text-gray-500'>
-								{author?.bio && author?.bio.split(' ').slice(0, 10).join(' ') + '...'}
+								{author?.bio ? author?.bio.split(' ').slice(0, 10).join(' ') + '...' : ''}
 							</p>
 						</div>
 					</div>
