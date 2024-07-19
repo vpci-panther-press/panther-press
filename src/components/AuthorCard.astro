@@ -6,35 +6,50 @@ const { name, role, description, img } = Astro.props
 ---
 
 <div
-	class='card cursor-pointer overflow-hidden h-96 rounded-md shadow-xl w-full sm:min-w-[16rem] lg:first:w-full backgroundImage justify-between p-4 bg-cover bg-center'
+	class='card transition-transform ease-in-out hover:scale-105 cursor-pointer overflow-hidden h-96 rounded-md shadow-xl w-full sm:min-w-[16rem] lg:first:w-full backgroundImage bg-cover bg-center'
 >
-	<div
-		class='absolute w-full h-full top-0 left-0 bg-black opacity-[0.55] transition duration-300 group-hover/card:opacity-60'
-	>
-	</div>
-	<div class='content'>
-		<div class='contentBx'>
-			<h3>{name}<br /><span>{role}</span></h3>
+	<div class='filter h-full w-full justify-between p-4'>
+		<div
+			class='absolute w-full h-full top-0 left-0 bg-black opacity-[0.55] transition duration-300 group-hover/card:opacity-60'
+		>
 		</div>
+		<div class='content'>
+			<div class='contentBx'>
+				<h3>{name}<br /><span>{role}</span></h3>
+			</div>
+		</div>
+		<ul class='sci'>
+			<p>{description}</p>
+		</ul>
 	</div>
-	<ul class='sci'>
-		<p>{description}</p>
-	</ul>
 </div>
 
 <!-- End Card -->
 <style define:vars={{ image: `url("${img}")` }}>
+	@keyframes overlay {
+		from {
+			background-color: rgba(255, 255, 255, 0);
+		}
+		to {
+			background-color: rgba(248, 159, 38, 0.5);
+		}
+	}
+	.card .filter {
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+	}
+	.card .filter:hover {
+		animation-name: overlay;
+		animation-duration: 0.5s;
+		animation-fill-mode: forwards;
+	}
+
 	.card {
 		position: relative;
-		width: 300px;
-		height: 400px;
-		margin: 20px;
 		background-image: var(--image);
 		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 		border-radius: 15px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		backdrop-filter: blur(10px);
 	}
 
@@ -48,14 +63,7 @@ const { name, role, description, img } = Astro.props
 	}
 
 	.card:hover .content {
-		transform: translateY(-20px);
-	}
-
-	.card .content .imgBx {
-		position: relative;
-		width: 150px;
-		height: 150px;
-		overflow: hidden;
+		transform: translateY(-110px);
 	}
 
 	.card .content .contentBx h3 {
