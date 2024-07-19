@@ -34,5 +34,10 @@ export default defineConfig({
     drafts: true
   }), sitemap(), tailwind(), react(), keystatic()],
   output: "hybrid",
-  adapter: cloudflare()
+  adapter: cloudflare(),
+  vite: {
+    define: {
+      'process.env': process.env,
+    }
+  }
 });
