@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import PageTitle from '@/components/PageTitle'
+import AuthorCard from '@/components/AuthorCard'
+---
+
+<BaseLayout title='About Us'>
+	<PageTitle title='Who We Are' />
+	<main id='content' role='main'>
+		<div class='h-screen text-center py-10 px-4 sm:px-6 lg:px-8'>
+			<!-- Mission Statement -->
+			<h2 class='text-2xl font-bold text-gray-800 dark:text-white'>Mission Statement</h2>
+			<div
+				class='font-light mt-5 mb-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3'
+			>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+					ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+					ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+					sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+					est laborum.
+				</p>
+			</div>
+			<hr />
+			<!-- Team Cards -->
+			<div class='mt-5 mb-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+				<AuthorCard
+					author={'Surya T'}
+					role={'Web Manager'}
+					description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+				/>
+				<AuthorCard
+					author={'AAAA'}
+					role={'Editor'}
+					description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+				/>
+				<AuthorCard
+					author={'AAAA'}
+					role={'Editor'}
+					description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'}
+				/>
+			</div>
+			<!-- Contact Us -->
+			<hr />
+			<h2 class='mt-5 text-2xl font-bold text-gray-800 dark:text-white'>Contact Us</h2>
+			<div
+				class='font-light mt-5 mb-5 flex flex-row justify-center items-center gap-2 sm:flex-row sm:gap-3'
+			>
+				<p>
+					Our social media platforms can be accessed using the icons located at the top-right corner
+					of the page. If you are on a mobile browser, they can be accessed within the menu through
+					the 3-line icon in the top top-right corner.
+					<br />
+					<br />
+					For any inquiries, please contact the managers at <a
+						class='underline text-orange-400'
+						href='mailto:info@pantherpress.ca'>info@pantherpress.ca</a
+					>
+				</p>
+			</div>
+		</div>
+	</main>
+</BaseLayout>

@@ -2,7 +2,7 @@
 import { getAuthor } from '@/data/authors'
 import { Image } from 'astro:assets'
 
-const { name, role, description, img } = Astro.props
+const { author, role, description } = Astro.props
 ---
 
 <div
@@ -15,7 +15,7 @@ const { name, role, description, img } = Astro.props
 		</div>
 		<div class='content'>
 			<div class='contentBx'>
-				<h3>{name}<br /><span>{role}</span></h3>
+				<h3>{author}<br /><span>{role}</span></h3>
 			</div>
 		</div>
 		<ul class='sci'>
@@ -25,7 +25,7 @@ const { name, role, description, img } = Astro.props
 </div>
 
 <!-- End Card -->
-<style define:vars={{ image: `url("${img}")` }}>
+<style define:vars={{ image: getAuthor(String(author))?.pfp || '/author/default.jpg' }}>
 	@keyframes overlay {
 		from {
 			background-color: rgba(255, 255, 255, 0);
