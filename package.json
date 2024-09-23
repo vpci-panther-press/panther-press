@@ -42,7 +42,7 @@
 		"@tailwindcss/typography": "0.5.13",
 		"@typescript-eslint/parser": "^7.15.0",
 		"clsx": "2.1.1",
-		"eslint": "^9.6.0",
+		"eslint": "^9.11.0",
 		"eslint-plugin-astro": "^1.2.2",
 		"eslint-plugin-jsx-a11y": "^6.9.0",
 		"husky": "^9.0.11",
