@@ -8,7 +8,8 @@ export const ISSUES = [
 		description: 'A recap of October 2023 at Victoria Park CI, our first issue!',
 		coverImage: oct2023CoverImage,
 		issuuLink: 'https://issuu.com/vpci.pantherpress/docs/panther_press_october_recap_2023',
-		folder: 'oct2023'
+		folder: 'oct2023',
+		archived: false
 	},
 
 	{
@@ -17,7 +18,8 @@ export const ISSUES = [
 			'A recap of November 2023 at Victoria Park CI, with many articles featuring Remembrance Day.',
 		coverImage: nov2023CoverImage,
 		issuuLink: 'https://issuu.com/vpci.pantherpress/docs/panther_press_november_recap_2023',
-		folder: 'nov2023'
+		folder: 'nov2023',
+		archived: false
 	},
 
 	{
@@ -26,7 +28,8 @@ export const ISSUES = [
 			'A recap of the Winter 2023/2024 at Victoria Park CI, with articles featuring the winter concert, exams, and more!',
 		coverImage: win2023CoverImage,
 		issuuLink: 'https://issuu.com/vpci.pantherpress/docs/panther_press_winter_recap_2024',
-		folder: 'win2023'
+		folder: 'win2023',
+		archived: false
 	}
 ] as const
 

@@ -8,9 +8,10 @@ type Props = {
 	img: ImageMetadata
 	url: string
 	issuuLink: string
+	archived: boolean
 }
 
-const { title, description, img, url, issuuLink } = Astro.props
+const { title, description, img, url, issuuLink, archived } = Astro.props
 ---
 
 <div
@@ -27,6 +28,13 @@ const { title, description, img, url, issuuLink } = Astro.props
 			class='h-full min-w-full object-cover'
 			loading='eager'
 		/>
+		{
+			archived && (
+				<p class='absolute sm:inline-block py-1.5 px-2 bottom-3 left-3 text-xs font-bold rounded-md bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100'>
+					Archived
+				</p>
+			)
+		}
 	</div>
 	<div class='flex flex-col w-full'>
 		<div class='p-4 flex flex-col h-full sm:p-7'>

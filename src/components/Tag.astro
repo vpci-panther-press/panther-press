@@ -9,13 +9,13 @@ const { tag, category } = Astro.props
 {
 	category ? (
 		<a href={`/category/${tag}`} aria-label={tag}>
-			<span class='bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-50 font-semibold text-sm w-fit px-2 py-1 md:px-3 md:py-1.5 rounded-md'>
+			<span class='text-slate-800 dark:text-slate-50 font-semibold text-base w-fit px-2 py-1 md:px-3 md:py-1.5 underline sm:no-underline sm:hover:underline'>
 				{`${tag}` ?? 'Category'}
 			</span>
 		</a>
 	) : (
 		<a href={`/tags/${tag}`} aria-label={tag}>
-			<span class='bg-transparent font-semibold border dark:border-zinc-700 text-sm w-fit px-2 py-1 md:px-3 md:py-1.5 rounded-md'>
+			<span class='font-semibold text-base w-fit px-2 underline sm:no-underline sm:hover:underline '>
 				{`#${tag}` ?? 'Blog Tag'}
 			</span>
 		</a>

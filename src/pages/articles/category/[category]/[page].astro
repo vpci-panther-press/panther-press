@@ -3,13 +3,13 @@ import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import ListCategories from '@/components/ListCategories'
 import PageTitle from '@/components/PageTitle'
-import { sluglify, unsluglify, getPosts } from '@/utils'
+import { sluglify, unsluglify, getNonArchivedPosts } from '@/utils'
 import { CATEGORIES } from '@/data/categories'
 import { siteConfig } from '@/data/site.config'
 import Pagination from '@/components/Pagination'
 
 export async function getStaticPaths({ paginate }: any) {
-	const allPosts = await getPosts()
+	const allPosts = await getNonArchivedPosts()
 
 	return CATEGORIES.flatMap((category: string) => {
 		const unsluglifyNameCategory = unsluglify(category!.toLowerCase())

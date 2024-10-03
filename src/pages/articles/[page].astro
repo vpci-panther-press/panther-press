@@ -5,10 +5,10 @@ import Pagination from '@/components/Pagination'
 import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
 import { siteConfig } from '@/data/site.config'
-import { getIssues, getPosts } from '@/utils'
+import { getIssues, getNonArchivedPosts } from '@/utils'
 
 export async function getStaticPaths({ paginate }: any) {
-	const allPosts = await getPosts()
+	const allPosts = await getNonArchivedPosts()
 
 	return paginate(allPosts, {
 		pageSize: siteConfig.paginationSize

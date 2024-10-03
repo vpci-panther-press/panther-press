@@ -3,9 +3,11 @@ import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
 import { getIssues, filterPostsByIssue, sluglify } from '@/utils'
+import Shape from '@/components/icons/Shape'
+import { getIssue, ISSUES } from '@/data/issues'
 
 export async function getStaticPaths() {
-	const issues = await getIssues()
+	const issues = ISSUES.map((issue) => issue.name)
 
 	return issues.map((issue) => ({
 		params: { issue: sluglify(issue).toLowerCase() },
@@ -16,9 +18,11 @@ export async function getStaticPaths() {
 const { issue } = Astro.props
 
 const posts = await filterPostsByIssue(issue)
+
+const issueTitle = issue + (getIssue(issue)!.archived ? ' (Archived)' : '')
 ---
 
 <BaseLayout title={issue}>
-	<PageTitle title={issue} />
+	<PageTitle title={issueTitle} />
 	<ListPosts posts={posts} FirstBig={true} />
 </BaseLayout>
