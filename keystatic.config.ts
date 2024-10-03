@@ -13,7 +13,7 @@ const currentIssueImageFolder = 'src/assets/images/' + ISSUES[ISSUES.length - 1]
 export default config({
 	storage: {
 		kind: 'github',
-		repo: 'picafe/panther-press'
+		repo: 'vpci-panther-press/panther-press'
 	},
 	collections: {
 		posts: collection({
@@ -63,7 +63,7 @@ export default config({
 				}),
 				tags: fields.array(fields.text({ label: 'Tag' }), {
 					label: 'Tag',
-					description: 'Add tags to the post (max 3)',
+					description: 'Add tags to the post',
 					itemLabel: (props) => props.value
 				}),
 				content: fields.mdx({
