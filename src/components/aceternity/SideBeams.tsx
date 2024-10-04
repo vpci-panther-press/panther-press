@@ -35,7 +35,7 @@ export const TracingBeam = ({
 
 	const showAnimations = localStorage.getItem('animations') === 'true'
 
-	if (showAnimations && window.innerWidth > 640) {
+	if (showAnimations && window.innerWidth > 768) {
 		return (
 			<motion.div ref={ref} className={cn('relative ml-6', className)}>
 				<div className='absolute -left-4 md:-left-8 top-7'>
