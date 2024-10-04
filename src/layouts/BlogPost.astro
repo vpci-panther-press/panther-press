@@ -1,21 +1,10 @@
 ---
-import '@fontsource/atkinson-hyperlegible'
-import '@fontsource-variable/inter'
-import '@fontsource-variable/manrope'
 import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import { sluglify } from '@/utils'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
-import { TracingBeam } from 'src/components/aceternity/SideBeams'
-
-import BaseHead from '@/components/BaseHead'
-import Footer from '@/components/Footer'
-import TwSizeIndicator from '@/components/dev/TwSizeIndicator'
-import EditBlog from '@/components/dev/editBlog'
-import Navbar from '@/components/Navbar'
-import '../styles/global.css'
 
 type Props = {
 	id: CollectionEntry<'blog'>['id']
@@ -29,108 +18,94 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 ---
 
 <html lang='en' class='scroll-smooth'>
-	<BaseHead title={title} description={description} ogImage={heroImage?.src} issue={issue} />
-	<body
-		class='w-full h-full bg-zinc-200 dark:bg-zinc-900 text-stone-950 dark:text-white bg-repeat mix-blend-multiply dark:bg-[url("/topography-dark.svg")] dark:mix-blend-normal bg-[url("/paper-light.jpg")]'
-	>
-		<TracingBeam client:only='react'>
-			<main
-				class='mx-auto sm:max-w-2xl sm:px-8 lg:px-10 antialiased md:max-w-6xl grid gap-12 mt-4 mb-10 overflow-hidden md:overflow-visible'
-			>
-				<Navbar />
+	<BaseLayout title={title} description={description} heroImage={heroImage} issue={issue}>
+		<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
+			<header class='mb-3 flex flex-col justify-center items-center gap-6'>
+				<div class='w-full flex flex-col gap-2 text-center font-semibold'>
+					<a href={`/issues/${sluglify(issue).toLowerCase()}`}>
+						<p
+							class='text-primary dark:text-secondary underline sm:no-underline sm:hover:underline'
+						>
+							{issue}
+						</p>
+					</a>
+					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
+						{title}
+					</h1>
 
-				<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
-					<header class='mb-3 flex flex-col justify-center items-center gap-6'>
-						<div class='w-full flex flex-col gap-2 text-center font-semibold'>
-							<a href={`/issues/${sluglify(issue).toLowerCase()}`}>
-								<p
-									class='text-primary dark:text-secondary underline sm:no-underline sm:hover:underline'
-								>
-									{issue}
-								</p>
-							</a>
-							<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
-								{title}
-							</h1>
+					<p>{description}</p>
 
-							<p>{description}</p>
-
-							<div
-								class='flex flex-col sm:flex-row flex-wrap justify-center items-center mt-4 text-base'
+					<div
+						class='flex flex-col sm:flex-row flex-wrap justify-center items-center mt-4 text-base'
+					>
+						<div class='sm:pr-2 sm:border-r border-gray-300 dark:border-gray-700'>
+							{category ? <Tag tag={category} category={true} /> : ''}
+						</div>
+						<div class='flex flex-row items-center'>
+							<svg
+								xmlns='http://www.w3.org/2000/svg'
+								class='opacity-80 ml-2 sm:ml-4 mr-1 size-7 icon icon-tabler icon-tabler-tags'
+								viewBox='0 0 24 24'
+								stroke-width='1.5'
+								stroke='currentColor'
+								fill='none'
+								stroke-linecap='round'
+								stroke-linejoin='round'
 							>
-								<div class='sm:pr-2 sm:border-r border-gray-300 dark:border-gray-700'>
-									{category ? <Tag tag={category} category={true} /> : ''}
-								</div>
-								<div class='flex flex-row items-center'>
-									<svg
-										xmlns='http://www.w3.org/2000/svg'
-										class='opacity-80 ml-2 sm:ml-4 mr-1 size-7 icon icon-tabler icon-tabler-tags'
-										viewBox='0 0 24 24'
-										stroke-width='1.5'
-										stroke='currentColor'
-										fill='none'
-										stroke-linecap='round'
-										stroke-linejoin='round'
-									>
-										<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-										<path
-											d='M3 8v4.172a2 2 0 0 0 .586 1.414l5.71 5.71a2.41 2.41 0 0 0 3.408 0l3.592 -3.592a2.41 2.41 0 0 0 0 -3.408l-5.71 -5.71a2 2 0 0 0 -1.414 -.586h-4.172a2 2 0 0 0 -2 2z'
-										></path>
-										<path d='M18 19l1.592 -1.592a4.82 4.82 0 0 0 0 -6.816l-4.592 -4.592'></path>
-										<path d='M7 10h-.01'></path>
-									</svg>
-									<div class='flex mr-2'>
-										{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
-									</div>
-								</div>
-								<div class='flex flex-row'>
-									<div class='sm:pl-4 mr-2 sm:border-l border-gray-300 dark:border-gray-700'>
-										<svg
-											xmlns='http://www.w3.org/2000/svg'
-											class='opacity-80 size-6 icon icon-tabler icon-tabler-clock'
-											viewBox='0 0 24 24'
-											stroke-width='1.5'
-											stroke='currentColor'
-											fill='none'
-											stroke-linecap='round'
-											stroke-linejoin='round'
-										>
-											<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
-											<path d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0'></path>
-											<path d='M12 7v5l3 3'></path>
-										</svg>
-									</div>
-									{readTime}
-								</div>
+								<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+								<path
+									d='M3 8v4.172a2 2 0 0 0 .586 1.414l5.71 5.71a2.41 2.41 0 0 0 3.408 0l3.592 -3.592a2.41 2.41 0 0 0 0 -3.408l-5.71 -5.71a2 2 0 0 0 -1.414 -.586h-4.172a2 2 0 0 0 -2 2z'
+								></path>
+								<path d='M18 19l1.592 -1.592a4.82 4.82 0 0 0 0 -6.816l-4.592 -4.592'></path>
+								<path d='M7 10h-.01'></path>
+							</svg>
+							<div class='flex mr-2'>
+								{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
 							</div>
 						</div>
-					</header>
-					<>
-						{
-							heroImage && (
-								<Image
-									src={heroImage}
-									width={1000}
-									height={500}
-									quality={100}
-									format='jpg'
-									loading='eager'
-									class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
-									alt={alt}
-								/>
-							)
-						}
-					</>
-					<hr />
-
-					<div>
-						<slot />
+						<div class='flex flex-row'>
+							<div class='sm:pl-4 mr-2 sm:border-l border-gray-300 dark:border-gray-700'>
+								<svg
+									xmlns='http://www.w3.org/2000/svg'
+									class='opacity-80 size-6 icon icon-tabler icon-tabler-clock'
+									viewBox='0 0 24 24'
+									stroke-width='1.5'
+									stroke='currentColor'
+									fill='none'
+									stroke-linecap='round'
+									stroke-linejoin='round'
+								>
+									<path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+									<path d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0'></path>
+									<path d='M12 7v5l3 3'></path>
+								</svg>
+							</div>
+							{readTime}
+						</div>
 					</div>
-				</article>
-			</main>
-		</TracingBeam>
-		<Footer />
-		<TwSizeIndicator />
-		<EditBlog />
-	</body>
+				</div>
+			</header>
+			<>
+				{
+					heroImage && (
+						<Image
+							src={heroImage}
+							width={1000}
+							height={500}
+							quality={100}
+							format='jpg'
+							loading='eager'
+							class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
+							alt={alt}
+						/>
+					)
+				}
+			</>
+			<hr />
+
+			<div>
+				<slot />
+			</div>
+		</article>
+	</BaseLayout>
 </html>
