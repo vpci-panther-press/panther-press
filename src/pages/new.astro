@@ -1,9 +1,9 @@
 ---
 import Bento from '../components/BentoGridFeatures'
-import { createReader } from '@keystatic/core/reader'
-import keystaticConfig from '../../keystatic.config'
-const reader = createReader(process.cwd(), keystaticConfig)
-const issues = await reader.collections.issues.list()
+// import { createReader } from '@keystatic/core/reader'
+// import keystaticConfig from '../../keystatic.config'
+// const reader = createReader(process.cwd(), keystaticConfig)
+// const issues = await reader.collections.issues.list()
 ---
 
 <button data-confetti-button>Celebrate!</button>
@@ -23,5 +23,4 @@ const issues = await reader.collections.issues.list()
 	})
 </script>
 
-{issues}
 <div class='max-w-4xl w-full h-full max-h-screen'><Bento /></div>
