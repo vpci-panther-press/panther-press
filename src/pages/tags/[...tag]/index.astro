@@ -18,7 +18,9 @@ const { tag } = Astro.props
 const posts = await getPostByTag(tag)
 ---
 
-<BaseLayout title={tag} data-pagefind-ignore='all'>
-	<PageTitle title={tag} />
-	<ListPosts posts={posts} />
+<BaseLayout title={tag}>
+	<div data-pagefind-ignore='all'>
+		<PageTitle title={tag} />
+		<ListPosts posts={posts} />
+	</div>
 </BaseLayout>

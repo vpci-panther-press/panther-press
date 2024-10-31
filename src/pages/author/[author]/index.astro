@@ -32,5 +32,7 @@ const { bio, pfp } = getAuthor(author) || {}
 			<p class={`text-lg md:text-xl ${!bio ? 'opacity-50' : ''}`}>{bio || 'No biography found'}</p>
 		</div>
 	</div>
-	<ListPosts posts={sortedPosts} data-pagefind-ignore='all' />
+	<div data-pagefind-ignore='all'>
+		<ListPosts posts={sortedPosts} />
+	</div>
 </BaseLayout>
