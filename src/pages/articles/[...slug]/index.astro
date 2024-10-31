@@ -26,7 +26,7 @@ const getRelatedPosts = (post: Props) => {
 	const relatedPosts = posts
 		.sort()
 		.filter(
-			(p) =>
+			(p: any) =>
 				p.slug !== post.slug &&
 				p.data.tags.some(
 					(t: string) =>
