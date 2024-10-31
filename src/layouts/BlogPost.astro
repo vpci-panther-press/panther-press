@@ -14,11 +14,12 @@ type Props = {
 }
 
 const { data, readTime, headings, id } = Astro.props
+
 const { title, description, heroImage, tags, category, issue, alt } = data
 ---
 
 <html lang='en' class='scroll-smooth'>
-	<BaseLayout title={title} description={description} heroImage={heroImage.src} issue={issue}>
+	<BaseLayout title={title} description={description} image={heroImage.src} issue={issue}>
 		<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
 			<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 				<div class='w-full flex flex-col gap-2 text-center font-semibold'>
@@ -27,6 +28,7 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 							class='text-primary dark:text-secondary underline sm:no-underline sm:hover:underline'
 						>
 							{issue}
+							{heroImage.src}
 						</p>
 					</a>
 					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
