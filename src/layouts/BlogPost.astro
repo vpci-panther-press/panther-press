@@ -14,7 +14,6 @@ type Props = {
 }
 
 const { data, readTime, headings, id } = Astro.props
-
 const { title, description, heroImage, tags, category, issue, alt } = data
 ---
 
@@ -28,7 +27,6 @@ const { title, description, heroImage, tags, category, issue, alt } = data
 							class='text-primary dark:text-secondary underline sm:no-underline sm:hover:underline'
 						>
 							{issue}
-							{heroImage.src}
 						</p>
 					</a>
 					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
