@@ -64,7 +64,6 @@ import Pagefind from 'astro-pagefind/components/Search'
 			const openModal = (event?: MouseEvent) => {
 				dialog.showModal()
 				dialog.classList.add('show')
-				document.body.classList.add('overflow-hidden')
 				this.querySelector('input')?.focus()
 				event?.stopPropagation()
 				window.addEventListener('click', onWindowClick)
@@ -72,8 +71,7 @@ import Pagefind from 'astro-pagefind/components/Search'
 
 			const closeModal = () => {
 				dialog.close()
-				document.getElementById('dialog')?.classList.remove('show')
-				document.body.classList.remove('overflow-hidden')
+				dialog.classList.remove('show')
 				window.removeEventListener('click', onWindowClick)
 			}
 
