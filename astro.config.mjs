@@ -7,11 +7,15 @@ import react from "@astrojs/react";
 import keystatic from '@keystatic/astro'
 
 import cloudflare from "@astrojs/cloudflare";
+import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://pantherpress.ca',
   base: '/',
+  build: {
+    format: "file",
+  },
   vite: {
     ssr: {
       external: ['@keystatic/core', 'node:path', "node:fs"],
@@ -32,7 +36,7 @@ export default defineConfig({
       wrap: true
     },
     drafts: true
-  }), sitemap(), tailwind(), react(), keystatic()],
+  }), sitemap(), tailwind(), react(), keystatic(), pagefind()],
   output: "hybrid",
   adapter: cloudflare(),
   vite: {
