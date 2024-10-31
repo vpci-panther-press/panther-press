@@ -14,7 +14,7 @@ export default defineConfig({
   base: '/',
   vite: {
     ssr: {
-      noExternal: ['reading-time']
+      external: ['@keystatic/core', 'node:path', "node:fs"],
     }
   },
   markdown: {
