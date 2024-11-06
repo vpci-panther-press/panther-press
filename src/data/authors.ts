@@ -1,8 +1,7 @@
 import { createReader } from '@keystatic/core/reader'
 import keystaticConfig from '../../keystatic.config'
-import { cwd } from 'node:process'
-const reader = createReader(cwd(), keystaticConfig)
-export const prerender = false
+import process from 'node:process'
+const reader = createReader(process.cwd(), keystaticConfig)
 
 type Author = Readonly<
 	{
@@ -105,7 +104,7 @@ export async function getAuthor(name: string) {
 }
 
 export async function getAuthors() {
-	return await reader.collections.authors.list()
+	return (await reader.collections.authors.all()).map((author) => author.entry.name)
 }
 
 export async function getAuthorsData(props: string[]) {
