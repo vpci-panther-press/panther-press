@@ -94,11 +94,23 @@ export default config({
 			path: 'src/content/authors/*',
 
 			schema: {
-				name: fields.text({ label: 'Name', validation: { isRequired: true } }),
+				name: fields.slug({
+					name: {
+						label: 'Name',
+						validation: { isRequired: true }
+					}
+				}),
 				bio: fields.text({ label: 'Bio' }),
 				photo: fields.image({
 					label: 'Profile Picture',
-					description: "The image used for the author's profile picture"
+					description: "The image used for the author's profile picture",
+					directory: '/src/assets/authors/',
+					publicPath: '/src/assets/authors/'
+				}),
+				alumni: fields.checkbox({
+					label: 'Alumni',
+					description: 'If ticked, the author will have an alumni badge on their profile',
+					defaultValue: false
 				})
 			}
 		}),

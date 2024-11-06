@@ -6,8 +6,10 @@ import { remarkReadingTime } from './src/utils/readTime.ts';
 import react from "@astrojs/react";
 import keystatic from '@keystatic/astro'
 
-import cloudflare from "@astrojs/cloudflare";
+import netlify from "@astrojs/netlify";
+import { nodePolyfills } from 'vite-plugin-node-polyfills'
 import pagefind from "astro-pagefind";
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,8 +19,9 @@ export default defineConfig({
     format: "file",
   },
   vite: {
+    plugins: [nodePolyfills()],
     ssr: {
-      external: ['@keystatic/core', 'node:path', "node:fs"],
+      noExternal: ["node:process", "@keystatic/core", "@keystatic/astro", "@keystatic/astro/dist/keystatic-astro-ui.js"]
     }
   },
   markdown: {
@@ -38,7 +41,7 @@ export default defineConfig({
     drafts: true
   }), sitemap(), tailwind(), react(), keystatic(), pagefind()],
   output: "hybrid",
-  adapter: cloudflare(),
+  adapter: netlify(),
   vite: {
     define: {
       'process.env': process.env,

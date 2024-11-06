@@ -1,3 +1,9 @@
+import { createReader } from '@keystatic/core/reader'
+import keystaticConfig from '../../keystatic.config'
+import { cwd } from 'node:process'
+const reader = createReader(cwd(), keystaticConfig)
+export const prerender = false
+
 type Author = Readonly<
 	{
 		name: string
@@ -93,14 +99,16 @@ export const AUTHORS: Author = [
 	}
 ] as const
 
-export function getAuthor(name: string) {
-	return AUTHORS.find((author) => author.name === name)
+export async function getAuthor(name: string) {
+	const allAuthors = await reader.collections.authors.all()
+	return allAuthors.find((author) => author.entry.name === name)
 }
 
-export function getAuthors() {
-	return AUTHORS.map((author) => author.name)
+export async function getAuthors() {
+	return await reader.collections.authors.list()
 }
 
-export function getAuthorsData(props: string[]) {
-	return props.map((author) => AUTHORS.find((a) => a.name === author))
+export async function getAuthorsData(props: string[]) {
+	const allAuthors = await reader.collections.authors.all()
+	return props.map((author) => allAuthors.find((a) => a.entry.name === author))
 }

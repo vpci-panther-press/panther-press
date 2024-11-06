@@ -1,15 +1,14 @@
 import { defineCollection, z } from 'astro:content'
 import { CATEGORIES } from '@/data/categories'
 import { ISSUES } from '@/data/issues'
-import { AUTHORS } from '@/data/authors'
+import { getAuthors } from '@/data/authors'
+
 const issueNames: string[] = ISSUES.map((issue) => issue.name)
 if (issueNames.length === 0) {
 	issueNames.push('No issues found')
 }
-const authorNames: string[] = AUTHORS.map((author) => author.name)
-if (authorNames.length === 0) {
-	authorNames.push('No authors found')
-}
+
+const allAuthors = await getAuthors()
 
 const blog = defineCollection({
 	// Type-check frontmatter using a schema
@@ -27,7 +26,7 @@ const blog = defineCollection({
 			photoCredits: z.string(),
 			category: z.enum(CATEGORIES),
 			issue: z.enum(issueNames as [string, ...string[]]),
-			author: z.array(z.enum(authorNames as [string, ...string[]])),
+			author: z.array(z.enum(allAuthors as [string, ...string[]])),
 			tags: z.array(z.string()).max(3),
 			draft: z.boolean().default(false)
 		})

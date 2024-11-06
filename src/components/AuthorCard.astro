@@ -1,8 +1,9 @@
 ---
 import { getAuthor } from '@/data/authors'
-import { Image } from 'astro:assets'
 
 const { author, role, description } = Astro.props
+const authorData = await getAuthor(author)
+const image = authorData?.entry.photo || '/author/default.jpg'
 ---
 
 <div
@@ -25,7 +26,7 @@ const { author, role, description } = Astro.props
 </div>
 
 <!-- End Card -->
-<style define:vars={{ image: getAuthor(String(author))?.pfp || '/author/default.jpg' }}>
+<style define:vars={{ image }}>
 	@keyframes overlay {
 		from {
 			background-color: rgba(255, 255, 255, 0);

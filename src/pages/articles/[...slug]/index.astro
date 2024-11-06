@@ -7,6 +7,7 @@ import TableOfContents from '@/components/TableOfContents'
 import { getPosts } from '@/utils'
 import Centered from '@/components/mdx/Centered'
 import AuthorProfile from '@/components/AuthorProfile'
+import { getAuthors, getAuthor } from '@/data/authors'
 
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
@@ -40,8 +41,14 @@ const getRelatedPosts = (post: Props) => {
 const relatedPosts = getRelatedPosts(post)
 
 const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const all = await getAuthors()
+const autha = getAuthor('Shreyaa Subaeasan')
 ---
 
+<script define:vars={{ all, autha }}>
+	console.log(all)
+	console.log(autha)
+</script>
 <BlogPost
 	id={post.id}
 	data={post.data}
@@ -59,6 +66,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 			<footer>
 				<div class='md:hidden flex w-full justify-center items-center'>
 					<AuthorProfile authors={post.data.author} imageCredit={post.data.photoCredits} />
+					{all}
 				</div>
 				<h1 class='font-bold text-lg dark:text-white mb-6'>Related Posts</h1>
 				<ListRelatedPosts posts={relatedPosts} />
