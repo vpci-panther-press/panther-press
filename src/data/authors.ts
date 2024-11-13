@@ -1,7 +1,7 @@
-import { createReader } from '@keystatic/core/reader'
-import keystaticConfig from '../../keystatic.config'
-import process from 'node:process'
-const reader = createReader(process.cwd(), keystaticConfig)
+import { sluglify } from '@/utils'
+import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
+
+const allAuthors: CollectionEntry<'authors'>[] = await getCollection('authors')
 
 type Author = Readonly<
 	{
@@ -99,15 +99,14 @@ export const AUTHORS: Author = [
 ] as const
 
 export async function getAuthor(name: string) {
-	const allAuthors = await reader.collections.authors.all()
-	return allAuthors.find((author) => author.entry.name === name)
+	const author = await getEntry('authors', sluglify(name))
+	return author
 }
 
 export async function getAuthors() {
-	return (await reader.collections.authors.all()).map((author) => author.entry.name)
+	return allAuthors
 }
 
 export async function getAuthorsData(props: string[]) {
-	const allAuthors = await reader.collections.authors.all()
 	return props.map((author) => allAuthors.find((a) => a.entry.name === author))
 }

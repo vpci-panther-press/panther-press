@@ -6,8 +6,7 @@ import { remarkReadingTime } from './src/utils/readTime.ts'
 import react from '@astrojs/react'
 import keystatic from '@keystatic/astro'
 
-import netlify from '@astrojs/netlify'
-import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import cloudflare from '@astrojs/cloudflare'
 import pagefind from 'astro-pagefind'
 
 // https://astro.build/config
@@ -16,15 +15,6 @@ export default defineConfig({
 	base: '/',
 	build: {
 		format: 'file'
-	},
-	vite: {
-		plugins: [
-			nodePolyfills({
-				include: ['process'],
-				globals: { process: true },
-				protocolImports: true,
-			})
-		]
 	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
@@ -50,7 +40,7 @@ export default defineConfig({
 		pagefind()
 	],
 	output: 'hybrid',
-	adapter: netlify(),
+	adapter: cloudflare(),
 	vite: {
 		define: {
 			'process.env': process.env

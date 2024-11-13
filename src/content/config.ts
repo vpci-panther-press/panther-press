@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content'
 import { CATEGORIES } from '@/data/categories'
 import { ISSUES } from '@/data/issues'
 import { getAuthors } from '@/data/authors'
+import { desc } from 'framer-motion/client'
 
 const issueNames: string[] = ISSUES.map((issue) => issue.name)
 if (issueNames.length === 0) {
@@ -11,16 +12,10 @@ if (issueNames.length === 0) {
 const allAuthors = await getAuthors()
 
 const blog = defineCollection({
-	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
 		z.object({
 			title: z.string().max(80),
 			description: z.string(),
-			// // Transform string to Date object
-			// pubDate: z
-			// 	.string()
-			// 	.or(z.date())
-			// 	.transform((val) => new Date(val)),
 			heroImage: image(),
 			alt: z.string(),
 			photoCredits: z.string(),
@@ -32,4 +27,25 @@ const blog = defineCollection({
 		})
 })
 
-export const collections = { blog }
+const authors = defineCollection({
+	schema: ({ image }) =>
+		z.object({
+			name: z.string(),
+			bio: z.string().optional(),
+			avatar: image().optional(),
+			alumni: z.boolean().default(false)
+		})
+})
+
+const issues = defineCollection({
+	schema: ({ image }) =>
+		z.object({
+			name: z.string(),
+			coverImage: image(),
+			description: z.string(),
+			issuuLink: z.number(),
+			archived: z.boolean().default(false)
+		})
+})
+
+export const collections = { blog, authors, issues }
