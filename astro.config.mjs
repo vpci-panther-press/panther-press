@@ -7,7 +7,6 @@ import react from '@astrojs/react'
 import keystatic from '@keystatic/astro'
 
 import cloudflare from '@astrojs/cloudflare'
-import pagefind from 'astro-pagefind'
 
 // https://astro.build/config
 export default defineConfig({
@@ -36,8 +35,7 @@ export default defineConfig({
 		sitemap(),
 		tailwind(),
 		react(),
-		keystatic(),
-		pagefind()
+		keystatic()
 	],
 	output: 'hybrid',
 	adapter: cloudflare(),

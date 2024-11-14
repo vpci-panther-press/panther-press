@@ -1,9 +1,11 @@
 ---
-// https://github.com/chrismwilliams/astro-theme-cactus/blob/main/src/components/Search.astro
+// Heavily based off https://github.com/chrismwilliams/astro-theme-cactus/blob/main/src/components/Search.astro
+// Also used https://github.com/shishkin/astro-pagefind/blob/main/packages/astro-pagefind/src/components/Search.astro
 
+const bundlePath = `${process.env.BASE_URL}/pagefind/`
+// the bundle path does not work, so it is currently hardcoded
 import '@pagefind/default-ui/css/ui.css'
 import SearchIcon from './icons/SearchIcon.astro'
-import Pagefind from 'astro-pagefind/components/Search'
 ---
 
 <site-search id='search' class='ms-auto'>
@@ -31,10 +33,11 @@ import Pagefind from 'astro-pagefind/components/Search'
 					</div>
 				) : (
 					<div class='search-container dark:text-white'>
-						<Pagefind
+						<div
 							id='search'
-							className='pagefind-ui'
-							uiOptions={{ showImages: false, showSubResults: true }}
+							data-bundle-path={'/pagefind/'}
+							class='pagefind-init pagefind-ui'
+							data-pagefind-ui
 						/>
 					</div>
 				)
@@ -42,6 +45,41 @@ import Pagefind from 'astro-pagefind/components/Search'
 		</div>
 	</dialog>
 </site-search>
+
+<script>
+	//@ts-expect-error
+	import { PagefindUI } from '@pagefind/default-ui'
+
+	function initPageFind() {
+		const allSelector = '[data-pagefind-ui]'
+		for (const el of document.querySelectorAll(`${allSelector}.pagefind-init`)) {
+			const elSelector = [
+				...(el.id ? [`#${el.id}`] : []),
+				...[...el.classList.values()].map((c) => `.${c}`),
+				allSelector
+			].join('')
+			const bundlePath = el.getAttribute('data-bundle-path')
+			const opts = { showImages: false, showSubResults: true }
+			new PagefindUI({
+				...opts,
+				element: elSelector,
+				bundlePath
+			})
+			el.classList.remove('pagefind-init')
+			const query = el.getAttribute('data-query')
+			if (query) {
+				const input = el.querySelector<HTMLInputElement>(`input[type="text"]`)
+				if (input) {
+					input.value = query
+					input.dispatchEvent(new Event('input', { bubbles: true }))
+				}
+			}
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', initPageFind)
+	document.addEventListener('astro:page-load', initPageFind)
+</script>
 
 <script>
 	class SiteSearch extends HTMLElement {
@@ -109,5 +147,35 @@ import Pagefind from 'astro-pagefind/components/Search'
 
 	dialog.show {
 		animation: dialogShow 0.2s forwards;
+	}
+	.pagefind-ui {
+		--pagefind-ui-scale: 0.75;
+		--pagefind-ui-border-width: 1px;
+		--pagefind-ui-border-radius: 0.25rem;
+		width: 100%;
+	}
+
+	.pagefind-ui .pagefind-ui__drawer:not(.pagefind-ui__hidden) {
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin-top: 0px;
+		z-index: 9999;
+		padding: 0 2em 1em;
+		overflow-y: hidden;
+		box-shadow:
+			0 10px 10px -5px rgba(0, 0, 0, 0.2),
+			0 2px 2px 0 rgba(0, 0, 0, 0.1);
+		border-bottom-right-radius: var(--pagefind-ui-border-radius);
+		border-bottom-left-radius: var(--pagefind-ui-border-radius);
+		background-color: var(--pagefind-ui-background);
+	}
+
+	.pagefind-ui .pagefind-ui__result-link {
+		color: var(--pagefind-ui-primary);
+	}
+
+	.pagefind-ui .pagefind-ui__result-excerpt {
+		color: var(--pagefind-ui-text);
 	}
 </style>

@@ -137,7 +137,7 @@ export default config({
 				issuuLink: fields.url({ label: 'Issuu Link', validation: { isRequired: true } }),
 				archived: fields.checkbox({
 					label: 'Archived',
-					description: 'If ticked, the issue will not be hidden on the website',
+					description: 'If ticked, the issue will be hidden on the website',
 					defaultValue: false
 				})
 			}
