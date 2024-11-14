@@ -2,11 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
-import { ISSUES } from '@/data/issues.ts'
-import { sluglify } from '@/utils'
 import { getCollection } from 'astro:content'
 const allIssues = await getCollection('issues')
-const sortedIssues = ISSUES.toReversed()
 ---
 
 <BaseLayout title='Issues'>

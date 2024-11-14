@@ -1,3 +1,4 @@
+// TO BE DELETED
 import oct2023CoverImage from '../assets/images/oct2023/cover.jpg'
 import nov2023CoverImage from '../assets/images/nov2023/cover.png'
 import win2023CoverImage from '../assets/images/win2023/cover.png'
