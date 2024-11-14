@@ -1,14 +1,14 @@
 // keystatic.config.ts
 import { config, fields, collection } from '@keystatic/core'
 import { wrapper } from '@keystatic/core/content-components'
-import { AUTHORS } from 'src/data/authors.ts'
 import { CATEGORIES } from 'src/data/categories.ts'
-import { ISSUES } from 'src/data/issues.ts'
+// import { ISSUES } from 'src/data/issues.ts'
+// import { AUTHORS } from 'src/data/authors.ts'
 
 //const issueNames = ISSUES.map((issue) => ({ label: issue.name, value: issue.name }))
 //const authorNames = AUTHORS.map((author) => ({ label: author.name, value: author.name }))
-const categoryNames = CATEGORIES.map((category) => ({ label: category, value: category }))
 // const currentIssueImageFolder = 'src/assets/images/' + '**'
+const categoryNames = CATEGORIES.map((category) => ({ label: category, value: category }))
 
 export default config({
 	storage: {
