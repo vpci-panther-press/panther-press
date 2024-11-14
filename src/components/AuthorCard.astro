@@ -1,9 +1,10 @@
 ---
-import { getAuthor } from '@/data/authors'
+import { sluglify } from '@/utils'
+import { getEntry } from 'astro:content'
 
 const { author, role, description } = Astro.props
-const authorData = await getAuthor(author)
-const image = authorData?.entry.photo || '/author/default.jpg'
+const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
+const image = authorData?.data.photo?.src || '/author/default.jpg'
 ---
 
 <div

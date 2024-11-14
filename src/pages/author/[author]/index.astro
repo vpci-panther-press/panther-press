@@ -1,36 +1,37 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
-import { filterPostsByAuthor, sluglify, sortPostsByDate } from '@/utils'
-import { getAuthor, getAuthors } from '@/data/authors'
+import { filterPostsByAuthor, sortPostsByDate } from '@/utils'
+import { getEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-	const authors = await getAuthors()
+	const authors = await getCollection('authors')
 
 	return authors.map((author) => ({
-		params: { author: sluglify(author).toLowerCase() },
+		params: { author: author.id },
 		props: { author }
 	}))
 }
 
 const { author } = Astro.props
 
-const posts = await filterPostsByAuthor(author)
+const posts = await filterPostsByAuthor(author.data.name)
 const sortedPosts = sortPostsByDate(posts)
-const authorData = await getAuthor(author)
+const authorData = await getEntry('authors', author.id)
 ---
 
-<BaseLayout title={author}>
+<BaseLayout title={author.data.name}>
 	<div class='flex flex-col md:flex-row mb-8 items-center'>
 		<div
-			style={`background-image: url('${authorData?.entry.photo || '/author/default.jpg'}');`}
+			style={`background-image: url('${authorData?.data.photo || '/author/default.jpg'}');`}
 			class='size-48 block flex-shrink-0 bg-cover rounded-full bg-center md:mr-4 mb-4 md:mb-0'
 		>
 		</div>
 		<div class='flex flex-col justify-center items-center md:items-start'>
-			<h1 class='text-4xl font-bold mb-4'>{author.entry.name}</h1>
-			<p class={`text-lg md:text-xl ${authorData?.entry.bio ? 'opacity-50' : ''}`}>
-				{authorData?.entry.bio || 'No biography found'}
+			<h1 class='text-4xl font-bold mb-4'>{authorData?.data.name}</h1>
+			<p class={`text-lg md:text-xl ${authorData?.data.bio ? 'opacity-50' : ''}`}>
+				{authorData?.data.bio || 'No biography found'}
 			</p>
 		</div>
 	</div>

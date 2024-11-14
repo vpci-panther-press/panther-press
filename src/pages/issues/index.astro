@@ -4,6 +4,8 @@ import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
 import { ISSUES } from '@/data/issues.ts'
 import { sluglify } from '@/utils'
+import { getCollection } from 'astro:content'
+const allIssues = await getCollection('issues')
 const sortedIssues = ISSUES.toReversed()
 ---
 
@@ -11,14 +13,14 @@ const sortedIssues = ISSUES.toReversed()
 	<PageTitle title='Issues' />
 	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 		{
-			sortedIssues.map((issue) => (
+			allIssues.map((issue) => (
 				<IssuesCard
-					title={issue.name}
-					description={issue.description}
-					img={issue.coverImage}
-					url={`/issues/${sluglify(issue.name).toLowerCase()}`}
-					issuuLink={issue.issuuLink}
-					archived={issue.archived}
+					title={issue.data.name}
+					description={issue.data.description}
+					img={issue.data.coverImage}
+					url={`/issues/${issue.id}`}
+					issuuLink={issue.data.issuuLink}
+					archived={issue.data.archived}
 				/>
 			))
 		}

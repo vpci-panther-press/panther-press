@@ -1,7 +1,4 @@
-import { sluglify } from '@/utils'
-import { getCollection, getEntry, type CollectionEntry } from 'astro:content'
-
-const allAuthors: CollectionEntry<'authors'>[] = await getCollection('authors')
+// TO BE DELETED
 
 type Author = Readonly<
 	{
@@ -98,15 +95,16 @@ export const AUTHORS: Author = [
 	}
 ] as const
 
-export async function getAuthor(name: string) {
-	const author = await getEntry('authors', sluglify(name))
-	return author
-}
+// export async function getAuthor(name: string) {
+// 	const author = await getEntry('authors', sluglify(name))
+// 	return author;
+// }
 
-export async function getAuthors() {
-	return allAuthors
-}
+// export async function getAuthors() {
+// 	return (await reader.collections.authors.all()).map((author) => author.entry.name)
+// }
 
-export async function getAuthorsData(props: string[]) {
-	return props.map((author) => allAuthors.find((a) => a.entry.name === author))
-}
+// export async function getAuthorsData(props: string[]) {
+// 	const allAuthors = await reader.collections.authors.all()
+// 	return props.map((author) => allAuthors.find((a) => a.entry.name === author))
+// }
