@@ -44,7 +44,9 @@ const posts = page.data
 				{unsluglifyNameCategory}
 			</h1>
 		</div>
-		<ListPosts FirstBig={true} posts={posts} />
+		<div data-pagefind-ignore='all'>
+			<ListPosts FirstBig={true} posts={posts} />
+		</div>
 	</div>
 	<Pagination page={page} />
 </BaseLayout>
