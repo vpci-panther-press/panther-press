@@ -120,7 +120,12 @@ export default config({
 			slugField: 'name',
 			path: 'src/content/issues/*',
 			schema: {
-				name: fields.text({ label: 'Name', validation: { isRequired: true } }),
+				name: fields.slug({
+					name: {
+						label: 'Name',
+						validation: { isRequired: true }
+					}
+				}),
 				description: fields.text({ label: 'Description' }),
 				coverImage: fields.image({
 					label: 'Cover Image',
