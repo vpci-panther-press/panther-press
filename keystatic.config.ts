@@ -8,11 +8,12 @@ import { ISSUES } from 'src/data/issues.ts'
 //const issueNames = ISSUES.map((issue) => ({ label: issue.name, value: issue.name }))
 //const authorNames = AUTHORS.map((author) => ({ label: author.name, value: author.name }))
 const categoryNames = CATEGORIES.map((category) => ({ label: category, value: category }))
-const currentIssueImageFolder = 'src/assets/images/' + '**'
+// const currentIssueImageFolder = 'src/assets/images/' + '**'
 
 export default config({
 	storage: {
-		kind: 'local'
+		kind: 'github',
+		repo: 'vpci-panther-press/panther-press'
 	},
 	collections: {
 		posts: collection({
