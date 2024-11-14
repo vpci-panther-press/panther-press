@@ -24,5 +24,7 @@ const issueTitle = issue + (getIssue(issue)!.archived ? ' (Archived)' : '')
 
 <BaseLayout title={issue}>
 	<PageTitle title={issueTitle} />
-	<ListPosts posts={posts} FirstBig={true} />
+	<div data-pagefind-ignore='all'>
+		<ListPosts posts={posts} FirstBig={true} />
+	</div>
 </BaseLayout>

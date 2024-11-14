@@ -5,7 +5,6 @@ import Code from '@/components/mdx/Code'
 import ListRelatedPosts from '@/components/ListRelatedPosts'
 import TableOfContents from '@/components/TableOfContents'
 import { getPosts } from '@/utils'
-import SButton from '@/components/mdx/SButton'
 import Centered from '@/components/mdx/Centered'
 import AuthorProfile from '@/components/AuthorProfile'
 
@@ -26,7 +25,7 @@ const getRelatedPosts = (post: Props) => {
 	const relatedPosts = posts
 		.sort()
 		.filter(
-			(p) =>
+			(p: any) =>
 				p.slug !== post.slug &&
 				p.data.tags.some(
 					(t: string) =>
@@ -53,7 +52,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 		<!-- post -->
 		<article class='md:max-w-prose lg:max-w-full'>
 			<div class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
-				<Content components={{ pre: Code, SButton, Centered }} />
+				<Content components={{ pre: Code, Centered }} />
 			</div>
 
 			<!-- related posts -->

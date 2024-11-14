@@ -1,31 +1,34 @@
 ---
-import { getAuthorsData } from '@/data/authors'
 import { sluglify } from '@/utils'
+import { getCollection } from 'astro:content'
 type Props = {
 	authors: string[]
 	imageCredit: string
 }
 const { authors, imageCredit } = Astro.props
 
-const data = getAuthorsData(authors)
+const allAuthors = await getCollection('authors')
+const data = authors.map((author) =>
+	allAuthors.find((a) => a.id === sluglify(author).toLowerCase())
+)
 ---
 
 <div class='grid md:grid-cols-1 md:grid-rows-1 grid-cols-2 border-y border-gray-200 mb-8 py-4'>
 	{
 		data.map((author) => (
-			<a href={`/author/${sluglify(author!.name).toLowerCase()}`}>
+			<a href={`/author/${author?.id}`}>
 				<div class='group flex flex-col items-center my-auto'>
 					<div
-						style={`background-image: url('${author!.pfp || '/author/default.jpg'}');`}
+						style={`background-image: url('${author?.data.photo?.src || '/author/default.jpg'}');`}
 						class='size-16 block flex-shrink-0 my-2 bg-cover rounded-full bg-center'
 					/>
 					<div class='group block text-center'>
 						<h5 class='group-hover:text-gray-600 text-sm font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200'>
-							{author!.name}
+							{author!.data.name ?? ''}
 						</h5>
 						<div class='mt-1'>
 							<p class='text-sm text-gray-500'>
-								{author?.bio ? author?.bio.split(' ').slice(0, 10).join(' ') + '...' : ''}
+								{author?.data.bio ? author?.data.bio.split(' ').slice(0, 10).join(' ') + '...' : ''}
 							</p>
 						</div>
 					</div>

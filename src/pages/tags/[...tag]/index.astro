@@ -19,6 +19,8 @@ const posts = await getPostByTag(tag)
 ---
 
 <BaseLayout title={tag}>
-	<PageTitle title={tag} />
-	<ListPosts posts={posts} />
+	<div data-pagefind-ignore='all'>
+		<PageTitle title={tag} />
+		<ListPosts posts={posts} />
+	</div>
 </BaseLayout>
