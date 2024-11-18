@@ -2,27 +2,26 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
-import { getIssues, filterPostsByIssue, sluglify } from '@/utils'
-import Shape from '@/components/icons/Shape'
-import { getIssue, ISSUES } from '@/data/issues'
+import { filterPostsByIssue } from '@/utils'
+import { getCollection } from 'astro:content'
 
 export async function getStaticPaths() {
-	const issues = ISSUES.map((issue) => issue.name)
+	const issues = await getCollection('issues')
 
 	return issues.map((issue) => ({
-		params: { issue: sluglify(issue).toLowerCase() },
+		params: { issue: issue.id },
 		props: { issue }
 	}))
 }
 
 const { issue } = Astro.props
 
-const posts = await filterPostsByIssue(issue)
+const posts = await filterPostsByIssue(issue.id)
 
-const issueTitle = issue + (getIssue(issue)!.archived ? ' (Archived)' : '')
+const issueTitle = issue.data.name + (issue.data.archived ? ' (Archived)' : '')
 ---
 
-<BaseLayout title={issue}>
+<BaseLayout title={issue.data.name}>
 	<PageTitle title={issueTitle} />
 	<div data-pagefind-ignore='all'>
 		<ListPosts posts={posts} FirstBig={true} />

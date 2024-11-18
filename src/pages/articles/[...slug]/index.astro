@@ -7,6 +7,7 @@ import TableOfContents from '@/components/TableOfContents'
 import { getPosts } from '@/utils'
 import Centered from '@/components/mdx/Centered'
 import AuthorProfile from '@/components/AuthorProfile'
+import Breakline from '@/components/mdx/Breakline'
 
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
@@ -52,7 +53,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 		<!-- post -->
 		<article class='md:max-w-prose lg:max-w-full'>
 			<div class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
-				<Content components={{ pre: Code, Centered }} />
+				<Content components={{ pre: Code, Centered, Breakline }} />
 			</div>
 
 			<!-- related posts -->

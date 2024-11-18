@@ -1,6 +1,6 @@
 // keystatic.config.ts
 import { config, fields, collection } from '@keystatic/core'
-import { wrapper } from '@keystatic/core/content-components'
+import { block, wrapper } from '@keystatic/core/content-components'
 import { CATEGORIES } from 'src/data/categories.ts'
 // import { ISSUES } from 'src/data/issues.ts'
 // import { AUTHORS } from 'src/data/authors.ts'
@@ -12,8 +12,7 @@ const categoryNames = CATEGORIES.map((category) => ({ label: category, value: ca
 
 export default config({
 	storage: {
-		kind: 'github',
-		repo: 'vpci-panther-press/panther-press'
+		kind: 'local'
 	},
 	collections: {
 		posts: collection({
@@ -78,12 +77,22 @@ export default config({
 				}),
 				content: fields.mdx({
 					label: 'Content',
+					options: {
+						image: {
+							directory: '/src/assets/images/',
+							publicPath: '/src/assets/images/'
+						}
+					},
 					components: {
 						Centered: wrapper({
 							label: 'Centered',
 							schema: {
 								content: fields.text({ label: 'Content' })
 							}
+						}),
+						Breakline: block({
+							label: 'Breakline',
+							schema: {}
 						})
 					}
 				})
