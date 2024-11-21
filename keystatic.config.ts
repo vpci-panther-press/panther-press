@@ -80,7 +80,7 @@ export default config({
 					options: {
 						image: {
 							directory: '/src/assets/images/',
-							publicPath: '/src/assets/images/'
+							publicPath: '@assets/images/'
 						}
 					},
 					components: {
