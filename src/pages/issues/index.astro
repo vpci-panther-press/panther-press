@@ -3,7 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout'
 import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
 import { getCollection } from 'astro:content'
+import { sortIssuesByDate } from '@/utils'
 const allIssues = await getCollection('issues')
+sortIssuesByDate(allIssues)
 ---
 
 <BaseLayout title='Issues'>

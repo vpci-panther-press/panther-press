@@ -1,12 +1,6 @@
-import { getIssue } from '@/data/issues'
-import { getCollection } from 'astro:content'
+import { getCollection, getEntry } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
-
-export const getIssues = async () => {
-	const posts = await getCollection('blog')
-	const issues = new Set(posts.map((post) => post.data.issue))
-	return Array.from(issues)
-}
+import { sluglify } from './sluglify'
 
 export const getPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
@@ -18,7 +12,8 @@ export const getNonArchivedPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
 	let nonArchivedPosts = []
 	for (let post of posts) {
-		if (getIssue(post.data.issue)!.archived === false) {
+		const issue = await getEntry('issues', sluglify(post.data.issue).toLowerCase())
+		if (!issue!.data.archived) {
 			nonArchivedPosts.push(post)
 		}
 	}
@@ -36,6 +31,17 @@ export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) 
 		.slice(0, max)
 }
 
+export const sortIssuesByDate = (issues: CollectionEntry<'issues'>[]) => {
+	// idk why this only works when reversed but it works
+	return issues
+		.sort((b, a) => {
+			const aDate = toDate(a.data.name)
+			const bDate = toDate(b.data.name)
+			return bDate.getTime() - aDate.getTime()
+		})
+		.reverse()
+}
+
 export const toDate = (issue: string) => {
 	const seasonToMonth = {
 		spring: 2,
@@ -45,7 +51,7 @@ export const toDate = (issue: string) => {
 		winter: 11
 	}
 	const findSeason = /\b(spring|summer|autumn|fall|winter)\b/gi
-	const season = issue.split(' ')[0].toLowerCase()
+	const season = issue.split('-')[0].toLowerCase()
 
 	return findSeason.test(issue)
 		? //@ts-ignore

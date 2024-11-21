@@ -1,7 +1,6 @@
 export { sluglify, unsluglify } from './sluglify'
 export { cn } from './cn'
 export {
-	getIssues,
 	getPosts,
 	getNonArchivedPosts,
 	getTags,
@@ -9,6 +8,7 @@ export {
 	filterPostsByIssue,
 	filterPostsByAuthor,
 	filterPostsByCategory,
+	sortIssuesByDate,
 	sortPostsByDate,
 	toDate
 } from './post'

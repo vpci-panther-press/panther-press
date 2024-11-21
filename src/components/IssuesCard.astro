@@ -15,14 +15,14 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 ---
 
 <div
-	class='bg-zinc-200 border rounded-xl shadow-sm sm:flex dark:bg-[rgba(15,23,42,0.5)] dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden'
+	class='bg-zinc-200 border rounded-xl shadow-sm sm:flex dark:bg-[rgba(39,39,42,0.5)] dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden'
 >
 	<div
 		class='flex-shrink-0 relative w-full rounded-t-xl sm:rounded-s-xl sm:max-w-[15rem] md:rounded-se-none md:max-w-xs'
 	>
 		<Image
 			src={img}
-			alt=`Cover Image of the ${title} Issue`
+			alt=`Cover of the ${title} issue`
 			width='1200'
 			height='900'
 			class='h-full min-w-full object-cover'
@@ -49,7 +49,7 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 			<a
 				data-umami-event='Viewed Articles Link'
 				href={url}
-				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary dark:bg-secondary text-white dark:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-cs-primary dark:bg-cs-secondary text-white dark:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
 			>
 				<p class='mr-auto'>Read Articles</p>
 				<ArrowRightS />
@@ -59,7 +59,7 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 				data-umami-event='Viewed Issuu Link'
 				href={issuuLink}
 				target='_blank'
-				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-secondary dark:bg-primary text-black dark:text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-cs-secondary dark:bg-cs-primary text-black dark:text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
 			>
 				<p class='mr-auto'>Read on Issuu</p>
 				<ExternalLink />
