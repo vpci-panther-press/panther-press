@@ -8,6 +8,7 @@ export {
 	filterPostsByIssue,
 	filterPostsByAuthor,
 	filterPostsByCategory,
+	sortIssuesByDate,
 	sortPostsByDate,
 	toDate
 } from './post'

@@ -31,6 +31,17 @@ export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) 
 		.slice(0, max)
 }
 
+export const sortIssuesByDate = (issues: CollectionEntry<'issues'>[]) => {
+	// idk why this only works when reversed but it works
+	return issues
+		.sort((b, a) => {
+			const aDate = toDate(a.data.name)
+			const bDate = toDate(b.data.name)
+			return bDate.getTime() - aDate.getTime()
+		})
+		.reverse()
+}
+
 export const toDate = (issue: string) => {
 	const seasonToMonth = {
 		spring: 2,

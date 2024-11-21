@@ -1,5 +1,5 @@
 ---
-import Shape from './icons/Shape.astro'
+import DynLogo from './icons/DynLogo.astro'
 type Props = {
 	title: string
 }
@@ -8,7 +8,7 @@ const { title } = Astro.props
 ---
 
 <div class='flex justify-start items-center gap-2 title'>
-	<Shape />
+	<DynLogo />
 	<h1 class='text-6xl font-bold first-letter:uppercase'>
 		{title}
 	</h1>
