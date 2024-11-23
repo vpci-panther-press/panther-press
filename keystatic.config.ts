@@ -12,7 +12,8 @@ const categoryNames = CATEGORIES.map((category) => ({ label: category, value: ca
 
 export default config({
 	storage: {
-		kind: 'local'
+		kind: 'github',
+		repo: 'vpci-panther-press/panther-press'
 	},
 	collections: {
 		posts: collection({
