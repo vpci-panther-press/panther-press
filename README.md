@@ -2,7 +2,7 @@
 
 ## ⚙️ Stack
 
-- [**ASTRO** + **Typescript**](https://astro.build/)
+- [**Astro** + **Typescript**](https://astro.build/)
 - [**React**](https://react.dev?uwu=true)
 - [**Aceternity UI**](https://ui.aceternity.com/components/)
 - [**Tailwind CSS** + **Tailwind-Merge** + **clsx**](https://tailwindcss.com/)
@@ -10,7 +10,6 @@
 - [**Eslint**](https://eslint.org/)
 - [**Prettier**](https://prettier.io/)
 - [**Search Library**](https://pagefind.app/)
-- [**Motion**](https://motion.dev/)
 - [**Keystatic CMS**](https://keystatic.com/)
 
 ## 👨🏻‍💻 Running Locally
@@ -23,7 +22,7 @@
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/picafe/panther-press.git
+git clone https://github.com/vpci-panther-press/panther-press.git
 ```
 
 2. Install dependencies:
@@ -38,55 +37,41 @@ pnpm i
 pnpm dev
 ```
 
-## 🗂️ Adding a category
+## 📄 Adding Data
 
-To add a new category to your blog, simply go to the src/data/categories.ts file and add it to the array.
+To add data, you must do so manually, by adding a `.mdx` or `.yaml` file with the proper frontmatter defined in the schema in `/src/content/config.ts` or by adding data through the Keystatic UI.
 
-Example:
+![Keystatic Dashboard](https://us-east-1.tixte.net/uploads/pi.tixte.co/keystaticdash.png)
 
-```ts
-export  const  CATEGORIES  =  [
-'JavaScript',
-'React',
-'new category here'  <---
-]  as  const
-```
+- You cannot make changed directly to the main branch, it requires a pull request.
+- Thus, you **must** do the following:
 
-> 🚨 Zod checks whether the category is not correctly written or does not exist in the properties of the markdown document. **It will throw an error when building the application.** 🚨
+### 1. Switch to the Keystatic branch
 
-## 📄 Adding a post
+![Branch Switching View in Keystatic](https://us-east-1.tixte.net/uploads/pi.tixte.co/firefox_zCfXXWa72n.png)
 
-Adding a post is as simple as adding a .mdx file to the blog folder at the path **src/content/blog**. The filename will be used to create the slug/URL of the page.
+### 2. Make your changes
 
-For example, if you have a file named **jsx-and-react.md**, it will be transformed into: **http://yourdomain.com/post/jsx-and-react/**
+🖊️ Make whatever changes you need to make!
 
-Please create the article using Keystatic CMS, either through local mode or through Keystatic CMS Github mode (https://<url>.ca/keystatic).
+### 3. Create a pull request
 
-## ⚡️ Frontmatter
+![alt text](https://us-east-1.tixte.net/uploads/pi.tixte.co/firefox_jRTpM2aK7j.png)
 
-## Required properties:
+You will be redirected to the GitHub repository; to the page to create a pull request:
+![alt text](https://us-east-1.tixte.net/uploads/pi.tixte.co/firefox_G1tjwPgmR9.png)
 
-- Title
-- Description
-- pubDate
-- heroImage (post cover)
-- category (Choose a category from src/data/categories.ts)
-- tags
-- author
+### 4. Verify your changes
 
-Example :
+documentation to be added
 
-```ts
-title: MacBook Pro 2022
-description: 'The new MacBook Pro 2022 is here. With the Apple M2 chip, a new design, and more, the new MacBook Pro is the best laptop Apple has ever made.'
-pubDate: 'Jul 02 2022'
-heroImage: '../../assets/bg.jpg'
-category: 'Category 1'
-tags: ['JavaScript', 'css', 'HTML5', 'GitHub']
-```
+### 5. Merge the pull request
 
-> The schema for posts is located at src/content/config.ts. You can modify any parameter, for example, by adding a maximum of 80 characters for titles: title: z.string().max(80).
-> For more information, refer to the zod documentation.
+![alt text](https://us-east-1.tixte.net/uploads/pi.tixte.co/firefox_VnRvWDpWQV.png)
+then:
+![alt text](https://us-east-1.tixte.net/uploads/pi.tixte.co/firefox_0Tse1NjyK1.png)
+
+After the pull request has been merged, wait 1-3 minutes for the website to be published, and you will be able to view the changes on [pantherpress.ca](https://pantherpress.ca).
 
 ## 🧞 Commands
 
@@ -95,7 +80,7 @@ All commands are run from the root of the project, from a terminal:
 | Command                 | Action                                                                                                                           |
 | :---------------------- | :------------------------------------------------------------------------------------------------------------------------------- |
 | `pnpm install`          | Installs dependencies                                                                                                            |
-| `pnpm run dev`          | Starts local dev server at `localhost:3000`                                                                                      |
+| `pnpm run dev`          | Starts local dev server at `localhost:4321`                                                                                      |
 | `pnpm run build`        | Build your production site to `./dist/`                                                                                          |
 | `pnpm run preview`      | Preview your build locally, before deploying                                                                                     |
 | `pnpm run format:check` | Check code format with Prettier                                                                                                  |
