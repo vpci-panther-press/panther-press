@@ -36,3 +36,12 @@ jobs:
           command: pages deploy ./dist --project-name=panther-press
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Capture deployment URLs
+        id: capture-urls
+        run: |
+          DEPLOY_OUTPUT=$(cat $GITHUB_WORKSPACE/deploy_output.txt)
+          DEPLOY_URL=$(echo "$DEPLOY_OUTPUT" | grep -oP 'https://\S+\.panther-press\.pages\.dev')
+          echo "DEPLOY_URL=$DEPLOY_URL" >> $GITHUB_ENV
+      - name: Output deployment URLs
+        run: |
+          echo "Deployment URL: $DEPLOY_URL"
