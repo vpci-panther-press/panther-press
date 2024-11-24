@@ -24,7 +24,7 @@ const authorData = await getEntry('authors', author.id)
 <BaseLayout title={author.data.name}>
 	<div class='flex flex-col md:flex-row mb-8 items-center'>
 		<div
-			style={`background-image: url('${authorData?.data.photo || '/author/default.jpg'}');`}
+			style={`background-image: url('${authorData?.data.photo?.src || '/author/default.jpg'}');`}
 			class='size-48 block flex-shrink-0 bg-cover rounded-full bg-center md:mr-4 mb-4 md:mb-0'
 		>
 		</div>
