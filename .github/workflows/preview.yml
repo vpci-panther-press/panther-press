@@ -28,13 +28,18 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
+      - name: Prepare branch name
+        id: branch-name
+        run: |
+          echo "${{ github.head_ref || github.ref_name }}" | sed 's/\//-/g; s/-[0-9]\+\(\.[0-9]\+\)*$//' >> "$GITHUB_OUTPUT"
+          echo "branch-name=$(echo "${{ github.head_ref || github.ref_name }}" | sed 's/\//-/g; s/-[0-9]\+\(\.[0-9]\+\)*$//')" >> "$GITHUB_OUTPUT"
       - name: Deploy
         id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=panther-press --branch=${{ github.head_ref || github.ref_name }}-preview
+          command: pages deploy ./dist --project-name=panther-press --branch=${{ steps.branch-name.outputs.branch-name }}-preview
       - name: Create comment
         uses: actions/github-script@v7
         with:
@@ -56,4 +61,16 @@ jobs:
                 body: '## ✅ Deploy successful!\n ✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}\n✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}'
               })
             }
+      - name: Add deployment summary
+        run: |
+          if [ -z "${{ steps.deploy.outputs.command-stderr }}" ]; then
+            echo "## ✅ Deploy successful!" >> $GITHUB_STEP_SUMMARY
+            echo "✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}" >> $GITHUB_STEP_SUMMARY
+            echo "✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ❌ Deployment failed:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.deploy.outputs.command-stderr }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          fi
             

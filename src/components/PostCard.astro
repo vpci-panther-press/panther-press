@@ -11,6 +11,7 @@ const {
 } = Astro.props
 
 const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
+import defaultpfp from '/author/default.jpg'
 ---
 
 <a
@@ -32,12 +33,12 @@ const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
 					width='100'
 					format='webp'
 					alt={author + "'s Profile"}
-					src={authorData?.data.photo || '/author/default.jpg'}
+					src={authorData?.data.photo || defaultpfp}
 					class='size-10 rounded-full border-2 object-cover'
 				/>
 				<div class='flex flex-col'>
 					<p class='font-normal text-base text-gray-50 relative z-10'>
-						{author}
+						{author[0]}
 					</p>
 					<p class='text-sm text-gray-400'>{readTime}</p>
 				</div>
