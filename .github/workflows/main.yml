@@ -1,5 +1,4 @@
 on:
-  pull_request:
   push:
     branches-ignore:
       - keystatic
@@ -39,25 +38,15 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name=panther-press --branch=${{ github.head_ref || github.ref_name }}
-      - name: Create comment
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const err = '${{ steps.deploy.outputs.command-stderr }}';
-            if (err) {
-              github.rest.issues.createComment({
-                  issue_number: context.issue.number,
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  body: '## ❌ Deployment failed:\n ```${{ steps.deploy.outputs.command-stderr }}```'
-                })
-            }
-            else {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '## ✅ Deploy successful!\n ✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}\n✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}'
-              })
-            }
-            
+      - name: Add deployment summary
+        run: |
+          if [ -z "${{ steps.deploy.outputs.command-stderr }}" ]; then
+            echo "## ❌ Deployment failed:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "${{ steps.deploy.outputs.command-stderr }}" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "## ✅ Deploy successful!" >> $GITHUB_STEP_SUMMARY
+            echo "✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}" >> $GITHUB_STEP_SUMMARY
+            echo "✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}" >> $GITHUB_STEP_SUMMARY
+          fi
