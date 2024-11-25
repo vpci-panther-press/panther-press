@@ -34,28 +34,27 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=panther-press | tee deploy.log
-          # Optional: Enable this if you want to have GitHub Deployments triggered
+          command: pages deploy ./dist --project-name=panther-press
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Extract URLs
         id: urls
         run: |
-          DEPLOY_URL=$(cat deploy.log | grep -o 'https://[0-9a-f]\+\.panther-press\.pages\.dev')
-          ALIAS_URL=$(cat deploy.log | grep -o 'https://[^[:space:]]*\.panther-press\.pages\.dev' | grep -v '[0-9a-f]\{8\}')
+          DEPLOY_URL=$(echo '${{ steps.deploy.outputs.command-output }}' | grep -o 'https://[0-9a-f]\+\.panther-press\.pages\.dev')
+          ALIAS_URL=$(echo '${{ steps.deploy.outputs.command-output }}' | grep -o 'https://[^[:space:]]*\.panther-press\.pages\.dev' | grep -v '[0-9a-f]\{8\}')
           echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           echo "alias_url=$ALIAS_URL" >> $GITHUB_OUTPUT
       - name: Display URLs
         run: |
-          echo "✨ Deployment URL: ${{ steps.extract-urls.outputs.DEPLOY_URL }}"
-          echo "✨ Alias URL: ${{ steps.extract-urls.outputs.ALIAS_URL }}"
+          echo "✨ Deployment URL: ${{ steps.urls.outputs.deploy_url }}"
+          echo "✨ Alias URL: ${{ steps.urls.outputs.alias_url }}"
       - name: Create comment
         uses: actions/github-script@v7
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '✨ Deployment URL: ${{ steps.extract-urls.outputs.DEPLOY_URL }}\n✨ Alias URL: ${{ steps.extract-urls.outputs.ALIAS_URL }}'
+              body: '✨ Deployment URL: ${{ steps.urls.outputs.deploy_url }}\n✨ Alias URL: ${{ steps.urls.outputs.alias_url }}'
             })
