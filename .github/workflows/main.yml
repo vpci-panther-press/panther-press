@@ -1,8 +1,9 @@
 on:
   pull_request:
-    branches:
-      - main
-
+  push:
+    branches-ignore:
+      - keystatic
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,6 +16,7 @@ jobs:
       deployments: write
       pull-requests: write
       issues: write
+    
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
@@ -36,26 +38,25 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=panther-press
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract URLs
-        id: urls
-        run: |
-          DEPLOY_URL=$(echo '${{ steps.deploy.outputs.command-output }}' | grep -o 'https://[0-9a-f]\+\.panther-press\.pages\.dev')
-          ALIAS_URL=$(echo '${{ steps.deploy.outputs.command-output }}' | grep -o 'https://[^[:space:]]*\.panther-press\.pages\.dev' | grep -v '[0-9a-f]\{8\}')
-          echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
-          echo "alias_url=$ALIAS_URL" >> $GITHUB_OUTPUT
-      - name: Display URLs
-        run: |
-          echo "✨ Deployment URL: ${{ steps.urls.outputs.deploy_url }}"
-          echo "✨ Alias URL: ${{ steps.urls.outputs.alias_url }}"
+          command: pages deploy ./dist --project-name=panther-press --branch=${{ github.head_ref || github.ref_name }}
       - name: Create comment
         uses: actions/github-script@v7
         with:
           script: |
+            if ${{ steps.deploy.outputs.stderr }} {
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '✨ Deployment URL: ${{ steps.urls.outputs.deploy_url }}\n✨ Alias URL: ${{ steps.urls.outputs.alias_url }}'
-            })
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '## ❌ Deployment failed:\n ```${{ steps.deploy.outputs.stderr }}```'
+              })
+            }
+            else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '## ✅ Deploy successful!\n ✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}\n✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}'
+              })
+            }
+            
