@@ -41,12 +41,12 @@ jobs:
       - name: Add deployment summary
         run: |
           if [ -z "${{ steps.deploy.outputs.command-stderr }}" ]; then
+            echo "## ✅ Deploy successful!" >> $GITHUB_STEP_SUMMARY
+            echo "✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}" >> $GITHUB_STEP_SUMMARY
+            echo "✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}" >> $GITHUB_STEP_SUMMARY
+          else
             echo "## ❌ Deployment failed:" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
             echo "${{ steps.deploy.outputs.command-stderr }}" >> $GITHUB_STEP_SUMMARY
             echo '```' >> $GITHUB_STEP_SUMMARY
-          else
-            echo "## ✅ Deploy successful!" >> $GITHUB_STEP_SUMMARY
-            echo "✨ Deployment URL: ${{ steps.deploy.outputs.deployment-url }}" >> $GITHUB_STEP_SUMMARY
-            echo "✨ Alias URL: ${{ steps.deploy.outputs.pages-deployment-alias-url }}" >> $GITHUB_STEP_SUMMARY
           fi
