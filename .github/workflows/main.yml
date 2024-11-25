@@ -43,12 +43,12 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            if (${{ steps.deploy.outputs.stderr }}) {
+            if (${{ steps.deploy.outputs.command-stderr}}) {
               github.rest.issues.createComment({
                   issue_number: context.issue.number,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  body: '## ❌ Deployment failed:\n ```${{ steps.deploy.outputs.stderr }}```'
+                  body: '## ❌ Deployment failed:\n ```${{ steps.deploy.outputs.command-stderr }}```'
                 })
             }
             else {
