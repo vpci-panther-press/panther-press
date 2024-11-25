@@ -28,20 +28,21 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
-      - name: Deploy
+      - name: Deploy and Capture Output
         id: deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=panther-press
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-      - name: Extract URLs
         run: |
-          echo "DEPLOY_URL=$(echo '${{ steps.deploy.outputs.stdout }}' | grep -o 'https://[0-9a-f]\+\.panther-press\.pages\.dev')" >> $GITHUB_OUTPUT
-          echo "ALIAS_URL=$(echo '${{ steps.deploy.outputs.stdout }}' | grep -o 'https://[^[:space:]]*\.panther-press\.pages\.dev' | grep -v '[0-9a-f]\{8\}')" >> $GITHUB_OUTPUT
+          OUTPUT=$(cloudflare/wrangler-action@v3 pages deploy ./dist --project-name=panther-press)
+          echo "deploy_output=$OUTPUT" >> $GITHUB_OUTPUT
+
+      - name: Extract URLs
+        id: urls
+        run: |
+          DEPLOY_URL=$(echo '${{ steps.deploy.outputs.deploy_output }}' | grep -o 'https://[0-9a-f]\+\.panther-press\.pages\.dev')
+          ALIAS_URL=$(echo '${{ steps.deploy.outputs.deploy_output }}' | grep -o 'https://[^[:space:]]*\.panther-press\.pages\.dev' | grep -v '[0-9a-f]\{8\}')
+          echo "deploy_url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+          echo "alias_url=$ALIAS_URL" >> $GITHUB_OUTPUT
+
       - name: Display URLs
         run: |
-          echo "✨ Deployment URL: ${{ steps.extract-urls.outputs.DEPLOY_URL }}"
-          echo "✨ Alias URL: ${{ steps.extract-urls.outputs.ALIAS_URL }}"
+          echo "✨ Deployment URL: ${{ steps.urls.outputs.deploy_url }}"
+          echo "✨ Alias URL: ${{ steps.urls.outputs.alias_url }}"
