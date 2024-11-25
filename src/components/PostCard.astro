@@ -37,7 +37,7 @@ const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
 				/>
 				<div class='flex flex-col'>
 					<p class='font-normal text-base text-gray-50 relative z-10'>
-						{author}
+						{author[0]}
 					</p>
 					<p class='text-sm text-gray-400'>{readTime}</p>
 				</div>
