@@ -12,17 +12,13 @@ export const getNonArchivedPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
 	let nonArchivedPosts = []
 	for (let post of posts) {
-		try{
+		console.log('Processing post:', post.slug, 'Issue:', post.data?.issue);
 		const issue = await getEntry('issues', sluglify(post.data.issue).toLowerCase())
 		if (!issue!.data.archived) {
 			nonArchivedPosts.push(post)
-		}else if (!issue) {
-			console.warn(`Issue "${post.data.issue}" not found for post "${post.slug}". Skipping.`);
 		}
 	}
-	catch (error) {
-		console.warn(`Failed to fetch issue for post "${post.slug}":`, error);
-	}}return sortPostsByDate(nonArchivedPosts, max)
+	return sortPostsByDate(nonArchivedPosts, max)
 }
 
 export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) => {
