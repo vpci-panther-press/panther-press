@@ -24,7 +24,7 @@
 		"@fontsource-variable/manrope": "^5.1.0",
 		"@fontsource/atkinson-hyperlegible": "^5.1.0",
 		"@keystatic/astro": "^5.0.3",
-		"@keystatic/core": "^0.5.41",
+		"@keystatic/core": "^0.5.42",
 		"@preline/collapse": "^2.5.0",
 		"astro": "4.16.14",
 		"framer-motion": "^11.11.17",
