@@ -1,22 +1,11 @@
 import { defineCollection, z } from 'astro:content'
 import { CATEGORIES } from '@/data/categories'
-// import { ISSUES } from '@/data/issues'
-// import { AUTHORS } from '@/data/authors'
-
-// const issueNames: string[] = ISSUES.map((issue) => issue.name)
-// if (issueNames.length === 0) {
-// 	issueNames.push('No issues found')
-// }
-
-// const authorNames: string[] = AUTHORS.map((issue) => issue.name)
-// if (authorNames.length === 0) {
-// 	authorNames.push('No issues found')
-// }
+import { glob } from 'astro/loaders'
 
 // No validation of authors and issues is due to input validation in the CMS and bc using promises to define enum doesn't seem to work
 
 const blog = defineCollection({
-	type: 'content',
+	loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
 	schema: ({ image }) =>
 		z.object({
 			title: z.string().max(80),
@@ -38,7 +27,7 @@ const blog = defineCollection({
 		})
 })
 const authors = defineCollection({
-	type: 'data',
+	loader: glob({ pattern: '*.yaml', base: './src/content/authors' }),
 	schema: ({ image }) =>
 		z.object({
 			name: z.string(),
@@ -48,7 +37,7 @@ const authors = defineCollection({
 		})
 })
 const issues = defineCollection({
-	type: 'data',
+	loader: glob({ pattern: '*.yaml', base: './src/content/issues' }),
 	schema: ({ image }) =>
 		z.object({
 			name: z.string(),

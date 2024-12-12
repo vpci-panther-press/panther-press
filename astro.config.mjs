@@ -37,11 +37,11 @@ export default defineConfig({
 		react(),
 		keystatic()
 	],
-	output: 'hybrid',
+	output: 'static',
 	adapter: cloudflare(),
 	vite: {
 		define: {
 			'process.env': process.env
-		}
+		}, 
 	}
 })

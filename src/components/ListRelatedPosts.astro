@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from 'astro:content'
+import { render, type CollectionEntry } from 'astro:content'
 import { cn } from '@/utils'
 import { Image } from 'astro:assets'
 
@@ -14,11 +14,11 @@ const { posts } = Astro.props
 	{
 		posts.length > 0 ? (
 			posts.map(async (post) => {
-				const { remarkPluginFrontmatter } = await post.render()
+				const { remarkPluginFrontmatter } = await render(post)
 				return (
 					<a
 						class='group flex flex-col h-full border border-gray-200 hover:border-gray-300 transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
-						href={`/articles/${post.slug}/`}
+						href={`/articles/${post.id}/`}
 					>
 						<div class='aspect-w-16 aspect-h-11'>
 							<Image
