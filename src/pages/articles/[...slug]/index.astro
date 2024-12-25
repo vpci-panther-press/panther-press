@@ -1,76 +1,96 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content'
 import BlogPost from '@/layouts/BlogPost'
 import Code from '@/components/mdx/Code'
 import ListRelatedPosts from '@/components/ListRelatedPosts'
 import TableOfContents from '@/components/TableOfContents'
-import { getPosts } from '@/utils'
 import Centered from '@/components/mdx/Centered'
 import AuthorProfile from '@/components/AuthorProfile'
 import Breakline from '@/components/mdx/Breakline'
+import directus, { type Post } from 'src/lib/directus'
+import { readItems } from '@directus/sdk'
+import sanitizeHtml from 'sanitize-html'
+import { getPosts } from '@/utils'
 
-const posts = await getCollection('blog')
+const posts = await getPosts()
 export async function getStaticPaths() {
-	const posts = await getPosts()
-
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post
-	}))
+	const posts = await directus.request(
+		readItems('post', {
+			fields: [
+				'id',
+				'title',
+				'description',
+				'slug',
+				//@ts-expect-error
+				'authors.*',
+				'issue',
+				'heroImage',
+				'photoCredits',
+				'category',
+				'tags',
+				'content',
+				'readTime',
+				{ issue: ['*'] }
+			]
+		})
+	)
+	return posts.map((post) => ({ params: { slug: post.slug }, props: post }))
 }
-type Props = CollectionEntry<'blog'>
+type Props = Post
 
 const post = Astro.props
 const MAX_POSTS = 3
-const getRelatedPosts = (post: Props) => {
-	const relatedPosts = posts
-		.sort()
-		.filter(
-			(p: any) =>
-				p.slug !== post.slug &&
-				p.data.tags.some(
-					(t: string) =>
-						post.data.tags.includes(t) ||
-						(post.data.issue === p.data.issue && post.data.category === p.data.category) ||
-						post.data.author.some((a: string) => p.data.author.includes(a))
-				)
-		)
-	return relatedPosts.slice(0, MAX_POSTS)
+
+const getRelatedPosts = async (post: Post) => {
+	const relatedPosts = await Promise.all(
+		posts
+			.filter((p: Post) => p.slug !== post.slug)
+			.map(async (p: Post) => {
+				const currentPostAuthorIds = post.authors.map((a) => a.author_id)
+				const comparePostAuthorIds = p.authors.map((a) => a.author_id)
+
+				const isRelated =
+					p.tags.some((t: string) => post.tags.includes(t)) || // common tags
+					(post.issue.name === p.issue.name && post.category === p.category) || // common issue and category
+					currentPostAuthorIds.some((id) => comparePostAuthorIds.includes(id)) // common authors
+
+				return isRelated ? p : null
+			})
+	)
+
+	// Filter out null values and limit to MAX_POSTS
+	return relatedPosts.filter((post): post is Post => post !== null).slice(0, MAX_POSTS)
 }
 
-const relatedPosts = getRelatedPosts(post)
+const relatedPosts = await getRelatedPosts(post)
 
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+// const { Content, headings, remarkPluginFrontmatter } = await post.render()
 ---
 
-<BlogPost
-	id={post.id}
-	data={post.data}
-	headings={headings}
-	readTime={remarkPluginFrontmatter.minutesRead}
->
+<BlogPost id={post.id} data={post} readTime={post.readTime}>
 	<div class='grid grid-cols-1 md:grid-cols-[80%_auto] gap-10 mt-8'>
 		<!-- post -->
 		<article class='md:max-w-prose lg:max-w-full'>
-			<div class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
-				<Content components={{ pre: Code, Centered, Breakline }} />
-			</div>
+			<div
+				id='content'
+				set:html={sanitizeHtml(post.content)}
+				class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'
+			/>
 
 			<!-- related posts -->
 			<footer>
 				<div class='md:hidden flex w-full justify-center items-center'>
-					<AuthorProfile authors={post.data.author} imageCredit={post.data.photoCredits} />
+					<AuthorProfile authors={post.authors} imageCredit={post.photoCredits} />
 				</div>
 				<h1 class='font-bold text-lg dark:text-white mb-6'>Related Posts</h1>
-				<ListRelatedPosts posts={relatedPosts} />
+				{relatedPosts.length > 0 && <ListRelatedPosts posts={relatedPosts} />}
 			</footer>
 		</article>
 
 		<!-- aside  -->
 		<aside class='md:flex flex-col gap-8 hidden'>
-			<AuthorProfile authors={post.data.author} imageCredit={post.data.photoCredits} />
+			<AuthorProfile authors={post.authors} imageCredit={post.photoCredits} />
 			<div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
-				{headings && headings.length > 0 && <TableOfContents {headings} />}
+				<!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 			</div>
 		</aside>
 	</div>

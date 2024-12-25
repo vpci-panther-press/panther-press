@@ -1,26 +1,26 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
-import { unsluglify } from '@/utils'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
-import { getEntry } from 'astro:content'
+import type { Post } from 'src/lib/directus'
+import directus, { directusAssetsUrl } from 'src/lib/directus'
+import { readItem } from '@directus/sdk'
 
 type Props = {
-	id: CollectionEntry<'blog'>['id']
-	data: CollectionEntry<'blog'>['data']
-	headings: MarkdownHeading[]
+	id: Post['id']
+	data: Post
+	// headings: MarkdownHeading[]
 	readTime: string
 }
 
-const { data, readTime, headings, id } = Astro.props
+const { data, id } = Astro.props
 const { title, description, heroImage, tags, category, issue, alt } = data
-const issueData = await getEntry('issues', issue)
+const issueData = await directus.request(readItem('issue', issue.id))
 ---
 
 <html lang='en' class='scroll-smooth'>
-	<BaseLayout title={title} description={description} image={heroImage.src} issue={issue}>
+	<BaseLayout title={title} description={description} image={heroImage} issue={issue}>
 		<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
 			<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 				<div class='w-full flex flex-col gap-2 text-center font-semibold'>
@@ -28,7 +28,7 @@ const issueData = await getEntry('issues', issue)
 						<p
 							class='text-cs-primary dark:text-cs-secondary underline sm:no-underline sm:hover:underline'
 						>
-							{issueData?.data.name}
+							{issueData.name}
 						</p>
 					</a>
 					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
@@ -82,7 +82,7 @@ const issueData = await getEntry('issues', issue)
 									<path d='M12 7v5l3 3'></path>
 								</svg>
 							</div>
-							{readTime}
+							<!-- {readTime} --> bc mins
 						</div>
 					</div>
 				</div>
@@ -91,14 +91,14 @@ const issueData = await getEntry('issues', issue)
 				{
 					heroImage && (
 						<Image
-							src={heroImage}
+							src={directusAssetsUrl + heroImage}
 							width={1000}
 							height={500}
 							quality={100}
 							format='jpg'
 							loading='eager'
 							class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
-							alt={alt}
+							alt={'ww'}
 						/>
 					)
 				}

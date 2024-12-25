@@ -12,14 +12,12 @@ export async function getStaticPaths({ paginate }: any) {
 	const allPosts = await getNonArchivedPosts()
 
 	return CATEGORIES.flatMap((category: string) => {
-		const unsluglifyNameCategory = unsluglify(category!.toLowerCase())
-		const filteredPosts = allPosts.filter(
-			(post) => post.data.category.toLowerCase() === unsluglifyNameCategory
-		)
+		const categoryName = category.toLowerCase()
+		const filteredPosts = allPosts.filter((post) => post.category.toLowerCase() === categoryName)
 
 		return paginate(filteredPosts, {
 			params: {
-				category: sluglify(category.toLowerCase())
+				category: category.toLowerCase()
 			},
 			pageSize: siteConfig.paginationSize
 		})
@@ -28,20 +26,20 @@ export async function getStaticPaths({ paginate }: any) {
 const params = Astro.params
 const { page } = Astro.props
 
-const unsluglifyNameCategory = unsluglify(params.category!.toLowerCase())
+const category = params.category
 const posts = page.data
 ---
 
-<BaseLayout title={params.category}>
-	<PageTitle title={unsluglifyNameCategory} />
-	<ListCategories activeCategory={params.category} />
+<BaseLayout title={category}>
+	<PageTitle title={category} />
+	<ListCategories activeCategory={category} />
 	<div>
 		<div class='flex flex-row justify-between'>
 			<h1 class='text-lg font-medium text-start'>
 				Page {(page as { currentPage: number }).currentPage}
 			</h1>
 			<h1 class='text-lg font-medium tracking-wide text-end capitalize'>
-				{unsluglifyNameCategory}
+				{category}
 			</h1>
 		</div>
 		<div data-pagefind-ignore='all'>

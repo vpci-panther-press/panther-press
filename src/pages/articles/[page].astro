@@ -15,8 +15,13 @@ export async function getStaticPaths({ paginate }: any) {
 	})
 }
 
-const { page } = Astro.props
-const posts = (page as { data: any }).data
+type PageProps = {
+	currentPage: number
+	data: any
+}
+
+const { page } = Astro.props as { page: PageProps }
+const posts = page.data
 ---
 
 <BaseLayout title='All Articles'>
@@ -26,7 +31,7 @@ const posts = (page as { data: any }).data
 	<div>
 		<div class='flex flex-row justify-between'>
 			<h1 class='text-lg font-medium text-start'>
-				Page {(page as { currentPage: number }).currentPage}
+				Page {page.currentPage}
 			</h1>
 			<h1 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h1>
 		</div>

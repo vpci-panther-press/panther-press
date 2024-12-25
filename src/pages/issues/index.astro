@@ -2,9 +2,14 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
-import { getCollection } from 'astro:content'
 import { sortIssuesByDate } from '@/utils'
-const allIssues = await getCollection('issues')
+import directus from 'src/lib/directus'
+import { readItems } from '@directus/sdk'
+const allIssues = await directus.request(
+	readItems('issue', {
+		fields: ['id', 'slug', 'name', 'description', 'coverImage', 'issuuLink', 'archived']
+	})
+)
 sortIssuesByDate(allIssues)
 ---
 
@@ -14,12 +19,12 @@ sortIssuesByDate(allIssues)
 		{
 			allIssues.map((issue) => (
 				<IssuesCard
-					title={issue.data.name}
-					description={issue.data.description}
-					img={issue.data.coverImage}
-					url={`/issues/${issue.id}`}
-					issuuLink={issue.data.issuuLink}
-					archived={issue.data.archived}
+					title={issue.name}
+					description={issue.description}
+					img={issue.coverImage}
+					url={`/issues/${issue.slug}`}
+					issuuLink={issue.issuuLink}
+					archived={issue.archived}
 				/>
 			))
 		}

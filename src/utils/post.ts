@@ -1,43 +1,61 @@
 import { getCollection, getEntry } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 import { sluglify } from './sluglify'
+import directus, { type Issue, type Post } from 'src/lib/directus'
+import { readItem, readItems } from '@directus/sdk'
 
-export const getPosts = async (max?: number) => {
-	const posts = await getCollection('blog')
+export const getPosts = async (max?: number): Promise<Post[]> => {
+	const posts = await directus.request(
+		readItems('post', {
+			fields: [
+				'id',
+				'title',
+				'description',
+				'slug',
+				//@ts-expect-error
+				'authors.*',
+				'issue',
+				'heroImage',
+				'category',
+				'tags',
+				'readTime',
+				{ issue: ['*'] }
+			],
+			limit: max ? max : -1
+		})
+	)
 
 	return sortPostsByDate(posts, max)
 }
 
+export const sortPostsByDate = (posts: Post[], max?: number) => {
+	return posts
+		.sort((a, b) => {
+			const aDate = toDate(a.issue.name)
+			const bDate = toDate(b.issue.name)
+			return bDate.getTime() - aDate.getTime()
+		})
+		.slice(0, max)
+}
+
 export const getNonArchivedPosts = async (max?: number) => {
-	const posts = await getCollection('blog')
+	const posts = await getPosts()
 	let nonArchivedPosts = []
 	for (let post of posts) {
-		// console.log('Processing post:', post.slug, 'Issue:', post.data?.issue);
-		const issue = await getEntry('issues', sluglify(post.data.issue).toLowerCase())
-		if (!issue!.data.archived) {
+		const issue = await directus.request(readItem('issue', post.issue.id))
+		if (!issue.archived) {
 			nonArchivedPosts.push(post)
 		}
 	}
 	return sortPostsByDate(nonArchivedPosts, max)
 }
 
-export const sortPostsByDate = (posts: CollectionEntry<'blog'>[], max?: number) => {
-	return posts
-		.filter((post) => !post.data.draft)
-		.sort((a, b) => {
-			const aDate = toDate(a.data.issue)
-			const bDate = toDate(b.data.issue)
-			return bDate.getTime() - aDate.getTime()
-		})
-		.slice(0, max)
-}
-
-export const sortIssuesByDate = (issues: CollectionEntry<'issues'>[]) => {
+export const sortIssuesByDate = (issues: Issue[]) => {
 	// idk why this only works when reversed but it works
 	return issues
 		.sort((b, a) => {
-			const aDate = toDate(a.data.name)
-			const bDate = toDate(b.data.name)
+			const aDate = toDate(a.name)
+			const bDate = toDate(b.name)
 			return bDate.getTime() - aDate.getTime()
 		})
 		.reverse()
@@ -69,19 +87,4 @@ export const getTags = async () => {
 export const getPostByTag = async (tag: string) => {
 	const posts = await getPosts()
 	return posts.filter((post) => post.data.tags.includes(tag))
-}
-
-export const filterPostsByIssue = async (issue: string) => {
-	const posts = await getPosts()
-	return posts.filter((post) => post.data.issue === issue)
-}
-
-export const filterPostsByAuthor = async (author: string) => {
-	const posts = await getPosts()
-	return posts.filter((post) => post.data.author.includes(author))
-}
-
-export const filterPostsByCategory = async (category: string) => {
-	const posts = await getPosts()
-	return posts.filter((post) => post.data.category.toLowerCase() === category)
 }
