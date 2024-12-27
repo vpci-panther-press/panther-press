@@ -1,6 +1,3 @@
-import { getCollection, getEntry } from 'astro:content'
-import type { CollectionEntry } from 'astro:content'
-import { sluglify } from './sluglify'
 import directus, { type Issue, type Post } from 'src/lib/directus'
 import { readItem, readItems } from '@directus/sdk'
 
@@ -16,6 +13,8 @@ export const getPosts = async (max?: number): Promise<Post[]> => {
 				'authors.*',
 				'issue',
 				'heroImage',
+				'alt',
+				'photoCredits',
 				'category',
 				'tags',
 				'readTime',
@@ -79,12 +78,12 @@ export const toDate = (issue: string) => {
 }
 
 export const getTags = async () => {
-	const posts = await getCollection('blog')
-	const tags = new Set(posts.map((post) => post.data.tags).flat())
+	const posts = await getPosts()
+	const tags = new Set(posts.map((post) => post.tags).flat())
 	return Array.from(tags)
 }
 
 export const getPostByTag = async (tag: string) => {
 	const posts = await getPosts()
-	return posts.filter((post) => post.data.tags.includes(tag))
+	return posts.filter((post) => post.tags.includes(tag))
 }

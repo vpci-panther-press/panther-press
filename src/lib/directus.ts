@@ -48,8 +48,9 @@ type Schema = {
 	issue: Issue[]
 }
 
-const directus = createDirectus<Schema>('https://directus.picafe.me').with(rest())
-const directusAssetsUrl = 'https://directus.picafe.me/assets/'
+const url = import.meta.env.PUBLIC_DIRECTUS_URL
+const directus = createDirectus<Schema>(url).with(rest())
+const directusAssetsUrl = url + '/assets/'
 
 export default directus
 export { directusAssetsUrl }

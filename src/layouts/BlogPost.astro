@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
-import type { MarkdownHeading } from 'astro'
+// import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
 import type { Post } from 'src/lib/directus'
-import directus, { directusAssetsUrl } from 'src/lib/directus'
-import { readItem } from '@directus/sdk'
+import { directusAssetsUrl } from 'src/lib/directus'
 
 type Props = {
 	id: Post['id']
@@ -15,8 +14,7 @@ type Props = {
 }
 
 const { data, id } = Astro.props
-const { title, description, heroImage, tags, category, issue, alt } = data
-const issueData = await directus.request(readItem('issue', issue.id))
+const { title, description, heroImage, tags, category, issue, alt, readTime } = data
 ---
 
 <html lang='en' class='scroll-smooth'>
@@ -28,7 +26,7 @@ const issueData = await directus.request(readItem('issue', issue.id))
 						<p
 							class='text-cs-primary dark:text-cs-secondary underline sm:no-underline sm:hover:underline'
 						>
-							{issueData.name}
+							{issue.name}
 						</p>
 					</a>
 					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
@@ -82,7 +80,7 @@ const issueData = await directus.request(readItem('issue', issue.id))
 									<path d='M12 7v5l3 3'></path>
 								</svg>
 							</div>
-							<!-- {readTime} --> bc mins
+							{readTime}
 						</div>
 					</div>
 				</div>
@@ -98,7 +96,7 @@ const issueData = await directus.request(readItem('issue', issue.id))
 							format='jpg'
 							loading='eager'
 							class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
-							alt={'ww'}
+							alt={alt}
 						/>
 					)
 				}

@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
+// import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import react from '@astrojs/react'
-import keystatic from '@keystatic/astro'
+// import keystatic from '@keystatic/astro'
 
 import cloudflare from '@astrojs/cloudflare'
 
@@ -34,7 +34,7 @@ export default defineConfig({
 		sitemap(),
 		tailwind(),
 		react(),
-		keystatic()
+		// keystatic()
 	],
 	output: 'hybrid',
 	adapter: cloudflare(),

@@ -1,11 +1,7 @@
 ---
 import BlogPost from '@/layouts/BlogPost'
-import Code from '@/components/mdx/Code'
 import ListRelatedPosts from '@/components/ListRelatedPosts'
-import TableOfContents from '@/components/TableOfContents'
-import Centered from '@/components/mdx/Centered'
 import AuthorProfile from '@/components/AuthorProfile'
-import Breakline from '@/components/mdx/Breakline'
 import directus, { type Post } from 'src/lib/directus'
 import { readItems } from '@directus/sdk'
 import sanitizeHtml from 'sanitize-html'
@@ -24,6 +20,7 @@ export async function getStaticPaths() {
 				'authors.*',
 				'issue',
 				'heroImage',
+				'alt',
 				'photoCredits',
 				'category',
 				'tags',
