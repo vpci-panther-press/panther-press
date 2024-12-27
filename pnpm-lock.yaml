@@ -33,8 +33,8 @@ importers:
         specifier: ^0.5.41
         version: 0.5.41(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@preline/collapse':
-        specifier: ^2.5.0
-        version: 2.5.0
+        specifier: ^2.6.0
+        version: 2.6.0
       astro:
         specifier: 4.16.14
         version: 4.16.14(@types/node@22.9.3)(rollup@4.27.4)(typescript@5.7.2)
@@ -1008,8 +1008,8 @@ packages:
     resolution: {integrity: sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
-  '@preline/collapse@2.5.0':
-    resolution: {integrity: sha512-FFVB+T7FXn66EUmwgR8c1OtxXDlL74pRvBXtntXwwQ+9fqCZML1xPTOXfdeRL4e46kroAtigVcp/Y28lEpkXTQ==}
+  '@preline/collapse@2.6.0':
+    resolution: {integrity: sha512-0w/Gd5g2N81atuMhEikAyW/88yIk/Gt7wnrIMB5NZQry5CWj8SAf0kksb2wtFF5uakA/tnbSuXzeCcabbZe0uw==}
 
   '@react-aria/actiongroup@3.7.11':
     resolution: {integrity: sha512-fQxd32dN/e4+ctHXoRpqVe99uWzda0XAdKfePbfNO2ghETcF0UrOTugdwYqfEi+5+tgTNzGT7HFc5NeM8Zzd5Q==}
@@ -5437,7 +5437,7 @@ snapshots:
 
   '@pkgr/core@0.1.1': {}
 
-  '@preline/collapse@2.5.0': {}
+  '@preline/collapse@2.6.0': {}
 
   '@react-aria/actiongroup@3.7.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
