@@ -15,9 +15,9 @@ export interface Props {
 
 const { title, description = siteConfig.description, ogImage, issue, author } = Astro.props
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const socialImageURL = new URL(ogImage ? directusAssetsUrl + ogImage : '/open-graph.png', Astro.url)
-	.href
-
+const socialImageURL = ogImage
+	? directusAssetsUrl + ogImage
+	: new URL('/open-graph.png', Astro.url).href
 const titleSeparator = '-'
 
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`

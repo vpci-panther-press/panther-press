@@ -34,6 +34,7 @@ type Post = {
 	tags: string[]
 	content: string
 	readTime: string
+	date_created: Date
 }
 
 interface Post_Author {
