@@ -8,13 +8,21 @@ import { getCollection } from 'astro:content'
 export async function getStaticPaths() {
 	const issues = await getCollection('issues')
 
-	return issues.map((issue) => ({
+	return issues.map((issue: any) => ({
 		params: { issue: issue.id },
 		props: { issue }
 	}))
 }
 
-const { issue } = Astro.props
+interface Issue {
+	id: string
+	data: {
+		name: string
+		archived: boolean
+	}
+}
+
+const { issue } = Astro.props as { issue: Issue }
 
 const posts = await filterPostsByIssue(issue.id)
 
