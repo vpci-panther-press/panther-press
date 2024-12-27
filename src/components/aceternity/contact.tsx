@@ -15,7 +15,7 @@ export default function Contact() {
 				Contact Us
 			</h2>
 			<p className='text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300'>
-				Have a quation or need help? Send us a message, and we'll get back to you soon.
+				Have a question or need help? Send us a message, and we'll get back to you soon.
 			</p>
 
 			<form className='my-8' onSubmit={handleSubmit}>
