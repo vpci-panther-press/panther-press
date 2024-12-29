@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 		})
 	)
 	return issues.map((issue) => ({
-		params: { issue: issue.id },
+		params: { issue: issue.slug },
 		props: { issue }
 	}))
 }
@@ -33,6 +33,7 @@ const posts = await directus.request(
 			'alt',
 			'category',
 			'tags',
+			'readTime',
 			{ issue: ['*'] }
 		],
 		filter: {

@@ -45,12 +45,12 @@ const { posts, FirstBig = false } = Astro.props
 								/>
 								<div class='flex flex-col'>
 									<p class='font-normal text-base text-gray-50 relative z-10'>{authorData.name}</p>
-									<p class='text-sm text-gray-400'>{'aaa'}</p>
+									<p class='text-sm text-gray-400'>{post.readTime}</p>
 								</div>
 							</div>
 							<div class='ml-auto justify-center items-center h-full'>
 								<p class='inline-flex items-center py-1.5 px-3 rounded-md text-xs font-semibold bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100'>
-									{post.category}
+									{post.category.substring(0, 1).toUpperCase() + post.category.substring(1)}
 								</p>
 							</div>
 						</div>
