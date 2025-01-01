@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
+import { ClientRouter } from 'astro:transitions'
 import { siteConfig } from '@/site-config'
 import ProviderTheme from './ProviderTheme.astro'
 import ProviderAnimations from './ProviderAnimations.astro'
@@ -24,7 +24,7 @@ const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`
 ---
 
 <head>
-	<ViewTransitions />
+	<ClientRouter />
 
 	<ProviderTheme />
 
