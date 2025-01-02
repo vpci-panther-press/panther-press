@@ -14,7 +14,6 @@ const { posts } = Astro.props
 	{
 		posts.length > 0 ? (
 			posts.map(async (post: Post) => {
-				// const { remarkPluginFrontmatter } = await post.render()
 				return (
 					<a
 						class='group flex flex-col h-full border border-gray-200 hover:border-gray-300 transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
@@ -43,9 +42,7 @@ const { posts } = Astro.props
 						</div>
 						<div class='mt-auto flex items-center gap-x-3'>
 							<div>
-								<p class='text-sm text-gray-800 dark:text-gray-200'>
-									{/* {remarkPluginFrontmatter.minutesRead} */} abc mins
-								</p>
+								<p class='text-sm text-gray-800 dark:text-gray-200'>{post.readTime}</p>
 							</div>
 						</div>
 					</a>
