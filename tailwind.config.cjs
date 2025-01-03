@@ -125,7 +125,7 @@ module.exports = {
     	}
     },
 
-	plugins: [require('@tailwindcss/typography'), addVariablesForColors, require("tailwindcss-animate")]
+	plugins: [require('@tailwindcss/typography'), addVariablesForColors]
 }
 
 // This plugin adds each Tailwind color as a global CSS variable for only custom colours (cs = color scheme)
