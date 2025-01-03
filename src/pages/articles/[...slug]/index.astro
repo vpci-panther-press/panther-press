@@ -164,6 +164,7 @@ const relatedPosts = await getRelatedPosts(post)
 <script>
 	import { actions } from 'astro:actions'
 	function init() {
+		// remove mobile actions on desktop and v/v
 		function set() {
 			if (window.innerWidth > 768) {
 				const mobileActions = document.querySelector('#mobile-actions')
@@ -175,6 +176,33 @@ const relatedPosts = await getRelatedPosts(post)
 		}
 		set()
 
+		// init share button
+		const shareButton = document.querySelector<HTMLElement>('#share-button')
+		const shareIcon = shareButton?.querySelector<HTMLElement>('.share-icon')
+		const shareText = shareButton?.querySelector<HTMLElement>('.share-text')
+		let timeout: ReturnType<typeof setTimeout>
+
+		shareButton?.addEventListener('click', async () => {
+			const url = window.location.href
+
+			try {
+				await navigator.clipboard.writeText(url)
+
+				if (shareIcon) shareIcon.style.display = 'none'
+				if (shareText) shareText.textContent = 'Link copied!'
+
+				// reset after 2 sec
+				clearTimeout(timeout)
+				timeout = setTimeout(() => {
+					if (shareIcon) shareIcon.style.display = 'block'
+					if (shareText) shareText.textContent = 'Share'
+				}, 2000)
+			} catch (err) {
+				console.error('Failed to copy:', err)
+			}
+		})
+
+		// init like button
 		const button = document.querySelector('#like')
 		const id = button!.getAttribute('data-post-id')
 		const likesText = document.querySelector('#likesText')
@@ -194,9 +222,9 @@ const relatedPosts = await getRelatedPosts(post)
 				button!.classList.toggle('active', isLiked)
 			}
 		}
-
 		setLikes()
 
+		// like button event listener
 		button?.addEventListener('click', async () => {
 			if (processing) return
 			processing = true
@@ -223,32 +251,5 @@ const relatedPosts = await getRelatedPosts(post)
 	init()
 	document.addEventListener('astro:after-swap', () => {
 		init()
-	})
-</script>
-
-<script>
-	const shareButton = document.querySelector<HTMLElement>('#share-button')
-	const shareIcon = shareButton?.querySelector<HTMLElement>('.share-icon')
-	const shareText = shareButton?.querySelector<HTMLElement>('.share-text')
-	let timeout: ReturnType<typeof setTimeout>
-
-	shareButton?.addEventListener('click', async () => {
-		const url = window.location.href
-
-		try {
-			await navigator.clipboard.writeText(url)
-
-			if (shareIcon) shareIcon.style.display = 'none'
-			if (shareText) shareText.textContent = 'Link copied!'
-
-			// reset after 2 seconds
-			clearTimeout(timeout)
-			timeout = setTimeout(() => {
-				if (shareIcon) shareIcon.style.display = 'block'
-				if (shareText) shareText.textContent = 'Share'
-			}, 2000)
-		} catch (err) {
-			console.error('Failed to copy:', err)
-		}
 	})
 </script>
