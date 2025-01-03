@@ -32,7 +32,7 @@ const { posts } = Astro.props
 						<div class='my-6'>
 							<div class='mb-3'>
 								<p class='inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'>
-									{post.category}
+									{post.category.substring(0, 1).toUpperCase() + post.category.substring(1)}
 								</p>
 							</div>
 							<h1 class='text-xl font-semibold text-gray-800 dark:text-gray-300 dark:group-hover:text-white'>

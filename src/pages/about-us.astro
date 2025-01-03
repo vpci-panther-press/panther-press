@@ -1,10 +1,11 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import PageTitle from '@/components/PageTitle'
-import Hero from '@/components/Hero2'
-import AuthorCard from '@/components/AuthorCard2'
+import AuthorCard from '@/components/AuthorCard'
 import { Timeline } from '../components/aceternity/Timeline'
 import Contact from '../components/aceternity/contact'
+import { readItems } from '@directus/sdk'
+import directus from 'src/lib/directus'
 
 const timelineData = [
 	{
@@ -20,6 +21,12 @@ const timelineData = [
 		content: 'Gained recognition in the school community.'
 	}
 ]
+
+const authors = await directus.request(
+	readItems('author', {
+		fields: ['*']
+	})
+)
 ---
 
 <BaseLayout title='About Us'>
@@ -59,58 +66,11 @@ const timelineData = [
 			Our Exec Team!
 		</h2></center
 	>
-	<div class='flex flex-wrap justify-center'>
-		<AuthorCard author='Tazmeen' role='Co-President' description='Manager' />
-		<AuthorCard author='Gloria' role='Co-President' description='Manager' />
-		<AuthorCard author='Srivathsan' role='Board Manager' description='News' />
-		<AuthorCard author='Eshan' role='Board Manager' description='News' />
-		<AuthorCard author='Lucy' role='Board Manager' description='Editorial' />
-		<AuthorCard author='Jasmine' role='Board Manager' description='Editorial' />
-		<AuthorCard author='Thomas' role='Board Manager' description='Life' />
-		<AuthorCard author='Simone' role='Board Manager' description='Visual Arts' />
-		<AuthorCard author='Michael' role='Board Manager' description='Visual Arts' />
-		<AuthorCard author='Tina' role='Board Manager' description='Social Media' />
-		<AuthorCard author='Feng' role='Board Manager' description='Social Media' />
-		<AuthorCard author='Mona' role='Board Manager' description='Print Dev' />
-		<AuthorCard author='Sujay' role='Board Manager' description='Print Dev' />
-		<AuthorCard author='Surya' role='Board Manager' description='Web Dev' />
-		<AuthorCard author='Hamza' role='Board Manager' description='Web Dev' />
-	</div>
+	<div class='flex flex-wrap justify-center'></div>
 
 	<center><h2 style='font-weight: bolder; font-size:x-large;'>Our Authors!</h2></center>
 	<div class='flex flex-wrap justify-center'>
-		<AuthorCard author='Samuel' role='Author' description='News' />
-		<AuthorCard author='Alina' role='Author' description='News & Editorial' />
-		<AuthorCard author='Jonathan' role='Author' description='News, Editorial & Life' />
-		<AuthorCard author='Monica' role='Author' description='News' />
-		<AuthorCard author='Setayesh' role='Author' description='News' />
-		<AuthorCard author='Jeffrey' role='Author' description='News' />
-		<AuthorCard author='William' role='Author' description='News' />
-		<AuthorCard author='Raymond' role='Author' description='News & Visual Arts' />
-		<AuthorCard author='Ayaa' role='Author' description='News & Life' />
-		<AuthorCard author='Jasmine' role='Author' description='News & Visual Arts' />
-		<AuthorCard author='Lucy' role='Author' description='Print Dev' />
-		<AuthorCard author='Subu' role='Author' description='Editorial' />
-		<AuthorCard author='Alisa' role='Author' description='Editorial' />
-		<AuthorCard author='Nolan' role='Author' description='Editorial' />
-		<AuthorCard author='Krishnapriya' role='Author' description='Editorial' />
-		<AuthorCard author='Shriya' role='Author' description='Editorial' />
-		<AuthorCard author='Zaina' role='Author' description='Life' />
-		<AuthorCard author='Frank' role='Author' description='Life & Web Dev' />
-		<AuthorCard author='Lily' role='Author' description='Life' />
-		<AuthorCard author='Spruha' role='Author' description='Life' />
-		<AuthorCard author='Alya' role='Author' description='Life' />
-		<AuthorCard author='Feng' role='Author' description='Visual Arts' />
-		<AuthorCard author='An' role='Author' description='Visual Arts' />
-		<AuthorCard author='Sarah Z.' role='Author' description='Visual Arts' />
-		<AuthorCard author='Sarah W.' role='Author' description='Visual Arts' />
-		<AuthorCard author='Michelle' role='Author' description='Visual Arts' />
-		<AuthorCard author='Winnie' role='Author' description='Print Dev' />
-		<AuthorCard author='Noshin' role='Author' description='Print Dev' />
-		<AuthorCard author='Ananya' role='Author' description='Print Dev' />
-		<AuthorCard author='Ritvik' role='Author' description='Web Dev' />
-		<AuthorCard author='Alec' role='Author' description='Web Dev' />
-		<AuthorCard author='Artin' role='Author' description='Web Dev' />
+		{authors.map((author) => <AuthorCard author={author} />)}
 	</div>
 	<br />
 	<Contact />

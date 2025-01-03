@@ -1,14 +1,17 @@
 ---
-import { sluglify } from '@/utils'
-import { getEntry } from 'astro:content'
+import { directusAssetsUrl, type Author } from 'src/lib/directus'
 
-const { author, role, description } = Astro.props
-const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
-const image = authorData?.data.photo?.src || '/author/default.jpg'
+interface Props {
+	author: Author
+}
+const { author } = Astro.props
+const image = author.photo ? directusAssetsUrl + author.photo + '?width=150' : '/author/default.jpg'
 ---
 
 <div
-	class='card transition-transform ease-in-out hover:scale-105 cursor-pointer overflow-hidden h-96 rounded-md shadow-xl w-full sm:min-w-[16rem] lg:first:w-full backgroundImage bg-cover bg-center'
+	class='card transition-transform ease-in-out hover:scale-105 cursor-pointer overflow-hidden h-50 rounded-md shadow-xl w-15 sm:min-w-[2rem] max-w-[24rem]'
+	style={`background-image: url(${image}); width:10rem;height:10rem`}
+	}
 >
 	<div class='filter h-full w-full justify-between p-4'>
 		<div
@@ -17,16 +20,18 @@ const image = authorData?.data.photo?.src || '/author/default.jpg'
 		</div>
 		<div class='content'>
 			<div class='contentBx'>
-				<h3>{author}<br /><span>{role}</span></h3>
+				<h3>
+					{author.name}<br />
+					<!-- <span>{author.role}</span> -->
+				</h3>
 			</div>
 		</div>
 		<ul class='sci'>
-			<p>{description}</p>
+			<!-- <p>{author.board}</p> -->
 		</ul>
 	</div>
 </div>
 
-<!-- End Card -->
 <style define:vars={{ image }}>
 	@keyframes overlay {
 		from {
@@ -53,6 +58,10 @@ const image = authorData?.data.photo?.src || '/author/default.jpg'
 		box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
 		border-radius: 15px;
 		backdrop-filter: blur(10px);
+		margin-left: 2%;
+		margin-bottom: 2%;
+		background-size: cover;
+		background-position: center;
 	}
 
 	.card .content {
@@ -103,7 +112,7 @@ const image = authorData?.data.photo?.src || '/author/default.jpg'
 	.card:hover .sci p {
 		transform: translateY(0px);
 		opacity: 1;
-		color: #fff;
+		color: black;
 		font-size: 12px;
 		font-weight: 300;
 		text-transform: initial;
