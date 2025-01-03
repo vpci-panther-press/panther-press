@@ -6,6 +6,9 @@ import directus, { type Post } from 'src/lib/directus'
 import { readItems } from '@directus/sdk'
 import sanitizeHtml from 'sanitize-html'
 import { getPosts } from '@/utils'
+import HeartEmpty from '@/components/icons/HeartEmpty'
+import HeartFull from '@/components/icons/HeartFull'
+import ShareIcon from '@/components/icons/ShareIcon'
 
 const posts = await getPosts()
 export async function getStaticPaths() {
@@ -75,9 +78,35 @@ const relatedPosts = await getRelatedPosts(post)
 
 			<!-- related posts -->
 			<footer>
-				<div class='md:hidden flex w-full justify-center items-center'>
+				<div class='md:hidden flex flex-col gap-10 mb-10 w-full justify-center items-center'>
+					<div
+						id='mobile-actions'
+						class='w-full flex flex-row items-center align-middle bg-zinc-200 dark:bg-[rgba(39,39,42,0.5)] rounded-lg border border-zinc-300 dark:border-gray-700 py-2 px-3'
+					>
+						<div class='pr-3 w-1/2 flex flex-col items-center justify-center'>
+							<button
+								data-post-id={post.id}
+								id='like'
+								class='flex item-center justify-center'
+								aria-label='Like article'
+							>
+								<span class='heart-empty'><HeartEmpty /></span>
+								<span class='heart-full'><HeartFull /></span>
+							</button>
+							<div><span id='numLikes'></span> <span id='likesText'> </span></div>
+						</div>
+						<button
+							class='pl-3 w-1/2 border-l border-zinc-600 flex flex-col items-center justify-center'
+							id='share-button'
+							aria-label='Share article'
+						>
+							<span class='share-icon'><ShareIcon /></span>
+							<p class='share-text'>Share</p>
+						</button>
+					</div>
 					<AuthorProfile authors={post.authors} imageCredit={post.photoCredits} />
 				</div>
+
 				<h1 class='font-bold text-lg dark:text-white mb-6'>Related Posts</h1>
 				{relatedPosts.length > 0 && <ListRelatedPosts posts={relatedPosts} />}
 			</footer>
@@ -86,9 +115,132 @@ const relatedPosts = await getRelatedPosts(post)
 		<!-- aside  -->
 		<aside class='md:flex flex-col gap-8 hidden'>
 			<AuthorProfile authors={post.authors} imageCredit={post.photoCredits} />
+			<div
+				id='desktop-actions'
+				class='flex flex-row items-center align-middle bg-zinc-200 dark:bg-[rgba(39,39,42,0.5)] rounded-lg border border-zinc-300 dark:border-gray-700 py-2 px-3'
+			>
+				<div class='pr-3 w-1/2 flex flex-col items-center justify-center'>
+					<button
+						data-post-id={post.id}
+						id='like'
+						class='flex item-center justify-center'
+						aria-label='Like article'
+					>
+						<span class='heart-empty'><HeartEmpty /></span>
+						<span class='heart-full'><HeartFull /></span>
+					</button>
+					<div><span id='numLikes'></span> <span id='likesText'> </span></div>
+				</div>
+				<button
+					class='pl-3 w-1/2 border-l border-zinc-600 flex flex-col items-center justify-center'
+					id='share-button'
+					aria-label='Share article'
+				>
+					<span class='share-icon'><ShareIcon /></span>
+					<p class='share-text'>Share</p>
+				</button>
+			</div>
 			<div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
 				<!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 			</div>
 		</aside>
 	</div>
 </BlogPost>
+
+<style>
+	.heart-full {
+		display: none;
+	}
+
+	#like.active .heart-empty {
+		display: none;
+	}
+
+	#like.active .heart-full {
+		display: inline-block;
+	}
+</style>
+
+<script>
+	if (window.innerWidth > 768) {
+		const mobileActions = document.querySelector('#mobile-actions')
+		mobileActions!.innerHTML = ''
+	} else {
+		const desktopActions = document.querySelector('#desktop-actions')
+		desktopActions!.innerHTML = ''
+	}
+	import { actions } from 'astro:actions'
+
+	const button = document.querySelector('#like')
+	const id = button!.getAttribute('data-post-id')
+	const likesText = document.querySelector('#likesText')
+	const storageKey = `post-${id}-liked`
+	let processing = false
+
+	async function setLikes() {
+		const numLikes = document.querySelector('#numLikes')
+		const { data, error } = await actions.getLikes({ id: Number(id) })
+
+		if (!error) {
+			numLikes!.textContent = data + ''
+			likesText!.textContent = data === 1 ? 'Like' : 'Likes'
+
+			// check localStorage and update button
+			const isLiked = localStorage.getItem(storageKey) === 'true'
+			button!.classList.toggle('active', isLiked)
+		}
+	}
+
+	document.addEventListener('astro:after-swap', setLikes)
+	setLikes()
+
+	button!.addEventListener('click', async () => {
+		if (processing) return
+		processing = true
+		try {
+			const isLiked = localStorage.getItem(storageKey) === 'true'
+			const action = isLiked ? 'removeLike' : 'addLike'
+
+			const { data, error } = await actions[action]({ id: Number(id) })
+			if (!error) {
+				const numLikes = document.querySelector('#numLikes')
+
+				numLikes!.textContent = data + ''
+				likesText!.textContent = data === 1 ? 'Like' : 'Likes'
+
+				// toggle
+				localStorage.setItem(storageKey, (!isLiked).toString())
+				button!.classList.toggle('active', !isLiked)
+			}
+		} finally {
+			processing = false
+		}
+	})
+</script>
+
+<script>
+	const shareButton = document.querySelector<HTMLElement>('#share-button')
+	const shareIcon = shareButton?.querySelector<HTMLElement>('.share-icon')
+	const shareText = shareButton?.querySelector<HTMLElement>('.share-text')
+	let timeout: ReturnType<typeof setTimeout>
+
+	shareButton?.addEventListener('click', async () => {
+		const url = window.location.href
+
+		try {
+			await navigator.clipboard.writeText(url)
+
+			if (shareIcon) shareIcon.style.display = 'none'
+			if (shareText) shareText.textContent = 'Link copied!'
+
+			// reset after 2 seconds
+			clearTimeout(timeout)
+			timeout = setTimeout(() => {
+				if (shareIcon) shareIcon.style.display = 'block'
+				if (shareText) shareText.textContent = 'Share'
+			}, 2000)
+		} catch (err) {
+			console.error('Failed to copy:', err)
+		}
+	})
+</script>

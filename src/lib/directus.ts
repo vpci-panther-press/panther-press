@@ -34,6 +34,7 @@ type Post = {
 	tags: string[]
 	content: string
 	readTime: string
+	likes: number
 	date_created: Date
 }
 
