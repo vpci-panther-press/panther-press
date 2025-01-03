@@ -22,12 +22,12 @@ const image = author.photo ? directusAssetsUrl + author.photo + '?width=150' : '
 			<div class='contentBx'>
 				<h3>
 					{author.name}<br />
-					<!-- <span>{author.role}</span> -->
+					<span>{author.role}</span>
 				</h3>
 			</div>
 		</div>
 		<ul class='sci'>
-			<!-- <p>{author.board}</p> -->
+			<p>{author.board && author.board.length > 1 ? author.board.join(' & ') : author.board}</p>
 		</ul>
 	</div>
 </div>

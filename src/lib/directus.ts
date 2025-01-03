@@ -8,6 +8,8 @@ type Author = {
 	photo?: string | null
 	alumni: boolean
 	post?: number[] | Post_Author[]
+	role: string
+	board: string[]
 }
 
 type Issue = {

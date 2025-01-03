@@ -24,7 +24,18 @@ const timelineData = [
 
 const authors = await directus.request(
 	readItems('author', {
-		fields: ['*']
+		fields: ['*'],
+		filter: {
+			_and: [{ role: { _eq: 'Author' } }, { alumni: { _eq: false } }]
+		}
+	})
+)
+const execs = await directus.request(
+	readItems('author', {
+		fields: ['*'],
+		filter: {
+			_or: [{ role: { _eq: 'Co-President' } }, { role: { _eq: 'Board Manager' } }]
+		}
 	})
 )
 ---
@@ -62,10 +73,12 @@ const authors = await directus.request(
 	</div>
 	<Timeline data={timelineData} client:only='react' />
 	<center
-		><h2 style='font-weight: bolder; font-size: x-large; margin-bottom: 20px;'>
-			Our Exec Team!
-		</h2></center
-	>
+		><h2 style='font-weight: bolder; font-size: x-large; margin-bottom: 20px;'>Our Exec Team!</h2>
+		<div class='flex flex-wrap justify-center'>
+			{execs.map((author) => <AuthorCard author={author} />)}
+		</div>
+	</center>
+
 	<div class='flex flex-wrap justify-center'></div>
 
 	<center><h2 style='font-weight: bolder; font-size:x-large;'>Our Authors!</h2></center>
