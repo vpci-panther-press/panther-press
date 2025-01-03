@@ -162,59 +162,67 @@ const relatedPosts = await getRelatedPosts(post)
 </style>
 
 <script>
-	if (window.innerWidth > 768) {
-		const mobileActions = document.querySelector('#mobile-actions')
-		mobileActions!.innerHTML = ''
-	} else {
-		const desktopActions = document.querySelector('#desktop-actions')
-		desktopActions!.innerHTML = ''
-	}
 	import { actions } from 'astro:actions'
-
-	const button = document.querySelector('#like')
-	const id = button!.getAttribute('data-post-id')
-	const likesText = document.querySelector('#likesText')
-	const storageKey = `post-${id}-liked`
-	let processing = false
-
-	async function setLikes() {
-		const numLikes = document.querySelector('#numLikes')
-		const { data, error } = await actions.getLikes({ id: Number(id) })
-
-		if (!error) {
-			numLikes!.textContent = data + ''
-			likesText!.textContent = data === 1 ? 'Like' : 'Likes'
-
-			// check localStorage and update button
-			const isLiked = localStorage.getItem(storageKey) === 'true'
-			button!.classList.toggle('active', isLiked)
+	function init() {
+		function set() {
+			if (window.innerWidth > 768) {
+				const mobileActions = document.querySelector('#mobile-actions')
+				mobileActions!.innerHTML = ''
+			} else {
+				const desktopActions = document.querySelector('#desktop-actions')
+				desktopActions!.innerHTML = ''
+			}
 		}
-	}
+		set()
 
-	document.addEventListener('astro:after-swap', setLikes)
-	setLikes()
+		const button = document.querySelector('#like')
+		const id = button!.getAttribute('data-post-id')
+		const likesText = document.querySelector('#likesText')
+		const storageKey = `post-${id}-liked`
+		let processing = false
 
-	button!.addEventListener('click', async () => {
-		if (processing) return
-		processing = true
-		try {
-			const isLiked = localStorage.getItem(storageKey) === 'true'
-			const action = isLiked ? 'removeLike' : 'addLike'
+		async function setLikes() {
+			const numLikes = document.querySelector('#numLikes')
+			const { data, error } = await actions.getLikes({ id: Number(id) })
 
-			const { data, error } = await actions[action]({ id: Number(id) })
 			if (!error) {
-				const numLikes = document.querySelector('#numLikes')
-
 				numLikes!.textContent = data + ''
 				likesText!.textContent = data === 1 ? 'Like' : 'Likes'
 
-				// toggle
-				localStorage.setItem(storageKey, (!isLiked).toString())
-				button!.classList.toggle('active', !isLiked)
+				// check localStorage and update button
+				const isLiked = localStorage.getItem(storageKey) === 'true'
+				button!.classList.toggle('active', isLiked)
 			}
-		} finally {
-			processing = false
 		}
+
+		setLikes()
+
+		button?.addEventListener('click', async () => {
+			if (processing) return
+			processing = true
+			try {
+				const isLiked = localStorage.getItem(storageKey) === 'true'
+				const action = isLiked ? 'removeLike' : 'addLike'
+
+				const { data, error } = await actions[action]({ id: Number(id) })
+				if (!error) {
+					const numLikes = document.querySelector('#numLikes')
+
+					numLikes!.textContent = data + ''
+					likesText!.textContent = data === 1 ? 'Like' : 'Likes'
+
+					// toggle
+					localStorage.setItem(storageKey, (!isLiked).toString())
+					button!.classList.toggle('active', !isLiked)
+				}
+			} finally {
+				processing = false
+			}
+		})
+	}
+	init()
+	document.addEventListener('astro:after-swap', () => {
+		init()
 	})
 </script>
 
