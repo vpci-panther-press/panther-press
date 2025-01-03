@@ -55,9 +55,9 @@ module.exports = {
     		colors: {
     			white: '#f8f9fa',
     			cs: {
-					primary: `${colours[getSeason()][0]}`,
-					secondary: `${colours[getSeason()][1]}`,
-					tertiary: `${colours[getSeason()][2]}`
+					primary: colours[getSeason()][0],
+					secondary: colours[getSeason()][1],
+					tertiary: colours[getSeason()][2]
     			},
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
