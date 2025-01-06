@@ -25,7 +25,7 @@
 		"@fontsource/atkinson-hyperlegible": "^5.1.0",
 		"@keystatic/astro": "^5.0.3",
 		"@keystatic/core": "^0.5.41",
-		"@preline/collapse": "^2.5.0",
+		"@preline/collapse": "^2.5.2",
 		"astro": "4.16.14",
 		"framer-motion": "^11.11.17",
 		"react": "^18.3.1",
