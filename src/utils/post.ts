@@ -12,6 +12,7 @@ export const getNonArchivedPosts = async (max?: number) => {
 	const posts = await getCollection('blog')
 	let nonArchivedPosts = []
 	for (let post of posts) {
+		// console.log('Processing post:', post.slug, 'Issue:', post.data?.issue);
 		const issue = await getEntry('issues', sluglify(post.data.issue).toLowerCase())
 		if (!issue!.data.archived) {
 			nonArchivedPosts.push(post)
