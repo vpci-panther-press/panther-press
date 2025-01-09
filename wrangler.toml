@@ -4,5 +4,4 @@ compatibility_flags = [ "nodejs_compat" ]
 compatibility_date = "2024-09-23"
 
 [vars]
-KEYSTATIC_GITHUB_CLIENT_ID = "Iv23liQP7TXHSiq4KOFV"
-PUBLIC_KEYSTATIC_GITHUB_APP_SLUG = "vpci-panther-press-keystatic"
+PUBLIC_DIRECTUS_URL = "https://directus.picafe.me"

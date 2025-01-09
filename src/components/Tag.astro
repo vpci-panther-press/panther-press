@@ -8,15 +8,15 @@ const { tag, category } = Astro.props
 
 {
 	category ? (
-		<a href={`/category/${tag}`} aria-label={tag}>
+		<a href={`/articles/category/${tag}/1`} aria-label={tag}>
 			<span class='text-slate-800 dark:text-slate-50 font-semibold text-base w-fit px-2 py-1 md:px-3 md:py-1.5 underline sm:no-underline sm:hover:underline'>
-				{tag}
+				{tag.substring(0, 1).toUpperCase() + tag.substring(1)}
 			</span>
 		</a>
 	) : (
 		<a href={`/tags/${tag}`} aria-label={tag}>
 			<span class='font-semibold text-base w-fit px-2 underline sm:no-underline sm:hover:underline '>
-				{`#${tag}`}
+				#{tag}
 			</span>
 		</a>
 	)

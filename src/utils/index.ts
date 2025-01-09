@@ -5,11 +5,7 @@ export {
 	getNonArchivedPosts,
 	getTags,
 	getPostByTag,
-	filterPostsByIssue,
-	filterPostsByAuthor,
-	filterPostsByCategory,
 	sortIssuesByDate,
 	sortPostsByDate,
 	toDate
 } from './post'
-export { remarkReadingTime } from './readTime'

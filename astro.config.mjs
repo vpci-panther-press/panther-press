@@ -1,10 +1,9 @@
 import { defineConfig } from 'astro/config'
-import mdx from '@astrojs/mdx'
+// import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
-import { remarkReadingTime } from './src/utils/readTime.ts'
 import react from '@astrojs/react'
-import keystatic from '@keystatic/astro'
+// import keystatic from '@keystatic/astro'
 
 import cloudflare from '@astrojs/cloudflare'
 
@@ -15,33 +14,40 @@ export default defineConfig({
 	build: {
 		format: 'file'
 	},
-	markdown: {
-		remarkPlugins: [remarkReadingTime],
-		drafts: true,
-		shikiConfig: {
-			theme: 'material-theme-palenight',
-			wrap: true
-		}
-	},
+	// markdown: {
+	// 	remarkPlugins: [remarkReadingTime],
+	// 	drafts: true,
+	// 	shikiConfig: {
+	// 		theme: 'material-theme-palenight',
+	// 		wrap: true
+	// 	}
+	// },
 	integrations: [
-		mdx({
-			syntaxHighlight: 'shiki',
-			shikiConfig: {
-				theme: 'material-theme-palenight',
-				wrap: true
-			},
-			drafts: true
-		}),
+		// mdx({
+		// 	syntaxHighlight: 'shiki',
+		// 	shikiConfig: {
+		// 		theme: 'material-theme-palenight',
+		// 		wrap: true
+		// 	},
+		// 	drafts: true
+		// }),
 		sitemap(),
 		tailwind(),
 		react(),
-		keystatic()
+		// keystatic()
 	],
-	output: 'hybrid',
+	output: 'static',
 	adapter: cloudflare(),
 	vite: {
 		define: {
 			'process.env': process.env
-		}
+		},
+		resolve: {
+			// Use react-dom/server.edge instead of react-dom/server.browser for React 19.
+			// Without this, MessageChannel from node:worker_threads needs to be polyfilled.
+			alias: import.meta.env.PROD && {
+			  "react-dom/server": "react-dom/server.edge",
+			},
+		},
 	}
 })

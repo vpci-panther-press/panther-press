@@ -1,6 +1,6 @@
-import { cn } from '../utils/cn'
+import { cn } from '../../utils/cn'
 import React from 'react'
-import { BentoGrid, BentoGridItem } from './aceternity/BentoGrid'
+import { BentoGrid, BentoGridItem } from './BentoGrid'
 import { motion } from 'framer-motion'
 
 export default function Bento() {

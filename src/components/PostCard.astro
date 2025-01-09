@@ -1,25 +1,27 @@
 ---
-import { sluglify } from '@/utils'
 import { Image } from 'astro:assets'
-import { getEntry } from 'astro:content'
+import { readItem } from '@directus/sdk'
+import directus, { directusAssetsUrl, type Post } from 'src/lib/directus'
+import type { Author } from 'src/lib/directus'
 
-const {
-	data: { title, description, issue, heroImage, category, alt, author, tags },
-	readTime,
-	slug,
-	cover
-} = Astro.props
+interface Props {
+	post: Post
+}
 
-const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
+const { post } = Astro.props
+
+const authorData: Author = await directus.request(
+	readItem('author', post.authors[0].author_id as string | number)
+)
 ---
 
 <a
 	class='lg:first:w-full lg:first:max-w-none w-full sm:max-w-[32rem] mx-auto group/card'
-	href={`/articles/${slug}/`}
+	href={`/articles/${post.slug}/`}
 >
 	<div
 		class='cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl w-full sm:min-w-[32rem] lg:first:w-full backgroundImage flex flex-col justify-between p-4 bg-cover bg-center'
-		style={`background-image: url('${heroImage.src}');`}
+		style={`background-image: url('${directusAssetsUrl + post.heroImage}');`}
 	>
 		<div
 			class='absolute w-full h-full top-0 left-0 bg-black opacity-[0.55] transition duration-300 group-hover/card:opacity-60'
@@ -31,33 +33,28 @@ const authorData = await getEntry('authors', sluglify(author[0]).toLowerCase())
 					height='100'
 					width='100'
 					format='webp'
-					alt={author + "'s Profile"}
-					src={authorData?.data.photo || '/author/default.jpg'}
+					alt={authorData.name + "'s Profile"}
+					src={authorData.photo
+						? directusAssetsUrl + authorData.photo + '?width=150'
+						: '/author/default.jpg'}
 					class='size-10 rounded-full border-2 object-cover'
 				/>
 				<div class='flex flex-col'>
-					<p class='font-normal text-base text-gray-50 relative z-10'>
-						{author[0]}
-					</p>
-					<p class='text-sm text-gray-400'>{readTime}</p>
+					<p class='font-normal text-base text-gray-50 relative z-10'>{authorData.name}</p>
+					<p class='text-sm text-gray-400'>{post.readTime}</p>
 				</div>
 			</div>
 			<div class='ml-auto justify-center items-center h-full'>
 				<p
 					class='inline-flex items-center py-1.5 px-3 rounded-md text-xs font-semibold bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100'
 				>
-					{category}
+					{post.category.substring(0, 1).toUpperCase() + post.category.substring(1)}
 				</p>
 			</div>
 		</div>
 		<div class='text content'>
-			<h1 class='font-bold text-xl md:text-2xl text-gray-50 relative z-10'>
-				{title}
-			</h1>
-			<p class='font-normal text-sm text-gray-50 relative z-10 my-4'>
-				{description}
-			</p>
+			<h1 class='font-bold text-xl md:text-2xl text-gray-50 relative z-10'>{post.title}</h1>
+			<p class='font-normal text-sm text-gray-50 relative z-10 my-4'>{post.description}</p>
 		</div>
 	</div>
 </a>
-<!-- End Card -->

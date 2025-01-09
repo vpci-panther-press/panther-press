@@ -1,34 +1,32 @@
 ---
-import type { CollectionEntry } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
-import { unsluglify } from '@/utils'
-import type { MarkdownHeading } from 'astro'
+// import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
-import { getEntry } from 'astro:content'
+import type { Post } from 'src/lib/directus'
+import { directusAssetsUrl } from 'src/lib/directus'
 
 type Props = {
-	id: CollectionEntry<'blog'>['id']
-	data: CollectionEntry<'blog'>['data']
-	headings: MarkdownHeading[]
+	id: Post['id']
+	data: Post
+	// headings: MarkdownHeading[]
 	readTime: string
 }
 
-const { data, readTime, headings, id } = Astro.props
-const { title, description, heroImage, tags, category, issue, alt } = data
-const issueData = await getEntry('issues', issue)
+const { data, id } = Astro.props
+const { title, description, heroImage, tags, category, issue, alt, readTime } = data
 ---
 
 <html lang='en' class='scroll-smooth'>
-	<BaseLayout title={title} description={description} image={heroImage.src} issue={issue}>
+	<BaseLayout title={title} description={description} image={heroImage} issue={issue}>
 		<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
 			<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 				<div class='w-full flex flex-col gap-2 text-center font-semibold'>
-					<a href={`/issues/${issue}`}>
+					<a href={`/issues/${issue.slug}`}>
 						<p
 							class='text-cs-primary dark:text-cs-secondary underline sm:no-underline sm:hover:underline'
 						>
-							{issueData?.data.name}
+							{issue.name}
 						</p>
 					</a>
 					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
@@ -91,7 +89,7 @@ const issueData = await getEntry('issues', issue)
 				{
 					heroImage && (
 						<Image
-							src={heroImage}
+							src={directusAssetsUrl + heroImage}
 							width={1000}
 							height={500}
 							quality={100}

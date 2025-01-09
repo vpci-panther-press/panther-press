@@ -2,10 +2,11 @@
 import { Image } from 'astro:assets'
 import ExternalLink from './icons/ExternalLink.astro'
 import ArrowRightS from './icons/ArrowRightS.astro'
+import { directusAssetsUrl } from 'src/lib/directus'
 type Props = {
 	title: string
 	description: string
-	img: ImageMetadata
+	img: string
 	url: string
 	issuuLink: string
 	archived: boolean
@@ -21,7 +22,7 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 		class='flex-shrink-0 relative w-full rounded-t-xl sm:rounded-s-xl sm:max-w-[15rem] md:rounded-se-none md:max-w-xs'
 	>
 		<Image
-			src={img}
+			src={directusAssetsUrl + img}
 			alt=`Cover of the ${title} issue`
 			width='1200'
 			height='900'
