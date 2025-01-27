@@ -1,42 +1,72 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
-import { filterPostsByAuthor, sortPostsByDate } from '@/utils'
-import { getEntry } from 'astro:content'
-import { getCollection } from 'astro:content'
+import { sortPostsByDate } from '@/utils'
+import directus, { directusAssetsUrl } from 'src/lib/directus'
+import { readItems } from '@directus/sdk'
 
 export async function getStaticPaths() {
-	const authors = await getCollection('authors')
+	const authors = await directus.request(
+		readItems('author', {
+			fields: ['*']
+		})
+	)
 
 	return authors.map((author) => ({
-		params: { author: author.id },
+		params: { author: author.slug },
 		props: { author }
 	}))
 }
 
 const { author } = Astro.props
 
-const posts = await filterPostsByAuthor(author.data.name)
+// filter posts by author
+const posts = await directus.request(
+	readItems('post', {
+		fields: [
+			'id',
+			'title',
+			'description',
+			'slug',
+			//@ts-expect-error
+			'authors.*',
+			'issue',
+			'heroImage',
+			'alt',
+			'category',
+			'tags',
+			'readTime',
+			{ issue: ['*'] }
+		],
+		filter: {
+			authors: {
+				//@ts-ignore
+				author_id: {
+					_in: [author.id]
+				}
+			}
+		}
+	})
+)
 const sortedPosts = sortPostsByDate(posts)
-const authorData = await getEntry('authors', author.id)
 ---
 
-<BaseLayout title={author.data.name}>
+<BaseLayout title={author.name}>
 	<div class='flex flex-col md:flex-row mb-8 items-center'>
 		<div
-			style={`background-image: url('${authorData?.data.photo?.src || '/author/default.jpg'}');`}
+			style={`background-image: url('${directusAssetsUrl + author?.photo + '?width=400' || '/author/default.jpg'}');`}
 			class='size-48 block flex-shrink-0 bg-cover rounded-full bg-center md:mr-4 mb-4 md:mb-0'
 		>
 		</div>
 		<div class='flex flex-col justify-center items-center md:items-start'>
 			<p
-				class={`${authorData?.data.alumni ? 'inline-block' : 'hidden'} px-2 py-1 my-2 dark:bg-white bg-black dark:text-black text-white rounded-full `}
+				class={`${author.alumni ? 'inline-block' : 'hidden'} px-2 py-1 my-2 dark:bg-white bg-black dark:text-black text-white rounded-full `}
 			>
 				Alumni
 			</p>
-			<h1 class='text-4xl font-bold mb-4'>{authorData?.data.name}</h1>
-			<p class={`text-lg md:text-xl ${authorData?.data.bio ? 'opacity-50' : ''}`}>
-				{authorData?.data.bio || 'No biography found'}
+			<h1 class='text-4xl font-bold mb-4'>{author.name}</h1>
+			<p class={`text-lg md:text-xl ${author.bio ? 'opacity-50' : ''}`}>
+				{author.bio || 'No biography found'}
 			</p>
 		</div>
 	</div>

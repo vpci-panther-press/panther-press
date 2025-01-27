@@ -2,26 +2,54 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
-import { filterPostsByIssue } from '@/utils'
-import { getCollection } from 'astro:content'
+import { readItems } from '@directus/sdk'
+import directus from 'src/lib/directus'
 
 export async function getStaticPaths() {
-	const issues = await getCollection('issues')
-
+	const issues = await directus.request(
+		readItems('issue', {
+			fields: ['*']
+		})
+	)
 	return issues.map((issue) => ({
-		params: { issue: issue.id },
+		params: { issue: issue.slug },
 		props: { issue }
 	}))
 }
 
 const { issue } = Astro.props
 
-const posts = await filterPostsByIssue(issue.id)
+const posts = await directus.request(
+	readItems('post', {
+		fields: [
+			'id',
+			'title',
+			'description',
+			'slug',
+			//@ts-expect-error
+			'authors.*',
+			'issue',
+			'heroImage',
+			'alt',
+			'category',
+			'tags',
+			'readTime',
+			{ issue: ['*'] }
+		],
+		filter: {
+			issue: {
+				id: {
+					_eq: issue.id
+				}
+			}
+		}
+	})
+)
 
-const issueTitle = issue.data.name + (issue.data.archived ? ' (Archived)' : '')
+const issueTitle = issue.name + (issue.archived ? ' (Archived)' : '')
 ---
 
-<BaseLayout title={issue.data.name}>
+<BaseLayout title={issue.name}>
 	<PageTitle title={issueTitle} />
 	<div data-pagefind-ignore='all'>
 		<ListPosts posts={posts} FirstBig={true} />

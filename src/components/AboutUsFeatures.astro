@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets'
 import coverImg from '../assets/misc/IMG_7359.jpg'
-import ZoomCard from './aceternity/ZoomCard.tsx'
+import ZoomCard from './ZoomCard.astro'
 // text-[#2C3E50]
 ---
 
 <!-- Features -->
 <div class='max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto'>
-	<ZoomCard client:only='react' className='sm:py-10 p-0' containerClassName='bg-transparent'>
+	<ZoomCard className='sm:py-10 p-0' containerClassName='bg-transparent'>
 		<div>
 			<Image
 				src={coverImg}
