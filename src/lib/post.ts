@@ -19,8 +19,7 @@ export const getPosts = async (max?: number): Promise<Post[]> => {
 				'tags',
 				'readTime',
 				{ issue: ['*'] }
-			],
-			limit: max ? max : -1
+			]
 		})
 	)
 
@@ -50,18 +49,15 @@ export const getNonArchivedPosts = async (max?: number) => {
 }
 
 export const sortIssuesByDate = (issues: Issue[]) => {
-	// idk why this only works when reversed but it works
-	return issues
-		.sort((b, a) => {
-			const aDate = toDate(a.name)
-			const bDate = toDate(b.name)
-			return bDate.getTime() - aDate.getTime()
-		})
-		.reverse()
+	return issues.sort((a, b) => {
+		const aDate = toDate(a.name)
+		const bDate = toDate(b.name)
+		return bDate.getTime() - aDate.getTime()
+	})
 }
 
 export const toDate = (issue: string) => {
-	const seasonToMonth = {
+	const seasonToMonth: Record<string, number> = {
 		spring: 2,
 		summer: 5,
 		autumn: 8,
@@ -69,11 +65,14 @@ export const toDate = (issue: string) => {
 		winter: 11
 	}
 	const findSeason = /\b(spring|summer|autumn|fall|winter)\b/gi
-	const season = issue.split('-')[0].toLowerCase()
 
-	return findSeason.test(issue)
-		? //@ts-ignore
-			new Date(parseInt(issue.slice(-4)), seasonToMonth[season], 1)
+	const findYear = issue.match(/\d{4}/)
+	const year = findYear ? parseInt(findYear[0]) : new Date().getFullYear()
+
+	const season = issue.split(' ')[0].toLowerCase()
+
+	return findSeason.test(issue.toLowerCase())
+		? new Date(year, seasonToMonth[season], 1)
 		: new Date(`1 ${issue}`)
 }
 
