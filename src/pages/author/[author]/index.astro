@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
-import { sortPostsByDate } from '@/utils'
+import { sortPostsByDate } from 'src/lib'
 import directus, { directusAssetsUrl } from 'src/lib/directus'
 import { readItems } from '@directus/sdk'
 
@@ -55,7 +55,7 @@ const sortedPosts = sortPostsByDate(posts)
 	<div class='flex flex-col md:flex-row mb-8 items-center'>
 		<div
 			style={`background-image: url('${directusAssetsUrl + author?.photo + '?width=400' || '/author/default.jpg'}');`}
-			class='size-48 block flex-shrink-0 bg-cover rounded-full bg-center md:mr-4 mb-4 md:mb-0'
+			class='size-48 block shrink-0 bg-cover rounded-full bg-center md:mr-4 mb-4 md:mb-0'
 		>
 		</div>
 		<div class='flex flex-col justify-center items-center md:items-start'>

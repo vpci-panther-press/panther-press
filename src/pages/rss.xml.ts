@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss'
 import { siteConfig } from '@/site-config'
-import { getPosts, toDate } from '@/utils'
+import { getPosts, toDate } from 'src/lib'
 import directus from 'src/lib/directus'
 import { readItems } from '@directus/sdk'
 

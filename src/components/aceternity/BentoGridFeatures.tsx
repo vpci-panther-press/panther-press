@@ -1,4 +1,4 @@
-import { cn } from '../../utils/cn'
+import { cn } from '../../lib/cn'
 import React from 'react'
 import { BentoGrid, BentoGridItem } from './BentoGrid'
 import { motion } from 'framer-motion'
@@ -48,7 +48,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='flex-shrink-0 size-8 text-blue-600 dark:text-blue-500'
+				className='shrink-0 size-8 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -76,7 +76,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -106,7 +106,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -136,7 +136,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -167,7 +167,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'

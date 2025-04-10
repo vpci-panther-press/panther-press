@@ -1,5 +1,5 @@
 ---
-import { cn } from '@/utils'
+import { cn } from 'src/lib'
 import { Image } from 'astro:assets'
 import { directusAssetsUrl, type Post } from 'src/lib/directus'
 
@@ -16,7 +16,7 @@ const { posts } = Astro.props
 			posts.map(async (post: Post) => {
 				return (
 					<a
-						class='group flex flex-col h-full border border-gray-200 hover:border-gray-300 transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600'
+						class='group flex flex-col h-full border border-gray-200 hover:border-gray-300 transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-transparent dark:hover:shadow-black/[.4] dark:focus:outline-hidden dark:focus:ring-1 dark:focus:ring-gray-600'
 						href={`/articles/${post.slug}/`}
 					>
 						<div class='aspect-w-16 aspect-h-11'>

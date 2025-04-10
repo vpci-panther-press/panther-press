@@ -5,7 +5,7 @@ import Pagination from '@/components/Pagination'
 import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
 import { siteConfig } from '@/data/site.config'
-import { getNonArchivedPosts } from '@/utils'
+import { getNonArchivedPosts } from 'src/lib'
 
 export async function getStaticPaths({ paginate }: any) {
 	const allPosts = await getNonArchivedPosts()

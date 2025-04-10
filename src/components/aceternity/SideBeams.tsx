@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion, useTransform, useScroll, useSpring } from 'framer-motion'
-import { cn } from '../../utils/cn'
+import { cn } from '../../lib/cn'
 
 export const TracingBeam = ({
 	children,
@@ -47,7 +47,7 @@ export const TracingBeam = ({
 						animate={{
 							boxShadow: scrollYProgress.get() > 0 ? 'none' : 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
 						}}
-						className='ml-[10.9px] h-4 w-4 rounded-full border border-netural-200 shadow-sm flex items-center justify-center'
+						className='ml-[10.9px] h-4 w-4 rounded-full border border-netural-200 shadow-xs flex items-center justify-center'
 					>
 						<motion.div
 							transition={{

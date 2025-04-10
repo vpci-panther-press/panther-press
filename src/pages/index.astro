@@ -4,7 +4,7 @@ import Hero from '@/components/Hero'
 import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
 import BaseLayout from '@/layouts/BaseLayout'
-import { getPosts } from '@/utils'
+import { getPosts } from 'src/lib'
 
 const MAX_POSTS = 4
 const posts = await getPosts(MAX_POSTS)
@@ -16,7 +16,7 @@ const posts = await getPosts(MAX_POSTS)
 >
 	<Hero />
 	<AboutUsFeatures />
-	<div class='px-4 lg:px-8'>
+	<div class=''>
 		<div class='mb-6'>
 			<PageTitle title='Recent Articles' />
 		</div>

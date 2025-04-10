@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import PageTitle from '@/components/PageTitle'
 import IssuesCard from 'src/components/IssuesCard.astro'
-import { sortIssuesByDate } from '@/utils'
+import { sortIssuesByDate } from 'src/lib'
 import directus from 'src/lib/directus'
 import { readItems } from '@directus/sdk'
 const allIssues = await directus.request(

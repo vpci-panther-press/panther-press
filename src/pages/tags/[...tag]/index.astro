@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import PageTitle from '@/components/PageTitle'
-import { getTags, getPostByTag } from '@/utils'
+import { getTags, getPostByTag } from 'src/lib'
 
 export async function getStaticPaths() {
 	const tags = await getTags()

@@ -25,4 +25,9 @@ pnpm-debug.log*
 node_modules
 .idea
 
-src/out
+# keystatic cms remnants
+src/content
+keystatic.config.ts
+src/assets/authors
+src/assets/covers
+src/assets/images

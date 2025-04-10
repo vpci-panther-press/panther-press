@@ -7,7 +7,7 @@
 		"paths": {
 			"@/components/*": ["src/components/*.astro"],
 			"@/layouts/*": ["src/layouts/*.astro"],
-			"@/utils": ["src/utils/index.ts"],
+			"@/utils": ["src/lib/index.ts"],
 			"@/data/*": ["src/data/*"],
 			"@/site-config": ["src/data/site.config.ts"],
 			"@/styles": ["src/styles/"],
