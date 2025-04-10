@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 
 import { motion } from 'framer-motion'
-import { cn } from '../../utils/cn'
+import { cn } from '../../lib/cn'
 
 type Direction = 'TOP' | 'LEFT' | 'BOTTOM' | 'RIGHT'
 
@@ -61,7 +61,7 @@ export default function HoverBorderGradient({
 			}}
 			onMouseLeave={() => setHovered(false)}
 			className={cn(
-				'relative flex rounded-full content-center bg-black/20 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px decoration-clone',
+				'relative flex rounded-full content-center bg-black/20 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px box-decoration-clone',
 				containerClassName
 			)}
 			{...props}

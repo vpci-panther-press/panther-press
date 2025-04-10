@@ -1,5 +1,5 @@
 ---
-import { cn } from '@/utils'
+import { cn } from 'src/lib'
 import { type Post } from 'src/lib/directus'
 import PostCard from './PostCard.astro'
 
@@ -13,7 +13,7 @@ const { posts, FirstBig = false } = Astro.props
 
 <section
 	class={cn(
-		`grid grid-cols-1 lg:grid-cols-2 gap-8 mt-3`,
+		`grid grid-cols-1 lg:grid-cols-2 gap-6 mt-3`,
 		FirstBig && `lg:[&>*:first-child]:col-span-2`
 	)}
 >

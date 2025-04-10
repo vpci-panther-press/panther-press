@@ -30,11 +30,11 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 	<a href={page.url.prev}>
 		<button
 			type='button'
-			class='min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none focus:bg-zinc-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10'
+			class='min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-hidden focus:bg-zinc-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10'
 			disabled={page.start > 0 ? false : true}
 		>
 			<svg
-				class='flex-shrink-0 w-3.5 h-3.5'
+				class='shrink-0 w-3.5 h-3.5'
 				xmlns='http://www.w3.org/2000/svg'
 				width='24'
 				height='24'
@@ -58,7 +58,7 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 			pageNumbers.map((pageNumber) => (
 				<a
 					href={`${page.url.current.replace(/\/\d+$/, `/${pageNumber}`)}`}
-					class={`min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-zinc-800  focus:outline-none focus:bg-zinc-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white  dark:focus:bg-white/10 ${
+					class={`min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-zinc-800  focus:outline-hidden focus:bg-zinc-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white  dark:focus:bg-white/10 ${
 						page.currentPage === pageNumber
 							? ' bg-zinc-200 dark:bg-zinc-600 focus:bg-zinc-300 dark:focus:bg-zinc-500'
 							: 'hover:bg-zinc-100 dark:hover:bg-white/10'
@@ -72,12 +72,12 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 	<a href={page.url.next}>
 		<button
 			type='button'
-			class='min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-none focus:bg-zinc-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10'
+			class='min-h-[38px] min-w-[38px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-zinc-800 hover:bg-zinc-100 focus:outline-hidden focus:bg-zinc-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10'
 			disabled={page.currentPage < page.lastPage ? false : true}
 		>
 			<span>Next</span>
 			<svg
-				class='flex-shrink-0 w-3.5 h-3.5'
+				class='shrink-0 w-3.5 h-3.5'
 				xmlns='http://www.w3.org/2000/svg'
 				width='24'
 				height='24'

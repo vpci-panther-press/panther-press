@@ -1,7 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
-const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette')
-
+const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette');
 const colours = {
 	Spring: ['#69893e', '#92b573', '#a482a3'],
 	// inspired by the colours of flowers
