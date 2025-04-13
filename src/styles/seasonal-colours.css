@@ -1,10 +1,10 @@
 /* auto-generated seasonal colors - Do not edit */
 @theme {
-	--color-cs-primary: #69893e;
-	--color-cs-secondary: #92b573;
-	--color-cs-tertiary: #a482a3;
-
-	/* seasonal colors for primary and secondary */
-	--primary: var(--color-cs-primary);
-	--secondary: var(--color-cs-secondary);
+  --color-cs-primary: #69893e;
+  --color-cs-secondary: #92b573;
+  --color-cs-tertiary: #a482a3;
+  
+  /* seasonal colors for primary and secondary */
+  --primary: var(--color-cs-primary);
+  --secondary: var(--color-cs-secondary);
 }
