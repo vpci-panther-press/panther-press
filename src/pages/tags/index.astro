@@ -7,12 +7,12 @@ const tags = await getTags()
 
 <BaseLayout title='Tags'>
 	<PageTitle title='Tags' />
-	<div class='flex justify-center flex-wrap gap-4'>
+	<div class='flex flex-wrap justify-center gap-4'>
 		{
 			tags.sort().map((tag) => (
 				<a
 					href={`/tags/${tag}`}
-					class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'
+					class='mr-2 mb-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700'
 				>
 					#{tag}
 				</a>

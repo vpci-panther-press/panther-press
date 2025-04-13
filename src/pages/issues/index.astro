@@ -15,14 +15,14 @@ sortIssuesByDate(allIssues)
 
 <BaseLayout title='Issues'>
 	<PageTitle title='Issues' />
-	<div class='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+	<div class='grid grid-cols-1 gap-4 lg:grid-cols-2'>
 		{
 			allIssues.map((issue: any) => (
 				<IssuesCard
 					title={issue.name}
 					description={issue.description}
 					img={issue.coverImage}
-					url={`/issues/${issue.slug}`}
+					url={`/issues/${issue.slug}/`}
 					issuuLink={issue.issuuLink}
 					archived={issue.archived}
 				/>

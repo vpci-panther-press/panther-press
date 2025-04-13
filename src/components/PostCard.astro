@@ -16,18 +16,18 @@ const authorData: Author = await directus.request(
 ---
 
 <a
-	class='lg:first:w-full lg:first:max-w-none min-w-full sm:max-w-[32rem] mx-auto group/card'
+	class='group/card mx-auto min-w-full sm:max-w-[32rem] lg:first:w-full lg:first:max-w-none'
 	href={`/articles/${post.slug}/`}
 >
 	<div
-		class='cursor-pointer overflow-hidden relative card h-96 rounded-md shadow-xl w-full sm:min-w-[32rem] lg:first:w-full backgroundImage flex flex-col justify-between p-4 bg-cover bg-center'
+		class='card backgroundImage relative flex h-96 w-full cursor-pointer flex-col justify-between overflow-hidden rounded-md bg-cover bg-center p-4 shadow-xl sm:min-w-[32rem] lg:first:w-full'
 		style={`background-image: url('${directusAssetsUrl + post.heroImage}');`}
 	>
 		<div
-			class='absolute w-full h-full top-0 left-0 bg-black opacity-[0.55] transition duration-300 group-hover/card:opacity-60'
+			class='absolute top-0 left-0 h-full w-full bg-black opacity-[0.55] transition duration-300 group-hover/card:opacity-60'
 		>
 		</div>
-		<div class='flex flex-row z-10'>
+		<div class='z-10 flex flex-row'>
 			<div class='flex flex-row items-center space-x-4'>
 				<Image
 					height='100'
@@ -40,21 +40,21 @@ const authorData: Author = await directus.request(
 					class='size-10 rounded-full border-2 object-cover'
 				/>
 				<div class='flex flex-col'>
-					<p class='font-normal text-base text-gray-50 relative z-10'>{authorData.name}</p>
+					<p class='relative z-10 text-base font-normal text-gray-50'>{authorData.name}</p>
 					<p class='text-sm text-gray-400'>{post.readTime}</p>
 				</div>
 			</div>
-			<div class='ml-auto justify-center items-center h-full'>
+			<div class='ml-auto h-full items-center justify-center'>
 				<p
-					class='inline-flex items-center py-1.5 px-3 rounded-md text-xs font-semibold bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100'
+					class='inline-flex items-center rounded-md bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-800 dark:bg-slate-900 dark:text-slate-100'
 				>
 					{post.category.substring(0, 1).toUpperCase() + post.category.substring(1)}
 				</p>
 			</div>
 		</div>
 		<div class='text content'>
-			<h1 class='font-bold text-xl md:text-2xl text-gray-50 relative z-10'>{post.title}</h1>
-			<p class='font-normal text-sm text-gray-50 relative z-10 my-4'>{post.description}</p>
+			<h1 class='relative z-10 text-xl font-bold text-gray-50 md:text-2xl'>{post.title}</h1>
+			<p class='relative z-10 my-4 text-sm font-normal text-gray-50'>{post.description}</p>
 		</div>
 	</div>
 </a>

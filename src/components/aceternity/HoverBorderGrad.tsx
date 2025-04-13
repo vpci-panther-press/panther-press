@@ -61,14 +61,14 @@ export default function HoverBorderGradient({
 			}}
 			onMouseLeave={() => setHovered(false)}
 			className={cn(
-				'relative flex rounded-full content-center bg-black/20 transition duration-500 dark:bg-white/20 items-center flex-col flex-nowrap gap-10 h-min justify-center overflow-visible p-px box-decoration-clone',
+				'relative flex h-min flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full bg-black/20 box-decoration-clone p-px transition duration-500 dark:bg-white/20',
 				containerClassName
 			)}
 			{...props}
 		>
 			<div
 				className={cn(
-					'w-full dark:text-white z-10 bg-zinc-200 dark:bg-zinc-900 px-4 py-2 rounded-[inherit]',
+					'z-10 w-full rounded-[inherit] bg-zinc-200 px-4 py-2 dark:bg-zinc-900 dark:text-white',
 					className
 				)}
 			>
@@ -76,7 +76,7 @@ export default function HoverBorderGradient({
 			</div>
 			{localStorage.getItem('animations') === 'true' ? (
 				<motion.div
-					className={cn('flex-none inset-0 overflow-hidden absolute z-0 rounded-[inherit]')}
+					className={cn('absolute inset-0 z-0 flex-none overflow-hidden rounded-[inherit]')}
 					style={{
 						filter: 'blur(2px)',
 						position: 'absolute',
@@ -90,7 +90,7 @@ export default function HoverBorderGradient({
 					transition={{ ease: 'linear', duration: duration ?? 1 }}
 				/>
 			) : null}
-			<div className='bg-zinc-200 dark:bg-zinc-900 absolute z-1 flex-none inset-[2px] rounded-[100px]' />
+			<div className='absolute inset-[2px] z-1 flex-none rounded-[100px] bg-zinc-200 dark:bg-zinc-900' />
 		</Tag>
 	)
 }

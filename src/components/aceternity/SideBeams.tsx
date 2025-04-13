@@ -38,7 +38,7 @@ export const TracingBeam = ({
 	if (showAnimations && window.innerWidth > 768) {
 		return (
 			<motion.div ref={ref} className={cn('relative ml-6', className)}>
-				<div className='absolute -left-4 md:-left-8 top-7'>
+				<div className='absolute top-7 -left-4 md:-left-8'>
 					<motion.div
 						transition={{
 							duration: 0.2,
@@ -47,7 +47,7 @@ export const TracingBeam = ({
 						animate={{
 							boxShadow: scrollYProgress.get() > 0 ? 'none' : 'rgba(0, 0, 0, 0.24) 0px 3px 8px'
 						}}
-						className='ml-[10.9px] h-4 w-4 rounded-full border border-netural-200 shadow-xs flex items-center justify-center'
+						className='border-netural-200 ml-[10.9px] flex h-4 w-4 items-center justify-center rounded-full border shadow-xs'
 					>
 						<motion.div
 							transition={{
@@ -65,7 +65,7 @@ export const TracingBeam = ({
 						viewBox={`0 0 20 ${svgHeight}`}
 						width='20'
 						height={svgHeight} // Set the SVG height
-						className=' block'
+						className='block'
 						aria-hidden='true'
 					>
 						<motion.path

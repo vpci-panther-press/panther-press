@@ -67,27 +67,27 @@ const relatedPosts = await getRelatedPosts(post)
 ---
 
 <BlogPost id={post.id} data={post} readTime={post.readTime}>
-	<div class='grid grid-cols-1 md:grid-cols-[80%_auto] gap-10 mt-8'>
+	<div class='mt-8 grid grid-cols-1 gap-10 md:grid-cols-[80%_auto]'>
 		<!-- post -->
 		<article class='md:max-w-prose lg:max-w-full'>
 			<div
 				id='content'
 				set:html={sanitizeHtml(post.content)}
-				class='font-atkinson prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'
+				class='prose prose-lg mb-12 min-w-full font-atkinson md:prose-xl dark:prose-invert'
 			/>
 
 			<!-- related posts -->
 			<footer>
-				<div class='md:hidden flex flex-col gap-10 mb-10 w-full justify-center items-center'>
+				<div class='mb-10 flex w-full flex-col items-center justify-center gap-10 md:hidden'>
 					<div
 						id='mobile-actions'
-						class='w-full flex flex-row items-center align-middle bg-zinc-200 dark:bg-[rgba(39,39,42,0.5)] rounded-lg border border-zinc-300 dark:border-gray-700 py-2 px-3'
+						class='flex w-full flex-row items-center rounded-lg border border-zinc-300 bg-zinc-200 px-3 py-2 align-middle dark:border-gray-700 dark:bg-[rgba(39,39,42,0.5)]'
 					>
-						<div class='pr-3 w-1/2 flex flex-col items-center justify-center'>
+						<div class='flex w-1/2 flex-col items-center justify-center pr-3'>
 							<button
 								data-post-id={post.id}
 								id='like'
-								class='flex item-center justify-center'
+								class='item-center flex justify-center'
 								aria-label='Like article'
 							>
 								<span class='heart-empty'><HeartEmpty /></span>
@@ -96,7 +96,7 @@ const relatedPosts = await getRelatedPosts(post)
 							<div><span id='numLikes'></span> <span id='likesText'> </span></div>
 						</div>
 						<button
-							class='pl-3 w-1/2 border-l border-zinc-600 flex flex-col items-center justify-center'
+							class='flex w-1/2 flex-col items-center justify-center border-l border-zinc-600 pl-3'
 							id='share-button'
 							aria-label='Share article'
 						>
@@ -107,23 +107,23 @@ const relatedPosts = await getRelatedPosts(post)
 					<AuthorProfile authors={post.authors} imageCredit={post.photoCredits} />
 				</div>
 
-				<h1 class='font-bold text-lg dark:text-white mb-6'>Related Posts</h1>
+				<h1 class='mb-6 text-lg font-bold dark:text-white'>Related Posts</h1>
 				{relatedPosts.length > 0 && <ListRelatedPosts posts={relatedPosts} />}
 			</footer>
 		</article>
 
 		<!-- aside  -->
-		<aside class='md:flex flex-col gap-8 hidden'>
+		<aside class='hidden flex-col gap-8 md:flex'>
 			<AuthorProfile authors={post.authors} imageCredit={post.photoCredits} />
 			<div
 				id='desktop-actions'
-				class='flex flex-row items-center align-middle bg-zinc-200 dark:bg-[rgba(39,39,42,0.5)] rounded-lg border border-zinc-300 dark:border-gray-700 py-2 px-3'
+				class='flex flex-row items-center rounded-lg border border-zinc-300 bg-zinc-200 px-3 py-2 align-middle dark:border-gray-700 dark:bg-[rgba(39,39,42,0.5)]'
 			>
-				<div class='pr-3 w-1/2 flex flex-col items-center justify-center'>
+				<div class='flex w-1/2 flex-col items-center justify-center pr-3'>
 					<button
 						data-post-id={post.id}
 						id='like'
-						class='flex item-center justify-center'
+						class='item-center flex justify-center hover:cursor-pointer'
 						aria-label='Like article'
 					>
 						<span class='heart-empty'><HeartEmpty /></span>
@@ -132,7 +132,7 @@ const relatedPosts = await getRelatedPosts(post)
 					<div><span id='numLikes'></span> <span id='likesText'> </span></div>
 				</div>
 				<button
-					class='pl-3 w-1/2 border-l border-zinc-600 flex flex-col items-center justify-center'
+					class='flex w-1/2 flex-col items-center justify-center border-l border-zinc-600 pl-3 hover:cursor-pointer'
 					id='share-button'
 					aria-label='Share article'
 				>
@@ -140,7 +140,7 @@ const relatedPosts = await getRelatedPosts(post)
 					<p class='share-text'>Share</p>
 				</button>
 			</div>
-			<div class='sticky top-24 self-start hidden md:block transition-all duration-200'>
+			<div class='sticky top-24 hidden self-start transition-all duration-200 md:block'>
 				<!-- {headings && headings.length > 0 && <TableOfContents {headings} />} -->
 			</div>
 		</aside>

@@ -19,32 +19,32 @@ const { title, description, heroImage, tags, category, issue, alt, readTime } = 
 
 <html lang='en' class='scroll-smooth'>
 	<BaseLayout title={title} description={description} image={heroImage} issue={issue}>
-		<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
-			<header class='mb-3 flex flex-col justify-center items-center gap-6'>
-				<div class='w-full flex flex-col gap-2 text-center font-semibold'>
-					<a href={`/issues/${issue.slug}`}>
+		<article class='min-w-full sm:max-w-none md:max-w-none md:py-4'>
+			<header class='mb-3 flex flex-col items-center justify-center gap-6'>
+				<div class='flex w-full flex-col gap-2 text-center font-semibold'>
+					<a href={`/issues/${issue.slug}/`}>
 						<p
-							class='text-cs-primary dark:text-cs-secondary underline sm:no-underline sm:hover:underline'
+							class='text-cs-primary underline sm:no-underline sm:hover:underline dark:text-cs-secondary'
 						>
 							{issue.name}
 						</p>
 					</a>
-					<h1 class='text-center text-5xl md:text-6xl md:mb-2.5 font-[650] text-balance'>
+					<h1 class='text-center text-5xl font-[650] text-balance md:mb-2.5 md:text-6xl'>
 						{title}
 					</h1>
 
 					<p>{description}</p>
 
 					<div
-						class='flex flex-col sm:flex-row flex-wrap justify-center items-center mt-4 text-base'
+						class='mt-4 flex flex-col flex-wrap items-center justify-center text-base sm:flex-row'
 					>
-						<div class='sm:pr-2 sm:border-r border-gray-300 dark:border-gray-700'>
+						<div class='border-gray-300 sm:border-r sm:pr-2 dark:border-gray-700'>
 							{category ? <Tag tag={category} category={true} /> : ''}
 						</div>
 						<div class='flex flex-row items-center'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
-								class='opacity-80 ml-2 sm:ml-4 mr-1 size-7 icon icon-tabler icon-tabler-tags'
+								class='icon icon-tabler icon-tabler-tags mr-1 ml-2 size-7 opacity-80 sm:ml-4'
 								viewBox='0 0 24 24'
 								stroke-width='1.5'
 								stroke='currentColor'
@@ -59,15 +59,15 @@ const { title, description, heroImage, tags, category, issue, alt, readTime } = 
 								<path d='M18 19l1.592 -1.592a4.82 4.82 0 0 0 0 -6.816l-4.592 -4.592'></path>
 								<path d='M7 10h-.01'></path>
 							</svg>
-							<div class='flex mr-2'>
+							<div class='mr-2 flex'>
 								{tags.map((tag: string) => <Tag tag={tag} category={false} />)}
 							</div>
 						</div>
 						<div class='flex flex-row'>
-							<div class='sm:pl-4 mr-2 sm:border-l border-gray-300 dark:border-gray-700'>
+							<div class='mr-2 border-gray-300 sm:border-l sm:pl-4 dark:border-gray-700'>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
-									class='opacity-80 size-6 icon icon-tabler icon-tabler-clock'
+									class='icon icon-tabler icon-tabler-clock size-6 opacity-80'
 									viewBox='0 0 24 24'
 									stroke-width='1.5'
 									stroke='currentColor'
@@ -95,7 +95,7 @@ const { title, description, heroImage, tags, category, issue, alt, readTime } = 
 							quality={100}
 							format='jpg'
 							loading='eager'
-							class='rounded-md w-full max-h-[300px] md:max-h-[500px] my-8 object-cover'
+							class='my-8 max-h-[300px] w-full rounded-md object-cover md:max-h-[500px]'
 							alt={alt}
 						/>
 					)

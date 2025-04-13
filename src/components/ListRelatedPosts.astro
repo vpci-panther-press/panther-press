@@ -16,7 +16,7 @@ const { posts } = Astro.props
 			posts.map(async (post: Post) => {
 				return (
 					<a
-						class='group flex flex-col h-full border border-gray-200 hover:border-gray-300 transition-all duration-300 rounded-xl p-5 dark:border-gray-700 dark:hover:border-gray-600'
+						class='group flex h-full flex-col rounded-xl border border-gray-200 p-5 transition-all duration-300 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600'
 						href={`/articles/${post.slug}/`}
 					>
 						<div class='aspect-w-16 aspect-h-11'>
@@ -25,13 +25,13 @@ const { posts } = Astro.props
 								width={600}
 								height={200}
 								format='webp'
-								class='w-full h-40 object-cover rounded-xl'
+								class='h-40 w-full rounded-xl object-cover'
 								alt={post.alt}
 							/>
 						</div>
 						<div class='my-6'>
 							<div class='mb-3'>
-								<p class='inline-flex items-center gap-1.5 py-1.5 px-3 rounded-md text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'>
+								<p class='inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-800 dark:bg-gray-800 dark:text-gray-200'>
 									{post.category.substring(0, 1).toUpperCase() + post.category.substring(1)}
 								</p>
 							</div>

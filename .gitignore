@@ -31,3 +31,7 @@ keystatic.config.ts
 src/assets/authors
 src/assets/covers
 src/assets/images
+src/components/mdx
+
+# production build
+src/styles/seasonal-colours.css

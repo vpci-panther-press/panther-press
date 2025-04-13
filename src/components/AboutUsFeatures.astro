@@ -6,13 +6,13 @@ import ZoomCard from './ZoomCard.astro'
 ---
 
 <!-- Features -->
-<div class='max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto'>
-	<ZoomCard className='sm:py-10 p-0' containerClassName='bg-transparent'>
+<div class='mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14'>
+	<ZoomCard className='p-0 sm:py-10' containerClassName='bg-transparent'>
 		<div>
 			<Image
 				src={coverImg}
 				loading='eager'
-				class='w-full object-cover rounded-xl'
+				class='w-full rounded-xl object-cover'
 				alt='Credits: Jasmine - Scenery of lake with pine trees in the background'
 				format='webp'
 				width='1200'
@@ -20,7 +20,7 @@ import ZoomCard from './ZoomCard.astro'
 			/>
 
 			<p
-				class='absolute argent hidden sm:inline-block bottom-20 left-20 text-3xl sm:text-4xl font-bold text-white max-w-md'
+				class='argent absolute bottom-20 left-20 hidden max-w-md text-3xl font-bold text-white sm:inline-block sm:text-4xl'
 			>
 				The official student newspaper of Victoria Park Collegiate Institute.
 			</p>
@@ -28,12 +28,12 @@ import ZoomCard from './ZoomCard.astro'
 	</ZoomCard>
 
 	<!-- Grid -->
-	<div class='mt-5 grid lg:grid-cols-3 gap-8 lg:gap-12'>
+	<div class='mt-5 grid gap-8 lg:grid-cols-3 lg:gap-12'>
 		<div class='lg:col-span-1'>
-			<h2 class='font-bold text-2xl md:text-3xl text-gray-800 dark:text-gray-200'>
+			<h2 class='text-2xl font-bold text-gray-800 md:text-3xl dark:text-gray-200'>
 				The official student newspaper for Victoria Park CI
 			</h2>
-			<p class='mt-2 md:mt-4 text-gray-500'>
+			<p class='mt-2 text-gray-500 md:mt-4'>
 				Victoria Park Collegiate Institute is a public high school in Toronto, Ontario, Canada. We
 				are located in the Parkwoods neighbourhood, part of the Toronto District School Board.
 			</p>
@@ -41,12 +41,12 @@ import ZoomCard from './ZoomCard.astro'
 		<!-- End Col -->
 
 		<div class='lg:col-span-2'>
-			<div class='grid sm:grid-cols-2 gap-8 md:gap-12'>
+			<div class='grid gap-8 sm:grid-cols-2 md:gap-12'>
 				<!-- Icon Block -->
 				<div class='flex gap-x-5'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
-						class='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+						class='h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 						width='24'
 						height='24'
 						viewBox='0 0 24 24'
@@ -74,7 +74,7 @@ import ZoomCard from './ZoomCard.astro'
 				<div class='flex gap-x-5'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
-						class='shrink-0 mt-1 w-6 h-6 text-blue-600 dark:text-blue-500'
+						class='mt-1 h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 						width='24'
 						height='24'
 						viewBox='0 0 24 24'
@@ -101,7 +101,7 @@ import ZoomCard from './ZoomCard.astro'
 				<div class='flex gap-x-5'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
-						class='shrink-0 mt-1 w-6 h-6 text-blue-600 dark:text-blue-500'
+						class='mt-1 h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 						width='24'
 						height='24'
 						viewBox='0 0 24 24'
@@ -128,7 +128,7 @@ import ZoomCard from './ZoomCard.astro'
 				<div class='flex gap-x-5'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
-						class='shrink-0 mt-1 w-6 h-6 text-blue-600 dark:text-blue-500'
+						class='mt-1 h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 						width='24'
 						height='24'
 						viewBox='0 0 24 24'
