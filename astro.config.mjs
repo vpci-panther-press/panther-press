@@ -9,9 +9,9 @@ import cloudflare from '@astrojs/cloudflare'
 export default defineConfig({
 	site: 'https://pantherpress.ca',
 	base: '/',
-	build: {
-		format: 'file'
-	},
+	// build: {
+	// 	format: 'file'
+	// },
 
 	integrations: [sitemap(), react()],
 	output: 'static',
