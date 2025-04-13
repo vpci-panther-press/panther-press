@@ -1,10 +1,6 @@
-test/fixtures/**/*.md
-test/fixtures/**/*.astro
 **/dist
 pnpm-lock.yaml
 node_modules/
 public/admin
-tina/__generated__
-tina/tina-lock.json
 .github
 .changeset

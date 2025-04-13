@@ -33,26 +33,26 @@ const SOCIALNETWORKS = [
 </script>
 
 <header
-	class='font-manrope flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-fulltext-sm py-4 md:bg-transparent bg-zinc-200 md:dark:bg-transparent dark:bg-zinc-900 rounded-lg'
+	class='w-fulltext-sm z-50 flex flex-wrap rounded-lg bg-zinc-200 py-4 font-manrope sm:flex-nowrap sm:justify-start md:bg-transparent dark:bg-zinc-900 md:dark:bg-transparent'
 >
 	<nav
-		class='max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between'
+		class='mx-auto w-full max-w-[85rem] px-4 sm:flex sm:items-center sm:justify-between'
 		aria-label='Global'
 	>
 		<div class='flex items-center justify-between'>
 			<a
-				class='flex-none text-2xl font-semibold hover:trans-text text-zinc-900 dark:text-white'
+				class='hover:trans-text flex-none text-2xl font-semibold text-zinc-900 dark:text-white'
 				href='/'
 			>
-				<div class='flex flex-row gap-x-2 items-center'>
+				<div class='flex flex-row items-center gap-x-2'>
 					<Logo width={24} height={24} /> Panther Press
 				</div></a
 			>
-			<div class='sm:hidden flex flex-row items-center gap-2'>
+			<div class='flex flex-row items-center gap-2 sm:hidden'>
 				<Search />
 				<button
 					type='button'
-					class='hs-collapse-toggle transition-all p-2 gap-2 inline-flex justify-center items-center text-sm font-medium rounded-md border bg-white hover:bg-gray-50 text-gray-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white'
+					class='hs-collapse-toggle inline-flex items-center justify-center gap-2 rounded-md border bg-white p-2 text-sm font-medium text-gray-700 transition-all hover:bg-gray-50 dark:border-gray-700 dark:bg-zinc-900 dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-white'
 					data-hs-collapse='#navbar-collapse-with-animation'
 					aria-controls='navbar-collapse-with-animation'
 					aria-label='Toggle navigation'
@@ -63,10 +63,10 @@ const SOCIALNETWORKS = [
 		</div>
 		<div
 			id='navbar-collapse-with-animation'
-			class='hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:flex flex-row ml-auto'
+			class='hs-collapse ml-auto hidden grow basis-full flex-row overflow-hidden transition-all duration-300 sm:flex'
 		>
 			<div
-				class='flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 ml-auto text-lg font-semibold'
+				class='mt-5 ml-auto flex flex-col gap-5 text-lg font-semibold sm:mt-0 sm:flex-row sm:items-center sm:justify-end sm:pl-5'
 			>
 				<HeaderLink href='/articles/1'>Articles</HeaderLink>
 				<HeaderLink href='/issues'>Issues</HeaderLink>

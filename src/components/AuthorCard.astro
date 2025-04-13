@@ -9,13 +9,13 @@ const image = author.photo ? directusAssetsUrl + author.photo + '?width=400' : '
 ---
 
 <div
-	class='card transition-transform ease-in-out hover:scale-105 cursor-pointer overflow-hidden h-50 rounded-md shadow-xl w-15 sm:min-w-[2rem] max-w-[24rem]'
+	class='card h-50 w-15 max-w-[24rem] cursor-pointer overflow-hidden rounded-md shadow-xl transition-transform ease-in-out hover:scale-105 sm:min-w-[2rem]'
 	style={`background-image: url(${image}); width:10rem;height:10rem`}
 	}
 >
-	<div class='filter h-full w-full justify-between p-4'>
+	<div class='h-full w-full justify-between p-4 filter'>
 		<div
-			class='absolute w-full h-full top-0 left-0 transition duration-300 group-hover/card:opacity-60'
+			class='absolute top-0 left-0 h-full w-full transition duration-300 group-hover/card:opacity-60'
 		>
 		</div>
 		<div class='content'>

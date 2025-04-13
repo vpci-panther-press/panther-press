@@ -13,10 +13,10 @@ import '../styles/global.css'
 <html lang='en' class='scroll-smooth'>
 	<BaseHead title={title} description={description} ogImage={image} issue={issue} />
 	<body
-		class='w-full h-full bg-zinc-200 dark:bg-zinc-900 text-stone-950 dark:text-white bg-repeat mix-blend-multiply dark:bg-[url("/topography-dark.svg")] dark:mix-blend-normal bg-[url("/paper-light.jpg")]'
+		class='h-full w-full bg-zinc-200 bg-[url("/paper-light.jpg")] bg-repeat text-stone-950 mix-blend-multiply dark:bg-zinc-900 dark:bg-[url("/topography-dark.svg")] dark:text-white dark:mix-blend-normal'
 	>
 		<main
-			class='px-5 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-10 antialiased md:max-w-6xl grid gap-12 mt-4 mb-10 overflow-hidden md:overflow-visible'
+			class='mt-4 mb-10 grid gap-12 overflow-hidden px-5 antialiased sm:mx-auto sm:max-w-2xl sm:px-8 md:max-w-6xl md:overflow-visible lg:px-10'
 		>
 			<Navbar />
 			<slot />

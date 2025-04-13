@@ -1,3 +1,6 @@
 {
-	"svg.preview.background": "custom"
+	"svg.preview.background": "custom",
+	"files.associations": {
+		"*.css": "tailwindcss"
+	}
 }

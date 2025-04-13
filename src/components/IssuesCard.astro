@@ -16,10 +16,10 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 ---
 
 <div
-	class='bg-zinc-200 border rounded-xl shadow-xs sm:flex dark:bg-[rgba(39,39,42,0.5)] dark:border-gray-700 dark:shadow-slate-700/[.7] overflow-hidden'
+	class='overflow-hidden rounded-xl border bg-zinc-200 shadow-xs sm:flex dark:border-gray-700 dark:bg-[rgba(39,39,42,0.5)] dark:shadow-slate-700/[.7]'
 >
 	<div
-		class='shrink-0 relative w-full rounded-t-xl sm:rounded-s-xl sm:max-w-[15rem] md:rounded-se-none md:max-w-xs'
+		class='relative w-full shrink-0 rounded-t-xl sm:max-w-[15rem] sm:rounded-s-xl md:max-w-xs md:rounded-se-none'
 	>
 		<Image
 			src={directusAssetsUrl + img}
@@ -31,14 +31,14 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 		/>
 		{
 			archived && (
-				<p class='absolute sm:inline-block py-1.5 px-2 bottom-3 left-3 text-xs font-bold rounded-md bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100'>
+				<p class='absolute bottom-3 left-3 rounded-md bg-slate-100 px-2 py-1.5 text-xs font-bold text-slate-800 sm:inline-block dark:bg-slate-900 dark:text-slate-100'>
 					Archived
 				</p>
 			)
 		}
 	</div>
-	<div class='flex flex-col w-full'>
-		<div class='p-4 flex flex-col h-full sm:p-7'>
+	<div class='flex w-full flex-col'>
+		<div class='flex h-full flex-col p-4 sm:p-7'>
 			<h1 class='text-2xl font-bold text-gray-800 dark:text-white'>
 				{title}
 			</h1>
@@ -46,11 +46,11 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 				{description}
 			</p>
 		</div>
-		<div class='flex flex-col m-4 gap-2'>
+		<div class='m-4 flex flex-col gap-2'>
 			<a
 				data-umami-event='Viewed Articles Link'
 				href={url}
-				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-cs-primary dark:bg-cs-secondary text-white dark:text-black disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-hidden dark:focus:ring-1 dark:focus:ring-gray-600'
+				class='inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-cs-primary px-4 py-3 text-sm font-semibold text-white disabled:pointer-events-none disabled:opacity-50 dark:bg-cs-secondary dark:text-black dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:outline-hidden'
 			>
 				<p class='mr-auto'>Read Articles</p>
 				<ArrowRightS />
@@ -60,7 +60,7 @@ const { title, description, img, url, issuuLink, archived } = Astro.props
 				data-umami-event='Viewed Issuu Link'
 				href={issuuLink}
 				target='_blank'
-				class='py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-cs-secondary dark:bg-cs-primary text-black dark:text-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-hidden dark:focus:ring-1 dark:focus:ring-gray-600'
+				class='inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-cs-secondary px-4 py-3 text-sm font-semibold text-black disabled:pointer-events-none disabled:opacity-50 dark:bg-cs-primary dark:text-white dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:outline-hidden'
 			>
 				<p class='mr-auto'>Read on Issuu</p>
 				<ExternalLink />

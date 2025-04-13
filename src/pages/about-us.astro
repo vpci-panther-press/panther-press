@@ -43,19 +43,19 @@ const execs = await directus.request(
 <BaseLayout title='About Us'>
 	<main id='content'>
 		<div class='relative bg-linear-to-r from-cs-tertiary to-cs-primary text-white'>
-			<div class='max-w-4xl mx-auto py-20 px-4 text-center relative'>
+			<div class='relative mx-auto max-w-4xl px-4 py-20 text-center'>
 				<div class='mb-6 flex justify-center'>
 					<div class='text-center'></div>
 					<PageTitle title='About Us' />
 				</div>
-				<p class='mt-4 text-xl md:text-2xl font-light text-center'>
+				<p class='mt-4 text-center text-xl font-light md:text-2xl'>
 					Discover the story behind VP Panther Press, a student-led initiative bringing school news
 					to life.
 				</p>
-				<div class='mt-6 text-center margin-bottom-5px'>
+				<div class='margin-bottom-5px mt-6 text-center'>
 					<a
 						href='#content'
-						class='inline-block bg-white text-cs-primary font-semibold text-lg px-6 py-3 rounded-lg shadow-md hover:bg-cs-secondary hover:text-white'
+						class='inline-block rounded-lg bg-white px-6 py-3 text-lg font-semibold text-cs-primary shadow-md hover:bg-cs-secondary hover:text-white'
 					>
 						Learn More
 					</a>
@@ -64,9 +64,9 @@ const execs = await directus.request(
 		</div>
 	</main>
 
-	<div class='mt-4 md:mt-6 flex justify-center'>
-		<div class='bg-gray-100 dark:bg-gray-800 px-6 py-4 rounded-lg shadow-md text-center max-w-xl'>
-			<p class='text-lg md:text-xl font-semibold text-gray-700 dark:text-gray-300'>
+	<div class='mt-4 flex justify-center md:mt-6'>
+		<div class='max-w-xl rounded-lg bg-gray-100 px-6 py-4 text-center shadow-md dark:bg-gray-800'>
+			<p class='text-lg font-semibold text-gray-700 md:text-xl dark:text-gray-300'>
 				"VP Panther Press aims to spread school news and is run for students and by students."
 			</p>
 		</div>
@@ -87,13 +87,13 @@ const execs = await directus.request(
 	</div>
 	<br />
 	<Contact />
-	<div class='mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3'>
+	<div class='mt-5 flex flex-col items-center justify-center gap-2 sm:flex-row sm:gap-3'>
 		<a
-			class='w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-hidden dark:focus:ring-1 dark:focus:ring-gray-600'
+			class='inline-flex w-full items-center justify-center gap-x-2 rounded-lg border border-transparent bg-white px-4 py-3 text-sm font-semibold text-gray-800 hover:bg-gray-200 disabled:pointer-events-none disabled:opacity-50 sm:w-auto dark:focus:ring-1 dark:focus:ring-gray-600 dark:focus:outline-hidden'
 			href='/'
 		>
 			<svg
-				class='shrink-0 w-4 h-4'
+				class='h-4 w-4 shrink-0'
 				xmlns='http://www.w3.org/2000/svg'
 				width='24'
 				height='24'

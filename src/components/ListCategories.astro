@@ -9,7 +9,7 @@ const regex = /^\/articles\/\d+\/?$/
 
 <!-- The regex matches /articles/* but not /articles/category/* -->
 <div class='flex flex-col'>
-	<div class='flex min-w-full max-w-full gap-5'>
+	<div class='flex max-w-full min-w-full gap-5'>
 		<a
 			href='/articles/1'
 			class={cn(
@@ -34,12 +34,12 @@ const regex = /^\/articles\/\d+\/?$/
 			))
 		}
 	</div>
-	<div class='inline-block relative w-full bottom-0 border-b-2 -z-40 dark:border-gray-600'></div>
+	<div class='relative bottom-0 -z-40 inline-block w-full border-b-2 dark:border-gray-600'></div>
 </div>
 
 <style>
 	@reference "../styles/global.css";
 	.link {
-		@apply text-gray-600 dark:text-gray-300 pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 dark:hover:text-gray-200 border-b-2 transition-colors duration-150 ease-linear;
+		@apply border-b-2 pb-2.5 font-medium text-gray-600 transition-colors duration-150 ease-linear first-letter:uppercase hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200;
 	}
 </style>

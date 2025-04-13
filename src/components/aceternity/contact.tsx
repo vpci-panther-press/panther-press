@@ -10,16 +10,16 @@ export default function Contact() {
 		console.log('Form submitted')
 	}
 	return (
-		<div className='max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black'>
-			<h2 className='font-bold text-center text-xl text-neutral-800 dark:text-neutral-200'>
+		<div className='mx-auto w-full max-w-md rounded-none bg-white p-4 shadow-input md:rounded-2xl md:p-8 dark:bg-black'>
+			<h2 className='text-center text-xl font-bold text-neutral-800 dark:text-neutral-200'>
 				Contact Us
 			</h2>
-			<p className='text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300'>
+			<p className='mt-2 max-w-sm text-sm text-neutral-600 dark:text-neutral-300'>
 				Have a question or need help? Send us a message, and we'll get back to you soon.
 			</p>
 
 			<form className='my-8' onSubmit={handleSubmit}>
-				<div className='flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4'>
+				<div className='mb-4 flex flex-col space-y-2 md:flex-row md:space-y-0 md:space-x-2'>
 					<LabelInputContainer>
 						<Label htmlFor='firstname'>First name</Label>
 						<Input id='firstname' placeholder='John' type='text' />
@@ -38,12 +38,12 @@ export default function Contact() {
 					<textarea
 						id='message'
 						placeholder='Write your message here...'
-						className='rounded-md p-2 border dark:border-neutral-600 dark:bg-zinc-900 dark:text-neutral-300 w-full h-32'
+						className='h-32 w-full rounded-md border p-2 dark:border-neutral-600 dark:bg-zinc-900 dark:text-neutral-300'
 					></textarea>
 				</LabelInputContainer>
 
 				<button
-					className='bg-linear-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]'
+					className='group/btn relative block h-10 w-full rounded-md bg-linear-to-br from-black to-neutral-600 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:bg-zinc-800 dark:from-zinc-900 dark:to-zinc-900 dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]'
 					type='submit'
 				>
 					Send Message &rarr;
@@ -56,8 +56,8 @@ export default function Contact() {
 const BottomGradient = () => {
 	return (
 		<>
-			<span className='group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-linear-to-r from-transparent via-cyan-500 to-transparent' />
-			<span className='group-hover/btn:opacity-100 blur-xs block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-linear-to-r from-transparent via-indigo-500 to-transparent' />
+			<span className='absolute inset-x-0 -bottom-px block h-px w-full bg-linear-to-r from-transparent via-cyan-500 to-transparent opacity-0 transition duration-500 group-hover/btn:opacity-100' />
+			<span className='absolute inset-x-10 -bottom-px mx-auto block h-px w-1/2 bg-linear-to-r from-transparent via-indigo-500 to-transparent opacity-0 blur-xs transition duration-500 group-hover/btn:opacity-100' />
 		</>
 	)
 }
@@ -69,5 +69,5 @@ const LabelInputContainer = ({
 	children: React.ReactNode
 	className?: string
 }) => {
-	return <div className={cn('flex flex-col space-y-2 w-full', className)}>{children}</div>
+	return <div className={cn('flex w-full flex-col space-y-2', className)}>{children}</div>
 }

@@ -52,19 +52,19 @@ const sortedPosts = sortPostsByDate(posts)
 ---
 
 <BaseLayout title={author.name}>
-	<div class='flex flex-col md:flex-row mb-8 items-center'>
+	<div class='mb-8 flex flex-col items-center md:flex-row'>
 		<div
 			style={`background-image: url('${directusAssetsUrl + author?.photo + '?width=400' || '/author/default.jpg'}');`}
-			class='size-48 block shrink-0 bg-cover rounded-full bg-center md:mr-4 mb-4 md:mb-0'
+			class='mb-4 block size-48 shrink-0 rounded-full bg-cover bg-center md:mr-4 md:mb-0'
 		>
 		</div>
-		<div class='flex flex-col justify-center items-center md:items-start'>
+		<div class='flex flex-col items-center justify-center md:items-start'>
 			<p
 				class={`${author.alumni ? 'inline-block' : 'hidden'} px-2 py-1 my-2 dark:bg-white bg-black dark:text-black text-white rounded-full `}
 			>
 				Alumni
 			</p>
-			<h1 class='text-4xl font-bold mb-4'>{author.name}</h1>
+			<h1 class='mb-4 text-4xl font-bold'>{author.name}</h1>
 			<p class={`text-lg md:text-xl ${author.bio ? 'opacity-50' : ''}`}>
 				{author.bio || 'No biography found'}
 			</p>

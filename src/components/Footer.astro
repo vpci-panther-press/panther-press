@@ -3,16 +3,16 @@ import Logo from './icons/Logo.astro'
 const today = new Date()
 ---
 
-<footer class='border-t-2 border-zinc-200 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-950'>
-	<div class='max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 lg:pt-16 mx-auto'>
+<footer class='border-t-2 border-zinc-200 bg-zinc-100 dark:border-zinc-600 dark:bg-zinc-950'>
+	<div class='mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:pt-16'>
 		<!-- Grid -->
-		<div class='grid grid-cols-2 lg:grid-cols-3 gap-6'>
+		<div class='grid grid-cols-2 gap-6 lg:grid-cols-3'>
 			<div class='col-span-full lg:col-span-1'>
 				<a
 					class='flex-none text-2xl font-semibold text-slate-950 dark:text-white'
 					href='/'
 					aria-label='Brand'
-					><div class='flex flex-row gap-x-2 items-center'>
+					><div class='flex flex-row items-center gap-x-2'>
 						<Logo width={24} height={24} /> Panther Press
 					</div></a
 				>
@@ -45,8 +45,8 @@ const today = new Date()
 		</div>
 		<!-- End Grid -->
 
-		<div class='mt-5 sm:mt-12 grid gap-y-2 sm:gap-y-0 sm:flex sm:justify-between sm:items-center'>
-			<div class='flex justify-between items-center'>
+		<div class='mt-5 grid gap-y-2 sm:mt-12 sm:flex sm:items-center sm:justify-between sm:gap-y-0'>
+			<div class='flex items-center justify-between'>
 				<p class='text-sm text-gray-600 dark:text-slate-200'>
 					&copy; {today.getFullYear()} VPCI Panther Press. All Rights Reserved.
 				</p>

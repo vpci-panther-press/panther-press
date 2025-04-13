@@ -13,17 +13,17 @@ const data = await Promise.all(
 )
 ---
 
-<div class='grid md:grid-cols-1 md:grid-rows-1 grid-cols-2 border-y border-gray-200 py-4'>
+<div class='grid grid-cols-2 border-y border-gray-200 py-4 md:grid-cols-1 md:grid-rows-1'>
 	{
 		data.map((author) => (
 			<a href={`/author/${author.slug}`}>
-				<div class='group flex flex-col items-center my-auto'>
+				<div class='group my-auto flex flex-col items-center'>
 					<div
 						style={`background-image: url('${author.photo ? directusAssetsUrl + author.photo + '?width=150' : '/author/default.jpg'}');`}
-						class='size-16 block shrink-0 my-2 bg-cover rounded-full bg-center'
+						class='my-2 block size-16 shrink-0 rounded-full bg-cover bg-center'
 					/>
 					<div class='group block text-center'>
-						<h5 class='group-hover:text-gray-600 text-sm font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200'>
+						<h5 class='text-sm font-semibold text-gray-800 group-hover:text-gray-600 dark:text-gray-200 dark:group-hover:text-gray-400'>
 							{author.name}
 						</h5>
 						<div class='mt-1'>
@@ -36,7 +36,7 @@ const data = await Promise.all(
 			</a>
 		))
 	}
-	<div class='text-center md:my-3 my-auto'>
+	<div class='my-auto text-center md:my-3'>
 		<p class='text-sm text-gray-500 dark:text-gray-400'>
 			Photo by <span class='text-gray-600 dark:text-gray-300'>{imageCredit}</span>
 		</p>

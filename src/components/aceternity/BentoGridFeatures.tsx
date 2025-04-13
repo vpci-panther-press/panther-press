@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 export default function Bento() {
 	return (
-		<BentoGrid className='max-w-5xl mx-auto md:auto-rows-[20rem]'>
+		<BentoGrid className='mx-auto max-w-5xl md:auto-rows-[20rem]'>
 			{items.map((item, i) => (
 				<BentoGridItem
 					key={i}
@@ -48,7 +48,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='shrink-0 size-8 text-blue-600 dark:text-blue-500'
+				className='size-8 shrink-0 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -76,7 +76,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -106,7 +106,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -136,7 +136,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
@@ -167,7 +167,7 @@ const items = [
 		icon: (
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
-				className='shrink-0 w-6 h-6 text-blue-600 dark:text-blue-500'
+				className='h-6 w-6 shrink-0 text-blue-600 dark:text-blue-500'
 				width='24'
 				height='24'
 				viewBox='0 0 24 24'
