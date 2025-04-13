@@ -10,13 +10,13 @@ const regex = /^\/articles\/\d+\/?$/
 <!-- The regex matches /articles/* but not /articles/category/* -->
 <div class='flex flex-col'>
 	<div class='flex max-w-full min-w-full gap-5'>
-		<a href='/articles/1' class={cn(`link`, regex.test(currentPath) && `link-active`)}>
+		<a href='/articles/1/' class={cn(`link`, regex.test(currentPath) && `link-active`)}>
 			View All
 		</a>
 		{
 			CATEGORIES.map((category: string) => (
 				<a
-					href={sluglify(`/articles/category/${sluglify(category.toLowerCase())}/1`)}
+					href={sluglify(`/articles/category/${sluglify(category.toLowerCase())}/1/`)}
 					class={cn(
 						`link`,
 						activeCategory?.toLowerCase() === sluglify(category.toLowerCase()) && `link-active`

@@ -27,7 +27,7 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 </script>
 
 <nav class='flex items-center justify-center gap-x-1'>
-	<a href={page.url.prev}>
+	<a href={page.url.prev + '/'}>
 		<button
 			type='button'
 			class='inline-flex min-h-[38px] min-w-[38px] items-center justify-center gap-x-1.5 rounded-lg px-2.5 py-2 text-sm text-zinc-800 hover:bg-zinc-100 focus:bg-zinc-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10'
@@ -57,7 +57,7 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 		{
 			pageNumbers.map((pageNumber) => (
 				<a
-					href={`${page.url.current.replace(/\/\d+$/, `/${pageNumber}`)}`}
+					href={`${page.url.current.replace(/\/\d+$/, `/${pageNumber}`)}/`}
 					class={`inline-flex min-h-[38px] min-w-[38px] items-center justify-center gap-x-1.5 rounded-lg px-2.5 py-2 text-sm text-zinc-800 focus:bg-zinc-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:focus:bg-white/10 ${
 						page.currentPage === pageNumber
 							? 'bg-zinc-200 focus:bg-zinc-300 dark:bg-zinc-600 dark:focus:bg-zinc-500'
@@ -69,7 +69,7 @@ const pageNumbers = Array.from({ length: page.lastPage }, (_, index) => index + 
 			))
 		}
 	</div>
-	<a href={page.url.next}>
+	<a href={page.url.next + '/'}>
 		<button
 			type='button'
 			class='inline-flex min-h-[38px] min-w-[38px] items-center justify-center gap-x-1.5 rounded-lg px-2.5 py-2 text-sm text-zinc-800 hover:bg-zinc-100 focus:bg-zinc-100 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 dark:text-white dark:hover:bg-white/10 dark:focus:bg-white/10'
