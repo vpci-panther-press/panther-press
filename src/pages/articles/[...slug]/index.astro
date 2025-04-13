@@ -123,7 +123,7 @@ const relatedPosts = await getRelatedPosts(post)
 					<button
 						data-post-id={post.id}
 						id='like'
-						class='item-center flex justify-center'
+						class='item-center flex justify-center hover:cursor-pointer'
 						aria-label='Like article'
 					>
 						<span class='heart-empty'><HeartEmpty /></span>
@@ -132,7 +132,7 @@ const relatedPosts = await getRelatedPosts(post)
 					<div><span id='numLikes'></span> <span id='likesText'> </span></div>
 				</div>
 				<button
-					class='flex w-1/2 flex-col items-center justify-center border-l border-zinc-600 pl-3'
+					class='flex w-1/2 flex-col items-center justify-center border-l border-zinc-600 pl-3 hover:cursor-pointer'
 					id='share-button'
 					aria-label='Share article'
 				>

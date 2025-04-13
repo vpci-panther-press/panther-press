@@ -10,13 +10,7 @@ const regex = /^\/articles\/\d+\/?$/
 <!-- The regex matches /articles/* but not /articles/category/* -->
 <div class='flex flex-col'>
 	<div class='flex max-w-full min-w-full gap-5'>
-		<a
-			href='/articles/1'
-			class={cn(
-				`link`,
-				regex.test(currentPath) && `border-black text-black dark:border-white dark:text-white`
-			)}
-		>
+		<a href='/articles/1' class={cn(`link`, regex.test(currentPath) && `link-active`)}>
 			View All
 		</a>
 		{
@@ -25,8 +19,7 @@ const regex = /^\/articles\/\d+\/?$/
 					href={sluglify(`/articles/category/${sluglify(category.toLowerCase())}/1`)}
 					class={cn(
 						`link`,
-						activeCategory?.toLowerCase() === sluglify(category.toLowerCase()) &&
-							`border-black text-black dark:border-white dark:text-white`
+						activeCategory?.toLowerCase() === sluglify(category.toLowerCase()) && `link-active`
 					)}
 				>
 					{category.trim()}
@@ -34,12 +27,15 @@ const regex = /^\/articles\/\d+\/?$/
 			))
 		}
 	</div>
-	<div class='relative bottom-0 -z-40 inline-block w-full border-b-2 dark:border-gray-600'></div>
+	<div class='relative bottom-0 -z-40 inline-block w-full border-b-2 dark:border-zinc-600'></div>
 </div>
 
 <style>
 	@reference "../styles/global.css";
 	.link {
-		@apply border-b-2 pb-2.5 font-medium text-gray-600 transition-colors duration-150 ease-linear first-letter:uppercase hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200;
+		@apply border-b-2 pb-2.5 font-medium text-zinc-600 transition-colors duration-150 ease-linear first-letter:uppercase hover:border-zinc-800 hover:text-zinc-800 dark:border-gray-600 dark:text-zinc-300 dark:hover:border-zinc-100 dark:hover:text-zinc-100;
+	}
+	.link-active {
+		@apply border-black text-black dark:border-white dark:text-white;
 	}
 </style>
