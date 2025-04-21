@@ -13,7 +13,7 @@ importers:
         version: 12.4.0(@types/node@22.10.4)(astro@5.6.1(@types/node@22.10.4)(idb-keyval@6.2.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.39.0)(typescript@5.8.3)(yaml@2.7.0))(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.0)
       '@astrojs/react':
         specifier: ^4.2.3
-        version: 4.2.3(@types/node@22.10.4)(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.7.0)
+        version: 4.2.3(@types/node@22.10.4)(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.7.0)
       '@astrojs/rss':
         specifier: 4.0.11
         version: 4.0.11
@@ -43,7 +43,7 @@ importers:
         version: 3.0.0
       '@radix-ui/react-label':
         specifier: ^2.1.3
-        version: 2.1.3(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 2.1.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tailwindcss/vite':
         specifier: ^4.1.3
         version: 4.1.3(vite@6.2.5(@types/node@22.10.4)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.0))
@@ -85,11 +85,11 @@ importers:
         specifier: ~13.3.0
         version: 13.3.0
       '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.1.2
+        version: 19.1.2
       '@types/react-dom':
         specifier: ^19.1.2
-        version: 19.1.2(@types/react@19.1.0)
+        version: 19.1.2(@types/react@19.1.2)
       '@types/sanitize-html':
         specifier: ^2.15.0
         version: 2.15.0
@@ -1926,8 +1926,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.0':
-    resolution: {integrity: sha512-UaicktuQI+9UKyA4njtDOGBD/67t8YEBt2xdfqu8+gP9hqPUPsiXlNPcpS2gVdjmis5GKPG3fCxbQLVgxsQZ8w==}
+  '@types/react@19.1.2':
+    resolution: {integrity: sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==}
 
   '@types/sanitize-html@2.15.0':
     resolution: {integrity: sha512-71Z6PbYsVKfp4i6Jvr37s5ql6if1Q/iJQT80NbaSi7uGaG8CqBMXP0pk/EsURAOuGdk5IJCd/vnzKrR7S3Txsw==}
@@ -4764,10 +4764,10 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@4.2.3(@types/node@22.10.4)(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.7.0)':
+  '@astrojs/react@4.2.3(@types/node@22.10.4)(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(jiti@2.4.2)(lightningcss@1.29.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(yaml@2.7.0)':
     dependencies:
-      '@types/react': 19.1.0
-      '@types/react-dom': 19.1.2(@types/react@19.1.0)
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
       '@vitejs/plugin-react': 4.3.4(vite@6.2.5(@types/node@22.10.4)(jiti@2.4.2)(lightningcss@1.29.2)(yaml@2.7.0))
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -5514,7 +5514,7 @@ snapshots:
       '@react-types/switch': 3.5.9(react@19.1.0)
       '@react-types/table': 3.11.0(react@19.1.0)
       '@react-types/tabs': 3.3.13(react@19.1.0)
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
       emery: 1.4.3
       facepaint: 1.2.1
       react: 19.1.0
@@ -5526,7 +5526,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
       '@keystatic/core': 0.5.46(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
       astro: 5.6.1(@types/node@22.10.4)(idb-keyval@6.2.1)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.39.0)(typescript@5.8.3)(yaml@2.7.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
@@ -5540,7 +5540,7 @@ snapshots:
       '@floating-ui/react': 0.24.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@internationalized/string': 3.2.5
       '@keystar/ui': 0.7.18(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@markdoc/markdoc': 0.4.0(@types/react@19.1.0)(react@19.1.0)
+      '@markdoc/markdoc': 0.4.0(@types/react@19.1.2)(react@19.1.0)
       '@react-aria/focus': 3.20.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/i18n': 3.12.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-aria/interactions': 3.24.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -5557,7 +5557,7 @@ snapshots:
       '@sindresorhus/slugify': 1.1.2
       '@toeverything/y-indexeddb': 0.10.0-canary.9(yjs@13.6.21)
       '@ts-gql/tag': 0.7.3(graphql@16.10.0)
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
       '@urql/core': 5.1.0(graphql@16.10.0)
       '@urql/exchange-auth': 2.2.0(@urql/core@5.1.0(graphql@16.10.0))
       '@urql/exchange-graphcache': 7.2.1(@urql/core@5.1.0(graphql@16.10.0))(graphql@16.10.0)
@@ -5610,10 +5610,10 @@ snapshots:
       - next
       - supports-color
 
-  '@markdoc/markdoc@0.4.0(@types/react@19.1.0)(react@19.1.0)':
+  '@markdoc/markdoc@0.4.0(@types/react@19.1.2)(react@19.1.0)':
     optionalDependencies:
       '@types/markdown-it': 12.2.3
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
       react: 19.1.0
 
   '@mdx-js/mdx@3.1.0(acorn@8.14.1)':
@@ -5681,36 +5681,36 @@ snapshots:
 
   '@preline/collapse@3.0.0': {}
 
-  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.0)(react@19.1.0)':
+  '@radix-ui/react-compose-refs@1.1.2(@types/react@19.1.2)(react@19.1.0)':
     dependencies:
       react: 19.1.0
     optionalDependencies:
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
 
-  '@radix-ui/react-label@2.1.3(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@radix-ui/react-label@2.1.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@radix-ui/react-primitive': 2.0.3(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-primitive': 2.0.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     optionalDependencies:
-      '@types/react': 19.1.0
-      '@types/react-dom': 19.1.2(@types/react@19.1.0)
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
 
-  '@radix-ui/react-primitive@2.0.3(@types/react-dom@19.1.2(@types/react@19.1.0))(@types/react@19.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@radix-ui/react-primitive@2.0.3(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@radix-ui/react-slot': 1.2.0(@types/react@19.1.0)(react@19.1.0)
+      '@radix-ui/react-slot': 1.2.0(@types/react@19.1.2)(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
     optionalDependencies:
-      '@types/react': 19.1.0
-      '@types/react-dom': 19.1.2(@types/react@19.1.0)
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
 
-  '@radix-ui/react-slot@1.2.0(@types/react@19.1.0)(react@19.1.0)':
+  '@radix-ui/react-slot@1.2.0(@types/react@19.1.2)(react@19.1.0)':
     dependencies:
-      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.0)(react@19.1.0)
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.2)(react@19.1.0)
       react: 19.1.0
     optionalDependencies:
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
 
   '@react-aria/actiongroup@3.7.14(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -6923,11 +6923,11 @@ snapshots:
 
   '@types/parse-json@4.0.2': {}
 
-  '@types/react-dom@19.1.2(@types/react@19.1.0)':
+  '@types/react-dom@19.1.2(@types/react@19.1.2)':
     dependencies:
-      '@types/react': 19.1.0
+      '@types/react': 19.1.2
 
-  '@types/react@19.1.0':
+  '@types/react@19.1.2':
     dependencies:
       csstype: 3.1.3
 
